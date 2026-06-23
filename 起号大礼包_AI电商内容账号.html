@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI电商实验型内容账号 · 起号方案 v2.0</title>
+<style>
+  :root {
+    --primary: #0f766e;
+    --primary-dark: #115e59;
+    --accent: #ff6b4a;
+    --accent-light: #fff0ea;
+    --bg: #f5f7f2;
+    --card-bg: #ffffff;
+    --text: #17252a;
+    --text-light: #64726f;
+    --border: #dce5df;
+    --success: #15803d;
+    --tag-bg: #e8f5f1;
+    --tag-text: #0f5f59;
+    --danger: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 20px; }
+  .header { text-align: center; margin-bottom: 48px; }
+  .header .badge { display: inline-block; background: var(--accent-light); color: #92400e; font-size: 13px; font-weight: 600; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; }
+  .header h1 { font-size: 32px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .header .sub { font-size: 16px; color: var(--text-light); }
+  .card { background: var(--card-bg); border-radius: 8px; padding: 28px 32px; margin-bottom: 28px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .card h2 .icon { width: 32px; height: 32px; background: var(--primary); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 16px; flex-shrink: 0; }
+  .card h2 .icon.accent { background: var(--accent); }
+  .card h2 .icon.green { background: var(--success); }
+  .card .desc { color: var(--text-light); font-size: 14px; margin-bottom: 24px; }
+  .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 14px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+  p { color: var(--text); font-size: 15px; }
+
+  .audit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+  .audit-item { border-top: 3px solid var(--accent); background: var(--bg); border-radius: 6px; padding: 14px; }
+  .audit-item strong { display: block; font-size: 14px; margin-bottom: 5px; }
+  .audit-item span { display: block; font-size: 12px; color: var(--text-light); line-height: 1.55; }
+  .strategy-line { margin-top: 18px; padding: 16px 18px; border-left: 4px solid var(--primary); background: #eef8f5; border-radius: 0 6px 6px 0; font-size: 14px; }
+  .strategy-line strong { color: var(--primary-dark); }
+  .metric-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13px; }
+  .metric-table th, .metric-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+  .metric-table th { color: var(--text-light); font-size: 11px; text-transform: uppercase; }
+
+  /* Profile Section */
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  .profile-item { background: var(--bg); border-radius: 12px; padding: 16px; }
+  .profile-item .label { font-size: 12px; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .profile-item .value { font-size: 15px; font-weight: 600; color: var(--text); }
+  .profile-item .sub { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+  .name-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .name-card { background: var(--bg); border: 2px solid var(--border); border-radius: 12px; padding: 14px; cursor: pointer; transition: all 0.2s; }
+  .name-card:hover { border-color: var(--primary); background: var(--tag-bg); }
+  .name-card .n { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .name-card .why { font-size: 12px; color: var(--text-light); }
+  .name-card .tag { display: inline-block; background: var(--success); color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; }
+
+  .bio-box { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; padding: 20px; margin-top: 20px; color: white; }
+  .bio-box .label { font-size: 12px; opacity: 0.8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .bio-box .text { font-size: 17px; font-weight: 600; line-height: 1.6; }
+
+  .avatar-guide { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .avatar-card { background: var(--bg); border-radius: 12px; padding: 16px; text-align: center; }
+  .avatar-card .emoji { font-size: 48px; margin-bottom: 8px; }
+  .avatar-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .avatar-card p { font-size: 13px; color: var(--text-light); }
+
+  .highlights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+  .highlight { background: var(--bg); border-radius: 12px; padding: 14px 10px; text-align: center; cursor: pointer; }
+  .highlight .icon { font-size: 28px; margin-bottom: 6px; }
+  .highlight .text { font-size: 12px; font-weight: 600; color: var(--text); }
+  .highlight .sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+  /* Content Cards */
+  .content-week { margin-top: 20px; }
+  .day-card { border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 16px; background: white; position: relative; overflow: hidden; }
+  .day-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+  .day-card.d1::before { background: #ef4444; }
+  .day-card.d2::before { background: #f59e0b; }
+  .day-card.d3::before { background: #10b981; }
+  .day-card.d4::before { background: #6366f1; }
+  .day-card.d5::before { background: #ec4899; }
+  .day-card.d6::before { background: #14b8a6; }
+  .day-card.d7::before { background: #8b5cf6; }
+
+  .day-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .day-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); }
+  .day-title { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.4; }
+  .day-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .tag.type { background: var(--tag-bg); color: var(--tag-text); }
+  .tag.emotion { background: #fef3c7; color: #92400e; }
+  .tag.tech { background: #ecfdf5; color: #065f46; }
+
+  .content-text { background: var(--bg); border-radius: 10px; padding: 16px; margin-top: 14px; }
+  .content-text .part { font-size: 14px; color: var(--text); margin-bottom: 8px; padding-left: 12px; border-left: 2px solid var(--border); }
+  .content-text .part:last-child { margin-bottom: 0; }
+  .content-text .hash { color: var(--primary); font-weight: 600; }
+
+  .tip-box { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 12px; }
+  .tip-box p { font-size: 13px; color: #78350f; }
+  .tip-box strong { font-weight: 700; }
+
+  /* Calendar */
+  .month-calendar { margin-top: 20px; }
+  .week-label { font-size: 13px; font-weight: 700; color: var(--text-light); margin-bottom: 10px; margin-top: 24px; display: flex; align-items: center; gap: 8px; }
+  .week-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  .cal-header { font-size: 11px; font-weight: 700; color: var(--text-light); text-align: center; padding: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cal-day { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; min-height: 80px; font-size: 12px; position: relative; }
+  .cal-day .day-num { font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .cal-day .type-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 2px; }
+  .cal-day .type-label { font-size: 10px; color: var(--text-light); display: block; }
+  .cal-day.rest { background: #fef2f2; border-color: #fecaca; }
+  .cal-day.highlight { background: var(--tag-bg); border-color: #c7d2fe; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-light); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* SEO Keywords */
+  .keyword-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .keyword { background: var(--tag-bg); color: var(--tag-text); font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid #c7d2fe; }
+
+  /* Summary Box */
+  .summary-box { background: linear-gradient(135deg, #1e1b4b, #312e81); color: white; border-radius: 16px; padding: 28px 32px; margin-top: 32px; }
+  .summary-box h3 { color: white; font-size: 18px; margin-bottom: 16px; }
+  .summary-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .summary-item { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 14px; }
+  .summary-item .s-label { font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
+  .summary-item .s-value { font-size: 16px; font-weight: 700; }
+  .summary-item .s-value .num { font-size: 24px; }
+
+  /* CTA */
+  .cta-box { text-align: center; margin-top: 40px; padding: 32px; background: white; border-radius: 16px; border: 2px dashed var(--primary); }
+  .cta-box h3 { font-size: 20px; margin-bottom: 8px; }
+  .cta-box p { color: var(--text-light); margin-bottom: 16px; }
+  .cta-steps { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .cta-step { text-align: center; }
+  .cta-step .n { width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 8px; }
+  .cta-step .t { font-size: 13px; color: var(--text-light); }
+
+  @media (max-width: 640px) {
+    .profile-grid, .name-options, .avatar-guide, .highlights, .summary-list, .audit-grid, .calendar-grid { grid-template-columns: 1fr; }
+    .calendar-grid { grid-template-columns: repeat(7, 1fr); }
+    .cal-day { min-height: 60px; padding: 6px 4px; }
+    .cal-day .type-label { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">起号方案 v2.0 · 先验证需求，再追粉丝</div>
+    <h1>AI 电商实验型内容账号</h1>
+    <p class="sub">定位收敛 · 7天验证冲刺 · 30天内容实验 · 统一品牌视觉</p>
+  </div>
+
+  <!-- Audit -->
+  <div class="card">
+    <h2><span class="icon accent">✓</span> 审查结论：原方案需要先收窄，再放大</h2>
+    <p class="desc">原方案内容丰富，但“AI工具、选品、副业、程序员、电商运营”同时出现，用户难以快速记住账号到底解决什么问题。</p>
+    <div class="audit-grid">
+      <div class="audit-item"><strong>定位太宽</strong><span>从泛AI电商收敛到“1–5人小团队的AI工作流实验”。</span></div>
+      <div class="audit-item"><strong>证据风险</strong><span>删除无法证明的10倍效率、2000元红包、300单等结果叙事。</span></div>
+      <div class="audit-item"><strong>CTA太重</strong><span>每篇只保留一个动作：收藏、评论问题或领取清单，三选一。</span></div>
+      <div class="audit-item"><strong>目标失真</strong><span>不预测涨粉，改看主页访问、收藏、有效评论和需求复现率。</span></div>
+    </div>
+    <div class="strategy-line"><strong>唯一记忆点：</strong>一个前端，把电商重复工作做成可复用的AI流程；每周公开一个真实实验、过程和模板。</div>
+  </div>
+
+  <!-- Part 1: Account Setup -->
+  <div class="card">
+    <h2><span class="icon">👤</span> 一、账号主页设计</h2>
+    <p class="desc">主页只回答三件事：你是谁、帮谁解决什么问题、关注后能持续得到什么。</p>
+
+    <div class="section-label">推荐账号名称（4选1）</div>
+    <div class="name-options">
+      <div class="name-card" onclick="this.style.borderColor='#10b981';this.querySelector('.tag').textContent='★ 推荐'">
+        <div class="n">老王的AI电商实验室</div>
+        <div class="why">个人IP + 实验型内容 + 清晰垂类，后续可承接工具与服务</div>
+        <span class="tag">★ 推荐</span>
+      </div>
+      <div class="name-card" onclick="this.style.borderColor='#10b981'">
+        <div class="n">前端老王·电商自动化</div>
+        <div class="why">更强调技术差异化，适合教程和工作流内容</div>
+      </div>
+      <div class="name-card" onclick="this.style.borderColor='#10b981'">
+        <div class="n">小店AI提效实验</div>
+        <div class="why">受众直接，弱化个人IP，适合矩阵号</div>
+      </div>
+      <div class="name-card" onclick="this.style.borderColor='#10b981'">
+        <div class="n">一个人的电商工作流</div>
+        <div class="why">问题导向强，适合内容型账号和搜索流量</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">头像设计建议</div>
+    <div class="avatar-guide">
+      <div class="avatar-card">
+        <div class="emoji">🧑‍💻</div>
+        <h4>真人出镜（最优）</h4>
+        <p>侧脸或工作场景照，配合技术感背景（如代码、屏幕）</p>
+      </div>
+      <div class="avatar-card">
+        <div class="emoji">🎨</div>
+        <h4>卡通头像</h4>
+        <p>用Midjourney生成程序员人设，保持风格统一</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">个人简介（bio）</div>
+    <div class="bio-box">
+      <div class="label">📝 直接复制使用</div>
+      <div class="text">
+        前端开发｜研究小团队的AI电商工作流<br><br>
+        每周实测 1 个真实场景：文案、素材、客服、复盘<br>
+        公开过程、踩坑和可复用模板<br><br>
+        从置顶《7天AI提效实验》开始
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">封面图（背景图）设计建议</div>
+    <p style="font-size:14px; color:var(--text-light); margin-bottom:16px;">建议先按 5:2 横图制作；关键信息放在中央安全区，上传前以平台裁剪预览为准。</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:linear-gradient(135deg,#1e1b4b,#4f46e5); border-radius:12px; padding:24px; color:white; text-align:center;">
+        <div style="font-size:28px; margin-bottom:8px;">📊</div>
+        <div style="font-weight:700; font-size:15px;">方案A：文字型</div>
+        <div style="font-size:13px; opacity:0.8; margin-top:4px;">主标题 + 副标题 + 联系方式</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#064e3b,#059669); border-radius:12px; padding:24px; color:white; text-align:center;">
+        <div style="font-size:28px; margin-bottom:8px;">🛠️</div>
+        <div style="font-weight:700; font-size:15px;">方案B：工具展示型</div>
+        <div style="font-size:13px; opacity:0.8; margin-top:4px;">截图展示产品界面</div>
+      </div>
+    </div>
+    <div style="background:var(--bg); border-radius:10px; padding:16px; margin-top:16px; text-align:center;">
+      <div style="font-size:14px; font-weight:600; color:var(--text);">背景图文字建议</div>
+      <div style="font-size:13px; color:var(--text-light); margin-top:8px;">
+        主标题：<span style="color:var(--primary); font-weight:700;">"把重复工作，做成AI流程"</span><br>
+        副标题：<span style="color:var(--text-light);">真实实验 · 可复用模板 · 小团队提效</span>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">置顶内容建议（2篇）</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="background:var(--bg); border-radius:10px; padding:14px;">
+        <div style="font-size:12px; color:var(--text-light); font-weight:600; margin-bottom:4px;">置顶① 新人导航</div>
+        <div style="font-size:14px; font-weight:700;">《先看这篇：我会公开哪些AI电商实验》</div>
+        <div style="font-size:12px; color:var(--text-light); margin-top:4px;">说明受众、栏目、更新频率和证据标准</div>
+      </div>
+      <div style="background:var(--bg); border-radius:10px; padding:14px;">
+        <div style="font-size:12px; color:var(--text-light); font-weight:600; margin-bottom:4px;">置顶② 代表作</div>
+        <div style="font-size:14px; font-weight:700;">《同一款商品，我测试了3套AI文案流程》</div>
+        <div style="font-size:12px; color:var(--text-light); margin-top:4px;">用前后对比、时间记录和模板建立信任</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 2: Week 1 Content -->
+  <div class="card">
+    <h2><span class="icon accent">📅</span> 二、第一周完整7篇文案</h2>
+    <p class="desc">首周不是连续“输出干货”，而是完成一次需求验证：立承诺 → 找问题 → 做实验 → 展示证据 → 邀请共创。</p>
+
+    <div class="content-week">
+
+      <!-- Day 1 -->
+      <div class="day-card d1">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 1 · 周一 · 立人设</div>
+            <div class="day-title">我决定公开做30天AI电商实验：不讲概念，只交作业</div>
+            <div class="day-meta">
+              <span class="tag type">个人故事</span>
+              <span class="tag emotion">焦虑共鸣</span>
+              <span class="tag tech">涨粉向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part">我是前端开发，过去擅长把重复动作写成流程。现在我想验证一件事：这套思路，能不能真的帮小电商团队少加班？</div>
+          <div class="part">未来30天，我每周选择一个真实场景：商品文案、素材整理、客服回复或数据复盘。</div>
+          <div class="part"><strong>每个实验都公开四样东西：</strong>原始任务、操作步骤、耗时记录、失败原因。</div>
+          <div class="part">不发布无法验证的“暴涨”“躺赚”故事；没有结果，就把没有结果也写出来。</div>
+          <div class="part">第一轮我准备测试“同一款商品，3套AI文案流程”。</div>
+          <div class="part"><strong>你每天最想交给AI的重复工作是什么？</strong>评论一个具体任务，我按高频问题选下一期。</div>
+          <div class="part"><span class="hash">#AI电商 #电商工作流 #小团队运营 #真实实验</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>大字「30天，只交作业」+ 小字「前端的AI电商实验」；真人/头像放右下角。</p>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card d2">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 2 · 周二 · 工具分享</div>
+            <div class="day-title">别急着推荐工具：我先收集了20个电商人的重复工作</div>
+            <div class="day-meta">
+              <span class="tag type">工具清单</span>
+              <span class="tag tech">干货向</span>
+              <span class="tag tech">收藏向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part">工具越多，选择成本越高。真正该先做的，是找出每天重复、规则明确、耗时稳定的任务。</div>
+          <div class="part"><strong>我先按四类整理问题：</strong></div>
+          <div class="part">① 内容：标题、卖点、详情页、短视频脚本<br>② 素材：命名、分类、尺寸适配、版本管理<br>③ 客服：高频问题、售后解释、评价回复<br>④ 复盘：日报汇总、竞品变化、异常提醒</div>
+          <div class="part">判断一个任务是否值得自动化，只看三个条件：每周重复3次以上、输入相对固定、结果可以人工复核。</div>
+          <div class="part"><strong>今天只做一件事：</strong>记录你最耗时的重复任务，以及它每次花多久。</div>
+          <div class="part">把任务写在评论里；我会选出现频率最高的3个，做公开实验。</div>
+          <div class="part"><span class="hash">#电商提效 #AI工作流 #电商运营SOP #需求调研</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>四象限任务地图，标题「先找任务，再选AI」。</p>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card d3">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 3 · 周三 · 干货教程</div>
+            <div class="day-title">同一款商品，我用3套AI流程写文案：结果差别比工具名更重要</div>
+            <div class="day-meta">
+              <span class="tag type">技术教程</span>
+              <span class="tag emotion">赚钱案例</span>
+              <span class="tag tech">信任向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part">测试对象固定：同一个商品资料包、同一个目标人群、同一个输出字数。</div>
+          <div class="part"><strong>A组：</strong>一句话直接让AI写；<strong>B组：</strong>先提炼卖点再写；<strong>C组：</strong>先输入用户评价，再按场景写。</div>
+          <div class="part">我记录四项：准备时间、生成时间、事实错误、人工修改量。</div>
+          <div class="part">最终不评“哪个AI最聪明”，只回答：哪套流程最适合普通小团队重复使用。</div>
+          <div class="part">正文展示三组原文截图和修改痕迹，避免只报结论。</div>
+          <div class="part"><strong>可复制模板：</strong>商品事实 → 用户场景 → 核心顾虑 → 证据 → 行动提示。</div>
+          <div class="part"><span class="hash">#商品文案 #AI实测 #电商内容 #工作流对比</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>A/B/C三列对比，标题「工具相同，流程不同」。</p>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-card d4">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 4 · 周四 · 对比测评</div>
+            <div class="day-title">AI写商品文案，最容易翻车的不是文风，而是这4类事实</div>
+            <div class="day-meta">
+              <span class="tag type">横评对比</span>
+              <span class="tag tech">干货向</span>
+              <span class="tag tech">搜索向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part">我复盘了实验里的错误，发现“文风像不像”反而不是第一风险。</div>
+          <div class="part"><strong>必须人工核对四类事实：</strong>规格参数、功效承诺、适用人群、活动价格。</div>
+          <div class="part">AI最容易把缺失信息补成“听起来合理”的句子，这种文案顺滑，但不能直接发布。</div>
+          <div class="part"><strong>我的发布前检查表：</strong>每个数字有来源；每个效果能证明；没有扩大适用范围；价格和库存仍有效。</div>
+          <div class="part">工具只能提高初稿速度，事实责任仍然在人。</div>
+          <div class="part">建议收藏这4项，下一次让AI写文案前先贴在提示词末尾。</div>
+          <div class="part"><span class="hash">#AI文案避坑 #商品合规 #电商运营 #内容审核</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>红色检查章 + 四项清单，标题「AI文案先查事实」。</p>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card d5">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 5 · 周五 · 个人IP</div>
+            <div class="day-title">程序员做电商的真正优势：把“凭感觉”变成可重复</div>
+            <div class="day-meta">
+              <span class="tag type">观点输出</span>
+              <span class="tag emotion">共鸣型</span>
+              <span class="tag tech">人设向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part">写代码只是手段。更有价值的是：先定义输入和输出，再记录过程，再决定要不要自动化。</div>
+          <div class="part"><strong>把它翻译成电商语言：</strong></div>
+          <div class="part">商品资料是输入；可发布内容是输出；提示词、检查表和人工复核是流程。</div>
+          <div class="part">当流程固定以后，换工具的成本很低；没有流程，买再多工具也只是在反复试错。</div>
+          <div class="part">这也是这个账号的差异：不做工具新闻搬运，而是把一个任务跑通、记录、复盘。</div>
+          <div class="part"><strong>判断标准：</strong>同一个流程，换一个商品，别人还能复现。</div>
+          <div class="part"><span class="hash">#程序员思维 #电商SOP #AI自动化 #个人效率</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>输入→流程→输出三段式，标题「别先买工具，先做流程」。</p>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-card d6">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 6 · 周六 · 情绪内容</div>
+            <div class="day-title">一人电商最累的，不是任务多，而是每天重新做一遍</div>
+            <div class="day-meta">
+              <span class="tag type">情绪共鸣</span>
+              <span class="tag emotion">高互动</span>
+              <span class="tag tech">涨粉向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part">很多小团队不是输在不会做，而是所有事情都依赖当天的状态。</div>
+          <div class="part">今天重新想标题，明天重新找素材，后天又重新解释同一个售后问题。</div>
+          <div class="part"><strong>真正消耗人的，是没有“下次直接复用”的资产。</strong></div>
+          <div class="part">提示词不是资产，经过验证的输入模板、检查表和案例库才是。</div>
+          <div class="part">本周实验结束后，我会留下三份东西：商品事实表、文案生成流程、发布前检查表。</div>
+          <div class="part">如果下周换一个商品还能跑通，这次实验才算成功。</div>
+          <div class="part">你现在最想沉淀成模板的是哪项工作？</div>
+          <div class="part"><span class="hash">#一人电商 #运营复盘 #AI提效 #工作流资产</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>重复循环箭头被切断，标题「别再每天重做」。</p>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-card d7">
+        <div class="day-header">
+          <div>
+            <div class="day-label">Day 7 · 周日 · 互动收网</div>
+            <div class="day-title">第一周实验复盘：什么有效、什么无效、下周测什么</div>
+            <div class="day-meta">
+              <span class="tag type">福利互动</span>
+              <span class="tag emotion">高转化</span>
+              <span class="tag tech">共创向</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="part"><strong>本周验证的问题：</strong>不同AI文案流程，是否能降低人工修改量。</div>
+          <div class="part"><strong>有效：</strong>先补全商品事实，再输入用户场景；生成内容更稳定，也更容易复核。</div>
+          <div class="part"><strong>无效：</strong>一次生成10个版本。数量变多，但筛选和纠错时间也增加。</div>
+          <div class="part"><strong>意外发现：</strong>用户最关心的不是工具名称，而是怎样判断内容能不能发布。</div>
+          <div class="part">我把本周流程整理成一页检查表，放到置顶内容里，任何人都可以照着复现。</div>
+          <div class="part"><strong>下周候选实验：</strong>A 客服高频回复库；B 商品素材自动归档；C 每日数据复盘。</div>
+          <div class="part">评论 A/B/C，票数最高的先做。</div>
+          <div class="part"><span class="hash">#AI电商复盘 #用户共创 #电商工作流 #真实实验</span></div>
+        </div>
+        <div class="tip-box">
+          <p><strong>封面建议：</strong>“有效 / 无效 / 下周”三栏复盘，标题「第一周实验报告」。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Part 3: Month Calendar -->
+  <div class="card">
+    <h2><span class="icon green">🗓️</span> 三、30天完整内容日历</h2>
+    <p class="desc">每周完成一个闭环：收集问题 → 选择任务 → 公开实验 → 沉淀模板 → 数据复盘。</p>
+
+    <div class="month-calendar">
+      <!-- Week 1 -->
+      <div class="week-label">第1周 · 定位与需求验证</div>
+      <div class="calendar-grid">
+        <div class="cal-header">一</div>
+        <div class="cal-header">二</div>
+        <div class="cal-header">三</div>
+        <div class="cal-header">四</div>
+        <div class="cal-header">五</div>
+        <div class="cal-header">六</div>
+        <div class="cal-header">日</div>
+
+        <div class="cal-day highlight">
+          <div class="day-num">D1</div>
+          <span class="type-dot" style="background:#ef4444"></span><span class="type-label">公开承诺</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D2</div>
+          <span class="type-dot" style="background:#f59e0b"></span><span class="type-label">问题地图</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D3</div>
+          <span class="type-dot" style="background:#10b981"></span><span class="type-label">流程实验</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D4</div>
+          <span class="type-dot" style="background:#6366f1"></span><span class="type-label">错误复盘</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D5</div>
+          <span class="type-dot" style="background:#ec4899"></span><span class="type-label">方法论</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D6</div>
+          <span class="type-dot" style="background:#14b8a6"></span><span class="type-label">模板资产</span>
+        </div>
+        <div class="cal-day highlight">
+          <div class="day-num">D7</div>
+          <span class="type-dot" style="background:#8b5cf6"></span><span class="type-label">周复盘</span>
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="week-label">第2周 · 工作流验证</div>
+      <div class="calendar-grid">
+        <div class="cal-day">
+          <div class="day-num">D8</div>
+          <span class="type-dot" style="background:#f59e0b"></span><span class="type-label">客服场景</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D9</div>
+          <span class="type-dot" style="background:#10b981"></span><span class="type-label">素材归档</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D10</div>
+          <span class="type-dot" style="background:#6366f1"></span><span class="type-label">数据日报</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D11</div>
+          <span class="type-dot" style="background:#ef4444"></span><span class="type-label">失败记录</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D12</div>
+          <span class="type-dot" style="background:#ec4899"></span><span class="type-label">流程横评</span>
+        </div>
+        <div class="cal-day rest">
+          <div class="day-num">D13</div>
+          <span class="type-dot" style="background:#94a3b8"></span><span class="type-label">休息</span>
+        </div>
+        <div class="cal-day highlight">
+          <div class="day-num">D14</div>
+          <span class="type-dot" style="background:#14b8a6"></span><span class="type-label">周总结</span>
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="week-label">第3周 · 证据与案例积累</div>
+      <div class="calendar-grid">
+        <div class="cal-day">
+          <div class="day-num">D15</div>
+          <span class="type-dot" style="background:#10b981"></span><span class="type-label">赚钱案例</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D16</div>
+          <span class="type-dot" style="background:#f59e0b"></span><span class="type-label">工具推荐</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D17</div>
+          <span class="type-dot" style="background:#6366f1"></span><span class="type-label">自动化</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D18</div>
+          <span class="type-dot" style="background:#ec4899"></span><span class="type-label">产品思维</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D19</div>
+          <span class="type-dot" style="background:#ef4444"></span><span class="type-label">避坑指南</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D20</div>
+          <span class="type-dot" style="background:#14b8a6"></span><span class="type-label">情绪内容</span>
+        </div>
+        <div class="cal-day highlight">
+          <div class="day-num">D21</div>
+          <span class="type-dot" style="background:#8b5cf6"></span><span class="type-label">福利/答疑</span>
+        </div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="week-label">第4周 · MVP需求验证</div>
+      <div class="calendar-grid">
+        <div class="cal-day">
+          <div class="day-num">D22</div>
+          <span class="type-dot" style="background:#10b981"></span><span class="type-label">需求清单</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D23</div>
+          <span class="type-dot" style="background:#f59e0b"></span><span class="type-label">工具测评</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D24</div>
+          <span class="type-dot" style="background:#6366f1"></span><span class="type-label">教程进阶</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D25</div>
+          <span class="type-dot" style="background:#ec4899"></span><span class="type-label">用户案例</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D26</div>
+          <span class="type-dot" style="background:#ef4444"></span><span class="type-label">方法论</span>
+        </div>
+        <div class="cal-day">
+          <div class="day-num">D27</div>
+          <span class="type-dot" style="background:#14b8a6"></span><span class="type-label">数据复盘</span>
+        </div>
+        <div class="cal-day highlight">
+          <div class="day-num">D28</div>
+          <span class="type-dot" style="background:#8b5cf6"></span><span class="type-label">月度总结</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">内容类型分布</div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> 个人故事/人设</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span> 工具清单/推荐</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span> 技术教程/案例</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#6366f1"></span> AI进阶/自动化</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#ec4899"></span> 观点/对比测评</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#14b8a6"></span> 情绪/互动内容</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span> 福利/答疑/总结</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span> 休息/复盘</div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">每周内容主题建议</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="background:var(--bg); border-radius:10px; padding:14px;">
+        <div style="font-size:12px; font-weight:700; color:var(--primary); margin-bottom:6px;">W1 · 建立信任</div>
+        <div style="font-size:13px; color:var(--text-light);">说明实验承诺、收集重复任务、完成首个工作流<br>目标：验证“谁在为什么问题关注你”</div>
+      </div>
+      <div style="background:var(--bg); border-radius:10px; padding:14px;">
+        <div style="font-size:12px; font-weight:700; color:#f59e0b; margin-bottom:6px;">W2 · 深度价值</div>
+        <div style="font-size:13px; color:var(--text-light);">客服、素材、日报三类任务小实验<br>目标：找到最容易被复现的内容格式</div>
+      </div>
+      <div style="background:var(--bg); border-radius:10px; padding:14px;">
+        <div style="font-size:12px; font-weight:700; color:#10b981; margin-bottom:6px;">W3 · 案例爆发</div>
+        <div style="font-size:13px; color:var(--text-light);">真实案例、失败记录、模板迭代<br>目标：用证据建立专业信任</div>
+      </div>
+      <div style="background:var(--bg); border-radius:10px; padding:14px;">
+        <div style="font-size:12px; font-weight:700; color:#ec4899; margin-bottom:6px;">W4 · 变现冲刺</div>
+        <div style="font-size:13px; color:var(--text-light);">整理高频需求、发布轻量模板、收集使用反馈<br>目标：验证是否值得做MVP，不急着卖课</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 4: SEO Keywords -->
+  <div class="card">
+    <h2><span class="icon">⌕</span> 四、搜索词与需求词</h2>
+    <p class="desc">优先使用用户会直接搜索的问题词；一篇内容只聚焦一个核心词，不堆标签。</p>
+    <div class="section-label">核心关键词</div>
+    <div class="keyword-grid">
+      <span class="keyword">AI电商</span>
+      <span class="keyword">电商AI工具</span>
+      <span class="keyword">电商AI工作流</span>
+      <span class="keyword">商品文案提示词</span>
+      <span class="keyword">电商客服回复模板</span>
+      <span class="keyword">商品素材整理</span>
+      <span class="keyword">一人电商提效</span>
+      <span class="keyword">电商运营SOP</span>
+      <span class="keyword">AI文案避坑</span>
+      <span class="keyword">电商数据复盘</span>
+    </div>
+    <div class="section-label" style="margin-top:20px;">长尾关键词</div>
+    <div class="keyword-grid">
+      <span class="keyword">小团队怎么用AI写商品文案</span>
+      <span class="keyword">AI商品文案怎么检查事实</span>
+      <span class="keyword">电商客服高频问题怎么整理</span>
+      <span class="keyword">商品图片如何自动分类命名</span>
+      <span class="keyword">一人电商每天怎么做数据复盘</span>
+      <span class="keyword">AI工具太多怎么选择</span>
+      <span class="keyword">程序员如何做电商自动化</span>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-box">
+    <h3>30天验证目标（不是结果承诺）</h3>
+    <div class="summary-list">
+      <div class="summary-item">
+        <div class="s-label">有效实验内容</div>
+        <div class="s-value"><span class="num">20–24</span> 篇</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">收藏率验证线</div>
+        <div class="s-value"><span class="num">≥5%</span></div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">有效需求评论</div>
+        <div class="s-value"><span class="num">30</span> 条</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">可复现工作流</div>
+        <div class="s-value"><span class="num">3</span> 套</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>现在开始，按验证闭环执行</h3>
+    <p>第一周最重要的不是日更，而是拿到具体问题和真实反馈。</p>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="n">1</div>
+        <div class="t">今天完成主页<br>名称+承诺+视觉</div>
+      </div>
+      <div class="cta-step">
+        <div class="n">2</div>
+        <div class="t">发布公开承诺<br>收集具体任务</div>
+      </div>
+      <div class="cta-step">
+        <div class="n">3</div>
+        <div class="t">完成首个实验<br>保留过程证据</div>
+      </div>
+      <div class="cta-step">
+        <div class="n">4</div>
+        <div class="t">每周复盘<br>决定下一实验</div>
+      </div>
+    </div>
+    <p style="margin-top:24px; font-size:15px; color:var(--text); font-weight:600;">
+      原则：<span style="color:var(--danger)">先证明有人需要，再把流程做大。</span>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

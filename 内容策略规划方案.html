@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自媒体起步内容策略规划方案</title>
+<style>
+  :root {
+    --primary: #4F46E5;
+    --primary-light: #EEF2FF;
+    --accent: #F59E0B;
+    --accent-light: #FFFBEB;
+    --success: #10B981;
+    --success-light: #ECFDF5;
+    --danger: #EF4444;
+    --bg: #F9FAFB;
+    --card: #FFFFFF;
+    --text: #111827;
+    --text-secondary: #6B7280;
+    --border: #E5E7EB;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 40px 20px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: 60px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .hero-emoji { font-size: 48px; margin-bottom: 16px; }
+  .hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 12px; line-height: 1.3; }
+  .hero p { opacity: 0.85; font-size: 15px; max-width: 540px; }
+  .hero-meta {
+    display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; backdrop-filter: blur(4px);
+  }
+
+  /* Table of Contents */
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  .toc h2 { font-size: 17px; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  .toc a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4px 0;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--primary); }
+  .toc-num { background: var(--primary-light); color: var(--primary); width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .section-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 14px;
+    background: linear-gradient(to right, var(--primary-light), transparent);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--primary); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-title-wrap h2 { font-size: 18px; font-weight: 700; color: var(--text); }
+  .section-title-wrap .section-sub { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .section-body { padding: 28px; }
+
+  /* Headings */
+  h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; color: var(--text); padding-bottom: 8px; border-bottom: 2px solid var(--primary-light); }
+  h4 { font-size: 14px; font-weight: 700; margin: 20px 0 10px; color: var(--text); }
+  p { margin-bottom: 14px; color: var(--text); }
+  .lead { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th {
+    background: var(--primary-light); color: var(--primary);
+    padding: 10px 14px; text-align: left; font-weight: 700;
+    border: 1px solid #C7D2FE;
+  }
+  td { padding: 10px 14px; border: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: #F9FAFB; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    background: var(--card);
+    display: flex; align-items: flex-start; gap: 10px;
+    transition: all 0.2s;
+  }
+  .checklist li:hover { border-color: var(--primary); background: var(--primary-light); }
+  .check-box {
+    width: 20px; height: 20px; border-radius: 5px;
+    border: 2px solid var(--border);
+    flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: transparent;
+    transition: all 0.2s;
+  }
+  .checklist li:hover .check-box { border-color: var(--primary); }
+  .checklist li input[type="checkbox"] { display: none; }
+
+  /* Alert boxes */
+  .alert { padding: 16px 20px; border-radius: 10px; margin: 16px 0; font-size: 14px; }
+  .alert-warning { background: var(--accent-light); border-left: 4px solid var(--accent); color: #92400E; }
+  .alert-success { background: var(--success-light); border-left: 4px solid var(--success); color: #065F46; }
+  .alert-info { background: var(--primary-light); border-left: 4px solid var(--primary); color: #3730A3; }
+
+  /* Pillar cards */
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  .pillar-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px; text-align: center;
+    transition: all 0.2s;
+  }
+  .pillar-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .pillar-icon { font-size: 32px; margin-bottom: 10px; }
+  .pillar-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .pillar-pct { font-size: 24px; font-weight: 800; color: var(--primary); }
+  .pillar-label { font-size: 12px; color: var(--text-secondary); }
+
+  /* Pyramid */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 20px 0; }
+  .pyramid-layer {
+    border-radius: 10px; padding: 16px 24px;
+    text-align: center; color: white; font-weight: 700; font-size: 14px;
+    position: relative;
+  }
+  .pyramid-layer .layer-label { font-size: 11px; opacity: 0.85; font-weight: 400; margin-top: 4px; }
+  .pyramid-layer.top { width: 40%; background: linear-gradient(135deg, #EF4444, #F97316); }
+  .pyramid-layer.mid { width: 60%; background: linear-gradient(135deg, #F59E0B, #EAB308); }
+  .pyramid-layer.bot { width: 80%; background: linear-gradient(135deg, #10B981, #059669); }
+
+  /* Platform cards */
+  .platform-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 16px 0; }
+  .platform-card {
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  }
+  .platform-header {
+    padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+    font-weight: 700; font-size: 15px; color: white;
+  }
+  .platform-header.wx { background: linear-gradient(135deg, #07C160, #06AD56); }
+  .platform-header.xhs { background: linear-gradient(135deg, #FF2442, #FF6B6B); }
+  .platform-header.dy { background: linear-gradient(135deg, #000000, #333333); }
+  .platform-emoji { font-size: 22px; }
+  .platform-body { padding: 18px 20px; }
+  .platform-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .tag { background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .tag.green { background: var(--success-light); color: var(--success); }
+  .tag.yellow { background: var(--accent-light); color: #92400E; }
+
+  /* Calendar */
+  .calendar { margin: 16px 0; }
+  .calendar-row { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 8px; margin-bottom: 6px; align-items: stretch; }
+  .calendar-label {
+    font-size: 12px; font-weight: 700; color: var(--text-secondary);
+    display: flex; align-items: center; padding: 0 8px;
+  }
+  .calendar-cell {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .calendar-cell .phase-label { font-weight: 700; color: var(--primary); margin-bottom: 4px; font-size: 13px; }
+  .calendar-cell .note { color: var(--text-secondary); font-size: 11px; margin-top: 4px; }
+  .calendar-header { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+  .calendar-header span { font-size: 12px; font-weight: 700; color: var(--text-secondary); text-align: center; padding: 6px; }
+
+  /* SOP flow */
+  .sop { display: flex; flex-direction: column; gap: 0; margin: 16px 0; }
+  .sop-step {
+    display: flex; gap: 16px; align-items: flex-start;
+    position: relative;
+  }
+  .sop-step::before {
+    content: '';
+    position: absolute; left: 19px; top: 44px; bottom: -8px;
+    width: 2px; background: var(--border);
+  }
+  .sop-step:last-child::before { display: none; }
+  .sop-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--primary); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px; flex-shrink: 0;
+    position: relative; z-index: 1;
+  }
+  .sop-content {
+    flex: 1; background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;
+  }
+  .sop-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .sop-desc { font-size: 13px; color: var(--text-secondary); }
+  .sop-desc code { background: var(--primary-light); color: var(--primary); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+  /* AI box */
+  .ai-box {
+    background: linear-gradient(135deg, #1E1B4B, #312E81);
+    color: white; border-radius: 12px; padding: 24px;
+    margin: 16px 0;
+  }
+  .ai-box h4 { color: #C7D2FE; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .ai-box pre {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 16px;
+    font-size: 13px; line-height: 1.7;
+    white-space: pre-wrap; word-break: break-all;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* Comparison table */
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .comp-dont, .comp-do {
+    border-radius: 10px; padding: 14px 16px; font-size: 13px;
+    border: 1px solid;
+  }
+  .comp-dont {
+    background: #FEF2F2; border-color: #FECACA; color: #991B1B;
+  }
+  .comp-do {
+    background: var(--success-light); border-color: #A7F3D0; color: #065F46;
+  }
+  .comp-dont::before { content: "❌ "; font-weight: bold; }
+  .comp-do::before { content: "✅ "; font-weight: bold; }
+
+  /* Action form */
+  .action-form {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    border-radius: 14px; padding: 32px; color: white; margin: 20px 0;
+  }
+  .action-form h3 { color: white; border-bottom-color: rgba(255,255,255,0.2); }
+  .action-field { margin-bottom: 14px; }
+  .action-label { font-size: 13px; opacity: 0.8; margin-bottom: 6px; font-weight: 600; }
+  .action-input {
+    width: 100%; padding: 12px 16px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.15);
+    color: white; font-size: 14px;
+    backdrop-filter: blur(4px);
+  }
+  .action-input::placeholder { color: rgba(255,255,255,0.6); }
+  textarea.action-input { min-height: 80px; resize: vertical; }
+
+  /* FAQ */
+  .faq-item {
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 10px; overflow: hidden;
+  }
+  .faq-q {
+    padding: 14px 20px; font-weight: 700; font-size: 14px;
+    background: var(--card); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--primary-light); }
+  .faq-q::after { content: '+'; font-size: 20px; color: var(--primary); font-weight: 300; }
+  .faq-a { padding: 14px 20px; font-size: 14px; color: var(--text-secondary); background: #FAFAFA; border-top: 1px solid var(--border); }
+
+  /* Phase timeline */
+  .timeline { display: flex; gap: 0; margin: 20px 0; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    top: 24px; left: 0; right: 0; height: 3px;
+    background: var(--border); z-index: 0;
+  }
+  .phase {
+    flex: 1; text-align: center; position: relative; z-index: 1;
+  }
+  .phase-dot {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--card); border: 3px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px; font-weight: 800; font-size: 14px;
+    color: var(--text-secondary); transition: all 0.3s;
+  }
+  .phase.active .phase-dot { background: var(--primary); border-color: var(--primary); color: white; }
+  .phase-label { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .phase-desc { font-size: 12px; color: var(--text-secondary); }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 32px;
+    color: var(--text-secondary); font-size: 13px;
+    border-top: 1px solid var(--border); margin-top: 48px;
+  }
+  .footer-tagline { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+  @media (max-width: 640px) {
+    .pillar-grid { grid-template-columns: 1fr; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .calendar-row { grid-template-columns: 80px 1fr; }
+    .calendar-header { grid-template-columns: 80px 1fr; }
+    .calendar-header span:nth-child(n+3) { display: none; }
+    .calendar-row .calendar-cell:nth-child(n+3) { display: none; }
+    .timeline { flex-direction: column; gap: 12px; }
+    .timeline::before { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-emoji">✍️</div>
+  <h1>自媒体起步<br>内容策略规划方案</h1>
+  <p>专为「1人 + AI 辅助」团队打造的系统化内容策略。选赛道、定支柱、平台差异化运营、AI 高效生产——从零到一完整方案。</p>
+  <div class="hero-meta">
+    <span class="hero-badge">👤 1人创作团队</span>
+    <span class="hero-badge">🤖 AI 辅助生产</span>
+    <span class="hero-badge">📱 三平台运营</span>
+    <span class="hero-badge">📅 90天执行计划</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 目录导航</h2>
+  <div class="toc-grid">
+    <a href="#s1"><span class="toc-num">1</span> 选对赛道</a>
+    <a href="#s2"><span class="toc-num">2</span> 内容支柱体系</a>
+    <a href="#s3"><span class="toc-num">3</span> 平台差异化策略</a>
+    <a href="#s4"><span class="toc-num">4</span> AI 辅助工作流</a>
+    <a href="#s5"><span class="toc-num">5</span> 90天内容日历</a>
+    <a href="#s6"><span class="toc-num">6</span> 关键行动清单</a>
+    <a href="#faq"><span class="toc-num">附</span> 常见问题</a>
+    <a href="#action"><span class="toc-num">🚀</span> 立即行动</a>
+  </div>
+</div>
+
+<!-- PHASE TIMELINE -->
+<div class="timeline">
+  <div class="phase active">
+    <div class="phase-dot">1</div>
+    <div class="phase-label">第 1-30 天</div>
+    <div class="phase-desc">冷启动期<br>打磨内容节奏</div>
+  </div>
+  <div class="phase">
+    <div class="phase-dot">2</div>
+    <div class="phase-label">第 31-60 天</div>
+    <div class="phase-desc">找爆款期<br>聚焦数据方向</div>
+  </div>
+  <div class="phase">
+    <div class="phase-dot">3</div>
+    <div class="phase-label">第 61-90 天</div>
+    <div class="phase-desc">增长期<br>固定节奏 + 粉丝运营</div>
+  </div>
+</div>
+
+<!-- SECTION 1: 选赛道 -->
+<div class="section" id="s1">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-title-wrap">
+        <h2>第一步：选对赛道——这是最重要的一步</h2>
+        <div class="section-sub">赛道选错，90%的努力都会打水漂</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-warning">
+        ⚠️ <strong>赛道选择错误是 90% 自媒体失败的根本原因。</strong> 没有明确业务反而是优势——选对赛道，你就赢了一半。
+      </div>
+
+      <h3>选赛道的三大原则</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>原则</th><th>说明</th><th>自查问题</th></tr>
+          <tr><td><strong>你擅长或正在学</strong></td><td>持续输出的底气</td><td>"我能在这个话题上持续写/拍 50 期吗？"</td></tr>
+          <tr><td><strong>有足够大的受众</strong></td><td>天花板不能太低</td><td>"网上有多少人在搜索/讨论这个话题？"</td></tr>
+          <tr><td><strong>你能差异化</strong></td><td>同质化必死</td><td>"我和同类账号的差异是什么？"</td></tr>
+        </table>
+      </div>
+
+      <h3>热门赛道推荐（2026年现状）</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>赛道</th><th>热度</th><th>竞争度</th><th>适合新人？</th><th>变现路径</th></tr>
+          <tr><td>职场成长 / 副业</td><td>⭐⭐⭐⭐⭐</td><td>高</td><td><span class="tag green">✅ 中等</span></td><td>知识付费、广告</td></tr>
+          <tr><td>AI 工具使用 / 效率提升</td><td>⭐⭐⭐⭐⭐</td><td>高</td><td><span class="tag green">✅ 容易</span></td><td>工具推荐、教程</td></tr>
+          <tr><td>个人成长 / 自律 / 生活方式</td><td>⭐⭐⭐⭐</td><td>中高</td><td><span class="tag green">✅ 容易起号</span></td><td>品牌合作、电商</td></tr>
+          <tr><td>读书 / 知识分享</td><td>⭐⭐⭐⭐</td><td>中</td><td><span class="tag green">✅ 容易</span></td><td>书单带货、会员</td></tr>
+          <tr><td>情感 / 心理学</td><td>⭐⭐⭐⭐</td><td>中高</td><td><span class="tag green">✅ 容易</span></td><td>咨询、课程</td></tr>
+          <tr><td>理财 / 消费降级</td><td>⭐⭐⭐⭐</td><td>中高</td><td><span class="tag yellow">⚠️ 中等</span></td><td>理财课程、推荐</td></tr>
+          <tr><td>亲子 / 教育</td><td>⭐⭐⭐⭐⭐</td><td>高</td><td><span class="tag green">✅ 容易</span></td><td>教育产品、用品</td></tr>
+        </table>
+      </div>
+
+      <h3>用"5分钟法"快速确定赛道</h3>
+      <p>请按顺序问自己以下问题，选出第一个"Yes"对应的赛道：</p>
+      <ul class="checklist">
+        <li><span class="check-box">✓</span> 我最近 3 个月最痴迷学习/研究的是什么？</li>
+        <li><span class="check-box">✓</span> 我经常被朋友问哪些问题？</li>
+        <li><span class="check-box">✓</span> 我刷到哪些内容会停下来看完？</li>
+        <li><span class="check-box">✓</span> 哪个赛道我有独特经历或视角？</li>
+        <li><span class="check-box">✓</span> 如果做失败了，哪个赛道我也不会后悔？</li>
+      </ul>
+      <div class="alert alert-success">
+        💡 <strong>选好后，立刻锁定，3个月内不换。</strong> 摇摆是自媒体最大的时间杀手。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: 内容支柱 -->
+<div class="section" id="s2">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🏛️</div>
+      <div class="section-title-wrap">
+        <h2>第二步：确定内容支柱体系</h2>
+        <div class="section-sub">内容支柱 = 你账号的骨架，让用户记住你、关注你</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h3>三大内容支柱（适合所有赛道）</h3>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">📚</div>
+          <div class="pillar-title">价值型（硬核干货）</div>
+          <div class="pillar-pct">40%</div>
+          <div class="pillar-label">建立专业信任，吸引精准用户</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">💬</div>
+          <div class="pillar-title">共鸣型（情感连接）</div>
+          <div class="pillar-pct">40%</div>
+          <div class="pillar-label">引发情感共鸣，提升互动转发</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🎯</div>
+          <div class="pillar-title">转化型（软钩子）</div>
+          <div class="pillar-pct">20%</div>
+          <div class="pillar-label">引导关注、评论、私信</div>
+        </div>
+      </div>
+
+      <h3>内容金字塔模型</h3>
+      <div class="pyramid">
+        <div class="pyramid-layer top">引流内容<span class="layer-label">Hook Content · 10% — 超强钩子，引发好奇/争议</span></div>
+        <div class="pyramid-layer mid">价值内容<span class="layer-label">Value Content · 60% — 持续输出，让用户觉得"关注你值得"</span></div>
+        <div class="pyramid-layer bot">人设内容<span class="layer-label">Persona Content · 30% — 让用户喜欢你、信任你（你是谁？）</span></div>
+      </div>
+
+      <h3>内容支柱设定模板</h3>
+      <div class="action-form">
+        <h3>我的赛道：_______________</h3>
+        <div class="action-field">内容支柱①：_______________（干货/教程类）</div>
+        <div class="action-field">内容支柱②：_______________（故事/经历类）</div>
+        <div class="action-field">内容支柱③：_______________（观点/洞察类）</div>
+        <div class="action-field">内容支柱④：_______________（清单/工具类，可选）</div>
+        <div class="action-field">内容支柱⑤：_______________（互动/话题类，可选）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: 平台策略 -->
+<div class="section" id="s3">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-title-wrap">
+        <h2>第三步：平台差异化运营策略</h2>
+        <div class="section-sub">同一内容改制发布，而不是发完全一样的文案</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h3>三大平台核心差异</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>维度</th><th>微信公众号</th><th>小红书</th><th>抖音</th></tr>
+          <tr><td><strong>内容形式</strong></td><td>图文为主（长文友好）</td><td>图文 + 短视频</td><td>短视频为主</td></tr>
+          <tr><td><strong>推荐逻辑</strong></td><td>粉丝打开为主</td><td>搜索 + 算法双驱动</td><td>算法推荐</td></tr>
+          <tr><td><strong>用户心态</strong></td><td>深度阅读</td><td>灵感收集</td><td>娱乐消遣</td></tr>
+          <tr><td><strong>最佳内容长度</strong></td><td>800-2000字</td><td>300-800字</td><td>30s-2min</td></tr>
+          <tr><td><strong>起号难度</strong></td><td>较难</td><td>较易</td><td>较易</td></tr>
+          <tr><td><strong>变现节奏</strong></td><td>慢</td><td>中</td><td>快</td></tr>
+        </table>
+      </div>
+
+      <h3>各平台详细策略</h3>
+
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-header wx"><span class="platform-emoji">📱</span> 微信公众号 — 内容大本营</div>
+          <div class="platform-body">
+            <p><strong>定位：</strong>沉淀深度内容、建立品牌权威。</p>
+            <ul>
+              <li>每周 <strong>1-2篇</strong>（宁缺毋滥，质量 > 数量）</li>
+              <li>标题公式：<code>数字 + 痛点 + 收益</code></li>
+              <li>开头必须有强钩子（前3行决定打开率）</li>
+              <li>配图质量要高于平均</li>
+              <li>文末引导"点在看"提升传播</li>
+            </ul>
+            <div class="platform-tags">
+              <span class="tag">深度内容</span><span class="tag">长文</span><span class="tag green">信任建立</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-header xhs"><span class="platform-emoji">🌟</span> 小红书 — 灵感搜索引擎</div>
+          <div class="platform-body">
+            <p><strong>定位：</strong>用图文/短视频种草，快速涨粉。</p>
+            <ul>
+              <li>每周 <strong>3-5篇</strong>（小红书算法喜欢高频）</li>
+              <li><strong>封面图是生死线</strong>：字体大、颜色强、3秒传达主题</li>
+              <li>标题公式：<code>人群 + 场景 + 悬念/数字</code></li>
+              <li>善用话题标签蹭热点</li>
+              <li>评论区要主动回复，制造"活跃感"</li>
+            </ul>
+            <div class="platform-tags">
+              <span class="tag">高频发布</span><span class="tag">视觉冲击</span><span class="tag yellow">种草转化</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-header dy"><span class="platform-emoji">🎵</span> 抖音 — 流量放大器</div>
+          <div class="platform-body">
+            <p><strong>定位：</strong>快速涨粉、建立影响力。</p>
+            <ul>
+              <li>每天 <strong>1条</strong>（最低），有精力可以 2-3条</li>
+              <li><strong>前3秒决定一切</strong>：视觉冲击或悬念冲突</li>
+              <li>完播率 > 点赞 > 评论 > 转发（算法权重）</li>
+              <li>脚本结构：Hook(5s) → 展开(45s) → 反转(10s) → CTA(5s)</li>
+              <li>每周至少1条知识干货类立人设</li>
+            </ul>
+            <div class="platform-tags">
+              <span class="tag">短视频</span><span class="tag">日更</span><span class="tag green">快速涨粉</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>内容复用矩阵（一鱼多吃）</h3>
+      <div class="alert alert-info">
+        📝 <strong>一篇深度公众号文章</strong>（2000字）可以改制为：小红书图文帖、小红书短视频口播、抖音精华版、微博/朋友圈短文案、社群分享素材。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: AI 工作流 -->
+<div class="section" id="s4">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <div class="section-title-wrap">
+        <h2>第四步：AI 辅助内容创作工作流</h2>
+        <div class="section-sub">1人 + AI团队 = 最高效的内容生产模式</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h3>内容生产 SOP（标准流程）</h3>
+      <div class="sop">
+        <div class="sop-step">
+          <div class="sop-num">1</div>
+          <div class="sop-content">
+            <div class="sop-title">选题策划（AI 辅助）</div>
+            <div class="sop-desc">AI 生成 10 个备选选题 → 人工筛选 3 个 → 确定本周选题</div>
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num">2</div>
+          <div class="sop-content">
+            <div class="sop-title">素材收集（AI 辅助）</div>
+            <div class="sop-desc">AI 搜索整理相关资料、数据、案例 → 人工核实关键信息</div>
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num">3</div>
+          <div class="sop-content">
+            <div class="sop-title">内容创作（AI 辅助 + 人工精修）</div>
+            <div class="sop-desc">AI 生成初稿 → 人工改写（加个人故事、独特观点、情绪温度）</div>
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num">4</div>
+          <div class="sop-content">
+            <div class="sop-title">平台改制（AI 辅助）</div>
+            <div class="sop-desc">一篇原文 → AI 改制为：公众号版、小红书版、抖音脚本</div>
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num">5</div>
+          <div class="sop-content">
+            <div class="sop-title">视觉制作（AI 辅助）</div>
+            <div class="sop-desc">封面图：Canva / 稿定设计 &nbsp;|&nbsp; 短视频：剪映 / Capcut（AI字幕、AI配音）</div>
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num">6</div>
+          <div class="sop-content">
+            <div class="sop-title">发布 + 互动（人工为主）</div>
+            <div class="sop-desc">AI 生成多条备选标题 → 人工选择 &nbsp;|&nbsp; AI 生成回复模板 → 人工调整后发送</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>AI 提示词模板</h3>
+
+      <div class="ai-box">
+        <h4>📋 选题生成提示词</h4>
+        <pre>请为我的[赛道]类自媒体账号生成 10 个选题。
+要求：
+1. 覆盖不同内容类型（干货、故事、观点、清单）
+2. 符合[目标平台]的用户偏好
+3. 选题要有差异化，避免同质化
+4. 每个选题附带一个推荐标题公式
+我的赛道：[填写]
+目标用户：[填写]</pre>
+      </div>
+
+      <div class="ai-box">
+        <h4>✍️ 公众号文章初稿生成提示词</h4>
+        <pre>请帮我写一篇关于"[选题]"的公众号文章。
+要求：
+1. 目标受众：[填写]
+2. 文章风格：真诚、有温度、不说教，像和朋友聊天
+3. 字数：800-1500字
+4. 结构：开头强钩子 → 3个分论点（每个配真实案例）→ 金句结尾
+5. 禁止使用AI口嗨词汇
+6. 结尾加互动引导（引导关注/评论）</pre>
+      </div>
+
+      <div class="ai-box">
+        <h4>🌟 小红书改制提示词</h4>
+        <pre>请将以下公众号文章改制为小红书图文帖：[粘贴原文]
+要求：
+1. 压缩至 500-800 字
+2. 每150字左右插入一张配图描述
+3. 标题要有小红书风格（人群 + 场景 + 悬念/数字）
+4. 开头3行要有强钩子
+5. 结尾加 3-5 个相关话题标签</pre>
+      </div>
+
+      <div class="ai-box">
+        <h4>🎵 抖音脚本生成提示词</h4>
+        <pre>请为以下选题生成抖音口播脚本：[选题]
+要求：
+1. 总时长：60-90 秒
+2. 结构：Hook(5秒) → 展开(45秒) → 反转金句(10秒) → CTA(5秒)
+3. 语言风格：口语化、有节奏感
+4. 附上：背景音乐推荐、字幕风格、视频画面描述</pre>
+      </div>
+
+      <h3>AI 使用注意事项</h3>
+      <div class="comp-grid">
+        <div>
+          <div class="comp-dont">直接生成并发布"终稿"</div>
+          <div class="comp-dont">替代你的个人经历和故事</div>
+          <div class="comp-dont">判断哪个选题会爆</div>
+        </div>
+        <div>
+          <div class="comp-do">生成初稿，由你精修</div>
+          <div class="comp-do">提供案例和数据素材</div>
+          <div class="comp-do">列出备选，你来做决策</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: 90天日历 -->
+<div class="section" id="s5">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-wrap">
+        <h2>第五步：90 天内容日历（可直接执行）</h2>
+        <div class="section-sub">三个阶段，循序渐进，稳扎稳打</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h3>90天分阶段发布节奏</h3>
+      <div class="calendar">
+        <div class="calendar-header">
+          <span>阶段</span><span>公众号</span><span>小红书</span><span>抖音</span>
+        </div>
+
+        <div class="calendar-row">
+          <div class="calendar-label"><strong>第1-30天</strong><br><span style="color:#6B7280;font-size:11px">冷启动期</span></div>
+          <div class="calendar-cell">
+            <div class="phase-label">每周 1-2 篇</div>
+            重点：打磨封面和标题，不要焦虑数据
+          </div>
+          <div class="calendar-cell">
+            <div class="phase-label">每周 3-4 篇</div>
+            重点：测试不同选题，找到用户喜欢的方向
+          </div>
+          <div class="calendar-cell">
+            <div class="phase-label">每天 3-5 条</div>
+            重点：多尝试，找到数据最好的内容形式
+          </div>
+        </div>
+
+        <div class="calendar-row">
+          <div class="calendar-label"><strong>第31-60天</strong><br><span style="color:#6B7280;font-size:11px">找爆款期</span></div>
+          <div class="calendar-cell">
+            <div class="phase-label">每周 1-2 篇</div>
+            开始分析数据，找到表现最好的内容方向
+          </div>
+          <div class="calendar-cell">
+            <div class="phase-label">每周 4-5 篇</div>
+            聚焦数据最好的内容方向，集中放大
+          </div>
+          <div class="calendar-cell">
+            <div class="phase-label">每天 5-6 条</div>
+            每天复盘数据，保留爆款方向，砍掉低效内容
+          </div>
+        </div>
+
+        <div class="calendar-row">
+          <div class="calendar-label"><strong>第61-90天</strong><br><span style="color:#6B7280;font-size:11px">增长期</span></div>
+          <div class="calendar-cell">
+            <div class="phase-label">每周 2 篇 + 互动帖</div>
+            固定更新节奏，开始建立粉丝粘性
+          </div>
+          <div class="calendar-cell">
+            <div class="phase-label">每周 5 篇</div>
+            开始尝试合作互推，扩大曝光
+          </div>
+          <div class="calendar-cell">
+            <div class="phase-label">每天 6 条</div>
+            建立稳定的更新节奏，开始规划变现
+          </div>
+        </div>
+      </div>
+
+      <h3>每周内容规划节奏（示例）</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>星期</th><th>内容类型</th><th>说明</th></tr>
+          <tr><td>周一</td><td><strong>价值干货型</strong></td><td>最高质量篇，干货输出，建立专业感</td></tr>
+          <tr><td>周二</td><td><strong>休息 / 互动</strong></td><td>回复评论、粉丝问答，增强粘性</td></tr>
+          <tr><td>周三</td><td><strong>热点/话题型</strong></td><td>蹭热度，借势流量</td></tr>
+          <tr><td>周四</td><td><strong>人设/故事型</strong></td><td>建立信任，让用户喜欢你</td></tr>
+          <tr><td>周五</td><td><strong>清单/工具型</strong></td><td>收藏率高，便于传播</td></tr>
+          <tr><td>周六</td><td><strong>休息 / 补发</strong></td><td>储备内容 or 休息</td></tr>
+          <tr><td>周日</td><td><strong>周度复盘</strong></td><td>分析数据，规划下周选题</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: 行动清单 -->
+<div class="section" id="s6">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🚀</div>
+      <div class="section-title-wrap">
+        <h2>第六步：起步阶段关键行动清单</h2>
+        <div class="section-sub">分四周，按优先级执行，从小处着手</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h3>Week 0（现在就开始）</h3>
+      <ul class="checklist">
+        <li><span class="check-box">□</span> 确定你的赛道（用"5分钟法"）</li>
+        <li><span class="check-box">□</span> 注册/完善三个平台账号（头像、昵称、简介统一）</li>
+        <li><span class="check-box">□</span> 写下你的账号定位（一句话：我是谁，为谁，提供什么）</li>
+        <li><span class="check-box">□</span> 准备内容工具包：剪映、Canva/稿定、笔记软件</li>
+        <li><span class="check-box">□</span> 注册 AI 工具（ChatGPT / Kimi / 豆包，选一个顺手的）</li>
+      </ul>
+
+      <h3>Week 1-4：冷启动</h3>
+      <ul class="checklist">
+        <li><span class="check-box">□</span> 确定 3 个内容支柱（参考支柱模板）</li>
+        <li><span class="check-box">□</span> 发布第一批内容（至少 10 条）</li>
+        <li><span class="check-box">□</span> 每天花 30 分钟研究同赛道头部账号</li>
+        <li><span class="check-box">□</span> 建立选题库（Notion / 飞书 / 印象笔记）</li>
+        <li><span class="check-box">□</span> 设置内容发布 SOP（模板化节省时间）</li>
+      </ul>
+
+      <h3>Week 5-8：找爆款</h3>
+      <ul class="checklist">
+        <li><span class="check-box">□</span> 分析第一批内容数据，找到数据最好的方向</li>
+        <li><span class="check-box">□</span> 聚焦数据最好的内容方向，集中产出</li>
+        <li><span class="check-box">□</span> 开始与粉丝互动（每条评论认真回复）</li>
+        <li><span class="check-box">□</span> 建立内容复用习惯（一篇文章改制三平台）</li>
+        <li><span class="check-box">□</span> 尝试一条"热点 + 赛道视角"选题</li>
+      </ul>
+
+      <h3>Week 9-12：增长期</h3>
+      <ul class="checklist">
+        <li><span class="check-box">□</span> 固定更新节奏（不要断更，算法最爱的）</li>
+        <li><span class="check-box">□</span> 开始收集用户反馈（评论区、私信是最真实的调研）</li>
+        <li><span class="check-box">□</span> 尝试第一次"合作互推"（找同量级账号）</li>
+        <li><span class="check-box">□</span> 开始规划变现路径（广告、带货、知识付费）</li>
+        <li><span class="check-box">□</span> 做第一个月度复盘（数据增长？好在哪？下月怎么改？）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" id="faq">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-wrap">
+        <h2>附录：常见问题 FAQ</h2>
+        <div class="section-sub">起步阶段最常见的 6 个困惑</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="faq-item">
+        <div class="faq-q">一个人做三个平台，来得及吗？</div>
+        <div class="faq-a">来得及，但要有优先级。建议时间分配：抖音 40%（最费时间）、小红书 30%（图文相对快）、公众号 30%（深度内容一周一篇足够）。核心是用好"内容复用"——一篇内容改制三个平台。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">数据很差要不要停？</div>
+        <div class="faq-a">不要。绝大多数账号前 30 条内容都是"测试期"，数据差是正常的。前 100 条内容之前，专注于优化内容质量，不要轻易放弃一个方向。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">要不要追热点？</div>
+        <div class="faq-a">适度追。热点是流量放大器，但必须和你的赛道相关。硬蹭热点只会让账号定位混乱。找到热点和你的赛道的结合点，而不是为了蹭而蹭。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">AI 生成的内容会被平台限流吗？</div>
+        <div class="faq-a">不会。平台不会检测内容是否由 AI 生成。但要注意：AI 文风通常"太规范"，要改写成人味儿再发布——加个人故事、情绪、口头禅。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">什么时候开始变现？</div>
+        <div class="faq-a">粉丝量不是唯一标准。即使只有 1000 精准粉丝，也可以开始接广告或卖知识产品。变现的前提是：你的粉丝信任你、你的内容有价值。建议从 3000 粉丝开始认真考虑变现。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">账号定位写着写着感觉不对怎么办？</div>
+        <div class="faq-a">很正常。账号定位可以在实践中调整，但调整幅度不要超过 30%。调整方向要基于数据反馈和粉丝反馈，而不是自我感觉。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMMEDIATE ACTION -->
+<div class="section" id="action">
+  <div class="section-card">
+    <div class="section-header" style="background: linear-gradient(to right, #FEF3C7, transparent);">
+      <div class="section-icon" style="background:#F59E0B;">🚀</div>
+      <div class="section-title-wrap">
+        <h2>立即行动：现在就开始！</h2>
+        <div class="section-sub">记住：开始比完美更重要，在开始中不断准备好</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="action-form">
+        <h3>📝 现在，马上，打开备忘录，回答以下问题：</h3>
+        <div class="action-field">
+          <div class="action-label">① 我的赛道是：</div>
+          <input class="action-input" type="text" placeholder="例如：AI效率工具 / 职场成长 / 生活方式...">
+        </div>
+        <div class="action-field">
+          <div class="action-label">② 我的账号定位（一句话）：</div>
+          <input class="action-input" type="text" placeholder="我是___，帮助___人___">
+        </div>
+        <div class="action-field">
+          <div class="action-label">③ 我的三个内容支柱是：</div>
+          <textarea class="action-input" placeholder="支柱①：___&#10;支柱②：___&#10;支柱③：___"></textarea>
+        </div>
+        <div class="action-field">
+          <div class="action-label">④ 本周我要发的第一条内容选题是：</div>
+          <input class="action-input" type="text" placeholder="今天就发！">
+        </div>
+        <div class="action-field">
+          <div class="action-label">⑤ 今天我要完成的 3 件事：</div>
+          <textarea class="action-input" placeholder="□ ___&#10;□ ___&#10;□ ___"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-tagline">✍️ Content Creator · 内容创作专家</div>
+  <p>自媒体起步内容策略规划方案 · Version 1.0</p>
+  <p style="margin-top:8px; font-size:12px; color:#9CA3AF;">记住：开始比完美更重要，现在就发第一条内容吧！</p>
+</div>
+
+</div>
+</body>
+</html>

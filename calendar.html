@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30 天日历 · XHS Media Content</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span>
+      <span>Media Content</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html" class="active">日历</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="padding-top: 32px;">
+
+  <div class="text-center" style="margin-bottom: 24px;">
+    <span class="section-label">执行追踪</span>
+    <h1 style="margin-top: 12px;">📅 30 天内容日历（交互版）</h1>
+    <p class="muted">点击格子查看详情 · 双击格子标记完成 · 进度自动保存到本地</p>
+  </div>
+
+  <!-- 进度条 -->
+  <div class="card">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 8px;">
+      <strong>完成进度</strong>
+      <span id="progress-count" class="tag primary">0 / 28</span>
+    </div>
+    <div class="progress"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+    <div class="faint mt-1">💡 提示：双击格子打勾；点击格子看完整脚本和封面建议</div>
+  </div>
+
+  <!-- 第 1 周 -->
+  <h3>第 1 周 · 定位与需求验证</h3>
+  <div class="calendar">
+    <div class="cal-header">一</div><div class="cal-header">二</div><div class="cal-header">三</div><div class="cal-header">四</div><div class="cal-header">五</div><div class="cal-header">六</div><div class="cal-header">日</div>
+    <div class="cal-day highlight" data-day="D1" data-title="我决定公开做30天AI电商实验：不讲概念，只交作业" data-type="Day 1 · 周一 · 立人设" data-tags="个人故事|焦虑共鸣|涨粉向" data-content="我是前端开发，过去擅长把重复动作写成流程。现在我想验证一件事：这套思路，能不能真的帮小电商团队少加班？&#10;&#10;未来30天，我每周选择一个真实场景：商品文案、素材整理、客服回复或数据复盘。&#10;&#10;**每个实验都公开四样东西：**原始任务、操作步骤、耗时记录、失败原因。&#10;&#10;不发布无法验证的"暴涨""躺赚"故事；没有结果，就把没有结果也写出来。&#10;&#10;第一轮我准备测试"同一款商品，3套AI文案流程"。&#10;&#10;**你每天最想交给AI的重复工作是什么？**评论一个具体任务，我按高频问题选下一期。&#10;&#10;#AI电商 #电商工作流 #小团队运营 #真实实验" data-tip="大字「30天，只交作业」+ 小字「前端的AI电商实验」；真人/头像放右下角。">
+      <div class="day-num">D1</div><div class="day-label">公开承诺</div><div class="day-type">个人故事</div>
+    </div>
+    <div class="cal-day" data-day="D2" data-title="别急着推荐工具：我先收集了20个电商人的重复工作" data-type="Day 2 · 周二 · 工具分享" data-tags="工具清单|干货向|收藏向" data-content="工具越多，选择成本越高。真正该先做的，是找出每天重复、规则明确、耗时稳定的任务。&#10;&#10;**我先按四类整理问题：**&#10;① 内容：标题、卖点、详情页、短视频脚本&#10;② 素材：命名、分类、尺寸适配、版本管理&#10;③ 客服：高频问题、售后解释、评价回复&#10;④ 复盘：日报汇总、竞品变化、异常提醒&#10;&#10;判断一个任务是否值得自动化，只看三个条件：每周重复3次以上、输入相对固定、结果可以人工复核。&#10;&#10;**今天只做一件事：**记录你最耗时的重复任务，以及它每次花多久。&#10;&#10;把任务写在评论里；我会选出现频率最高的3个，做公开实验。&#10;&#10;#电商提效 #AI工作流 #电商运营SOP #需求调研" data-tip="四象限任务地图，标题「先找任务，再选AI」。">
+      <div class="day-num">D2</div><div class="day-label">问题地图</div><div class="day-type">工具清单</div>
+    </div>
+    <div class="cal-day" data-day="D3" data-title="同一款商品，我用3套AI流程写文案：结果差别比工具名更重要" data-type="Day 3 · 周三 · 干货教程" data-tags="技术教程|赚钱案例|信任向" data-content="测试对象固定：同一个商品资料包、同一个目标人群、同一个输出字数。&#10;&#10;**A组：**一句话直接让AI写；**B组：**先提炼卖点再写；**C组：**先输入用户评价，再按场景写。&#10;&#10;我记录四项：准备时间、生成时间、事实错误、人工修改量。&#10;&#10;最终不评"哪个AI最聪明"，只回答：哪套流程最适合普通小团队重复使用。&#10;&#10;正文展示三组原文截图和修改痕迹，避免只报结论。&#10;&#10;**可复制模板：**商品事实 → 用户场景 → 核心顾虑 → 证据 → 行动提示。&#10;&#10;#商品文案 #AI实测 #电商内容 #工作流对比" data-tip="A/B/C三列对比，标题「工具相同，流程不同」。">
+      <div class="day-num">D3</div><div class="day-label">流程实验</div><div class="day-type">技术教程</div>
+    </div>
+    <div class="cal-day" data-day="D4" data-title="AI写商品文案，最容易翻车的不是文风，而是这4类事实" data-type="Day 4 · 周四 · 对比测评" data-tags="横评对比|干货向|搜索向" data-content="我复盘了实验里的错误，发现"文风像不像"反而不是第一风险。&#10;&#10;**必须人工核对四类事实：**规格参数、功效承诺、适用人群、活动价格。&#10;&#10;AI最容易把缺失信息补成"听起来合理"的句子，这种文案顺滑，但不能直接发布。&#10;&#10;**我的发布前检查表：**每个数字有来源；每个效果能证明；没有扩大适用范围；价格和库存仍有效。&#10;&#10;工具只能提高初稿速度，事实责任仍然在人。&#10;&#10;建议收藏这4项，下一次让AI写文案前先贴在提示词末尾。&#10;&#10;#AI文案避坑 #商品合规 #电商运营 #内容审核" data-tip="红色检查章 + 四项清单，标题「AI文案先查事实」。">
+      <div class="day-num">D4</div><div class="day-label">错误复盘</div><div class="day-type">横评对比</div>
+    </div>
+    <div class="cal-day" data-day="D5" data-title="程序员做电商的真正优势：把"凭感觉"变成可重复" data-type="Day 5 · 周五 · 个人IP" data-tags="观点输出|共鸣型|人设向" data-content="写代码只是手段。更有价值的是：先定义输入和输出，再记录过程，再决定要不要自动化。&#10;&#10;**把它翻译成电商语言：**&#10;&#10;商品资料是输入；可发布内容是输出；提示词、检查表和人工复核是流程。&#10;&#10;当流程固定以后，换工具的成本很低；没有流程，买再多工具也只是在反复试错。&#10;&#10;这也是这个账号的差异：不做工具新闻搬运，而是把一个任务跑通、记录、复盘。&#10;&#10;**判断标准：**同一个流程，换一个商品，别人还能复现。&#10;&#10;#程序员思维 #电商SOP #AI自动化 #个人效率" data-tip="输入→流程→输出三段式，标题「别先买工具，先做流程」。">
+      <div class="day-num">D5</div><div class="day-label">方法论</div><div class="day-type">观点输出</div>
+    </div>
+    <div class="cal-day" data-day="D6" data-title="一人电商最累的，不是任务多，而是每天重新做一遍" data-type="Day 6 · 周六 · 情绪内容" data-tags="情绪共鸣|高互动|涨粉向" data-content="很多小团队不是输在不会做，而是所有事情都依赖当天的状态。&#10;&#10;今天重新想标题，明天重新找素材，后天又重新解释同一个售后问题。&#10;&#10;**真正消耗人的，是没有"下次直接复用"的资产。**&#10;&#10;提示词不是资产，经过验证的输入模板、检查表和案例库才是。&#10;&#10;本周实验结束后，我会留下三份东西：商品事实表、文案生成流程、发布前检查表。&#10;&#10;如果下周换一个商品还能跑通，这次实验才算成功。&#10;&#10;你现在最想沉淀成模板的是哪项工作？&#10;&#10;#一人电商 #运营复盘 #AI提效 #工作流资产" data-tip="重复循环箭头被切断，标题「别再每天重做」。">
+      <div class="day-num">D6</div><div class="day-label">模板资产</div><div class="day-type">情绪共鸣</div>
+    </div>
+    <div class="cal-day highlight" data-day="D7" data-title="第一周实验复盘：什么有效、什么无效、下周测什么" data-type="Day 7 · 周日 · 互动收网" data-tags="福利互动|高转化|共创向" data-content="**本周验证的问题：**不同AI文案流程，是否能降低人工修改量。&#10;&#10;**有效：**先补全商品事实，再输入用户场景；生成内容更稳定，也更容易复核。&#10;&#10;**无效：**一次生成10个版本。数量变多，但筛选和纠错时间也增加。&#10;&#10;**意外发现：**用户最关心的不是工具名称，而是怎样判断内容能不能发布。&#10;&#10;我把本周流程整理成一页检查表，放到置顶内容里，任何人都可以照着复现。&#10;&#10;**下周候选实验：**A 客服高频回复库；B 商品素材自动归档；C 每日数据复盘。&#10;&#10;评论 A/B/C，票数最高的先做。&#10;&#10;#AI电商复盘 #用户共创 #电商工作流 #真实实验" data-tip="“有效 / 无效 / 下周”三栏复盘，标题「第一周实验报告」。">
+      <div class="day-num">D7</div><div class="day-label">周复盘</div><div class="day-type">福利互动</div>
+    </div>
+  </div>
+
+  <!-- 第 2 周 -->
+  <h3>第 2 周 · 工作流验证</h3>
+  <div class="calendar">
+    <div class="cal-header">一</div><div class="cal-header">二</div><div class="cal-header">三</div><div class="cal-header">四</div><div class="cal-header">五</div><div class="cal-header">六</div><div class="cal-header">日</div>
+    <div class="cal-day" data-day="D8" data-title="AI帮我把客服高频问题整理成自动回复库" data-type="Day 8 · 周一 · 工作流" data-tags="干货向|收藏向" data-content="把过去 30 天客服对话导出来，让 AI 按类型聚类。&#10;&#10;**4 类分组：**售前咨询 / 售后问题 / 物流查询 / 评价引导&#10;&#10;每类选 3-5 个高频问题，给 1 个标准回复 + 1 个变体。&#10;&#10;标注哪些 AI 自动回、哪些必须人工。&#10;&#10;#AI客服 #电商SOP #效率工具" data-tip="对话气泡+清单">
+      <div class="day-num">D8</div><div class="day-label">客服场景</div><div class="day-type">工作流</div>
+    </div>
+    <div class="cal-day" data-day="D9" data-title="商品图片自动命名+分类：再也不用翻文件夹" data-type="Day 9 · 周二 · 自动化" data-tags="教程向|涨粉向" data-content="50 张商品图，AI 帮读尺寸/颜色/角度，文件名+分类自动整理。&#10;&#10;**对比：**手动命名 50 张要 30 分钟，AI + 复核 5 分钟搞定。&#10;&#10;#图片管理 #电商自动化 #AI工作流" data-tip="文件夹+箭头">
+      <div class="day-num">D9</div><div class="day-label">素材归档</div><div class="day-type">自动化</div>
+    </div>
+    <div class="cal-day" data-day="D10" data-title="AI帮我做每日数据复盘：5 分钟看完昨天发生了什么" data-type="Day 10 · 周三 · 自动化" data-tags="工具向|收藏向" data-content="把每日销售/流量/转化数据丢给 AI，让它输出日报。&#10;&#10;**日报模板：**昨日亮点 / 异常告警 / 竞品变化 / 今日 3 件事&#10;&#10;#数据复盘 #AI日报 #电商运营" data-tip="表格+警示色">
+      <div class="day-num">D10</div><div class="day-label">数据日报</div><div class="day-type">自动化</div>
+    </div>
+    <div class="cal-day" data-day="D11" data-title="本周尝试失败的 3 个工作流，原因逐条公开" data-type="Day 11 · 周四 · 复盘" data-tags="真实向|涨粉向" data-content="**失败 1：**让 AI 自动发评论 → 被平台限流，删号重来。&#10;&#10;**失败 2：**全自动生成 100 条商品文案 → 50% 出现事实错误。&#10;&#10;**失败 3：**让 AI 识别客户情绪分级 → 错把差评当咨询。&#10;&#10;#失败记录 #AI避坑 #真实实验" data-tip="红色 X 标记 + 笔记">
+      <div class="day-num">D11</div><div class="day-label">失败记录</div><div class="day-type">复盘</div>
+    </div>
+    <div class="cal-day" data-day="D12" data-title="3 款 AI 工具跑同一任务，结果差异比想象的大" data-type="Day 12 · 周五 · 横评" data-tags="搜索向|横评向" data-content="**任务：**为同一款商品写详情页文案&#10;&#10;**A 工具：**优点是简洁，缺点是事实会编&#10;&#10;**B 工具：**优点是逻辑严谨，缺点是太死板&#10;&#10;**C 工具：**优点是生动，缺点是结构散&#10;&#10;结论：工具之间差异 < 提示词之间差异。&#10;&#10;#AI横评 #工具对比 #选型" data-tip="三列对比表">
+      <div class="day-num">D12</div><div class="day-label">流程横评</div><div class="day-type">横评对比</div>
+    </div>
+    <div class="cal-day rest" data-day="D13" data-title="休息/复盘" data-type="Day 13 · 周六 · 休息" data-tags="休息" data-content="整理本周模板、回复评论、规划下周。" data-tip="-">
+      <div class="day-num">D13</div><div class="day-label">休息</div><div class="day-type">休息</div>
+    </div>
+    <div class="cal-day highlight" data-day="D14" data-title="第二周复盘：可复现的 3 套工作流沉淀" data-type="Day 14 · 周日 · 总结" data-tags="共创向|高转化" data-content="**沉淀 1：**商品事实表（15 项必填字段）&#10;&#10;**沉淀 2：**文案生成流程（3 步法）&#10;&#10;**沉淀 3：**发布前检查表（4 类事实）&#10;&#10;下周开始接受读者投稿任务，做真实协作实验。&#10;&#10;#周总结 #模板沉淀 #用户共创" data-tip="模板清单+二维码">
+      <div class="day-num">D14</div><div class="day-label">周总结</div><div class="day-type">福利互动</div>
+    </div>
+  </div>
+
+  <!-- 第 3 周 -->
+  <h3>第 3 周 · 证据与案例积累</h3>
+  <div class="calendar">
+    <div class="cal-header">一</div><div class="cal-header">二</div><div class="cal-header">三</div><div class="cal-header">四</div><div class="cal-header">五</div><div class="cal-header">六</div><div class="cal-header">日</div>
+    <div class="cal-day" data-day="D15" data-title="3 个真实小团队用 AI 工作流省 10h/周的故事" data-type="Day 15 · 周一 · 案例" data-tags="收藏向|案例" data-content="**故事 1：**2 人女装店，用工作流把客服从 3h/天压到 1h。&#10;&#10;**故事 2：**3C 卖家，把商品上架从 2 天压到 4 小时。&#10;&#10;**故事 3：**一人跨境，把素材整理从 1 天压到 2 小时。&#10;&#10;#真实案例 #小团队 #AI提效" data-tip="3 个头像 + 数字">
+      <div class="day-num">D15</div><div class="day-label">赚钱案例</div><div class="day-type">案例</div>
+    </div>
+    <div class="cal-day" data-day="D16" data-title="按「内容/素材/客服/复盘」分类的 12 款 AI 工具" data-type="Day 16 · 周二 · 工具推荐" data-tags="工具向|收藏向" data-content="**内容类（4）：**Kimi / 豆包 / 秘塔 / 即时设计&#10;&#10;**素材类（3）：**稿定 / Canva / Remove.bg&#10;&#10;**客服类（2）：**美洽 AI / 智齿&#10;&#10;**复盘类（3）：**ChatGPT Code / 飞书多维表格 / Notion AI&#10;&#10;#AI工具 #工具清单 #电商" data-tip="四象限工具地图">
+      <div class="day-num">D16</div><div class="day-label">工具推荐</div><div class="day-type">工具清单</div>
+    </div>
+    <div class="cal-day" data-day="D17" data-title="从 0 搭建第一段工作流自动化脚本" data-type="Day 17 · 周三 · 自动化" data-tags="涨粉向|技术" data-content="**任务：**把"商品资料→生成文案→检查事实→导出表格"做成自动化。&#10;&#10;工具：Python + Kimi API。&#10;&#10;代码 + 截图 + 演示。&#10;&#10;#AI自动化 #Python #脚本" data-tip="代码截图+流程">
+      <div class="day-num">D17</div><div class="day-label">自动化</div><div class="day-type">技术教程</div>
+    </div>
+    <div class="cal-day" data-day="D18" data-title="工具堆 vs 工作流——为什么流程比工具重要" data-type="Day 18 · 周四 · 观点" data-tags="人设向|观点" data-content="**工具堆：**买 12 款 AI 工具，每天在切换中浪费 1 小时。&#10;&#10;**工作流：**1 套固定流程，工具坏了换一个就行。&#10;&#10;判断标准：换工具后，流程还能跑通吗？&#10;&#10;#工作流 #产品思维 #AI" data-tip="对比图">
+      <div class="day-num">D18</div><div class="day-label">产品思维</div><div class="day-type">观点输出</div>
+    </div>
+    <div class="cal-day" data-day="D19" data-title="AI 写商品文案的 8 个常见坑+对策" data-type="Day 19 · 周五 · 避坑" data-tags="搜索向|收藏向" data-content="① 编造参数 → 写明"不得编造"约束&#10;&#10;② 夸大功效 → 人工核对清单&#10;&#10;③ 套用错人群 → 写明目标人群&#10;&#10;④ 价格过期 → 标注"以页面为准"&#10;&#10;⑤ 同质化 → 提供差异化卖点输入&#10;&#10;⑥ 风格混乱 → 给参考文案风格&#10;&#10;⑦ 字数失控 → 明确字数范围&#10;&#10;⑧ 漏 SKU 变体 → 强制按 SKU 列表输出&#10;&#10;#AI避坑 #电商文案 #SOP" data-tip="红叉清单+对策">
+      <div class="day-num">D19</div><div class="day-label">避坑指南</div><div class="day-type">横评对比</div>
+    </div>
+    <div class="cal-day" data-day="D20" data-title="小电商的真实一天：忙乱背后的隐性成本" data-type="Day 20 · 周六 · 情绪" data-tags="涨粉向|共鸣" data-content="9:00 看留言 → 10:00 处理退货 → 11:00 写新文案 → 14:00 处理差评 → 16:00 找素材 → 18:00 做数据 → 21:00 才想起没吃午饭。&#10;&#10;真正消耗的不是这些事本身，而是"每天重新做"的重复成本。&#10;&#10;#真实一天 #一人电商 #情绪共鸣" data-tip="时间轴图">
+      <div class="day-num">D20</div><div class="day-label">情绪内容</div><div class="day-type">情绪共鸣</div>
+    </div>
+    <div class="cal-day highlight" data-day="D21" data-title="收集评论区问题，下周精选 5 个做直播解答" data-type="Day 21 · 周日 · 答疑" data-tags="高转化|共创" data-content="把过去 7 天评论里最常见的 10 个问题收集起来。&#10;&#10;下周日选 5 个最具体的，做公开直播解答。&#10;&#10;评论你想问的问题。&#10;&#10;#福利互动 #答疑 #直播预告" data-tip="问题清单+预告">
+      <div class="day-num">D21</div><div class="day-label">福利/答疑</div><div class="day-type">福利互动</div>
+    </div>
+  </div>
+
+  <!-- 第 4 周 -->
+  <h3>第 4 周 · MVP 需求验证</h3>
+  <div class="calendar">
+    <div class="cal-header">一</div><div class="cal-header">二</div><div class="cal-header">三</div><div class="cal-header">四</div><div class="cal-header">五</div><div class="cal-header">六</div><div class="cal-header">日</div>
+    <div class="cal-day" data-day="D22" data-title="把评论/私信/群里最高频的 10 个需求整理成清单" data-type="Day 22 · 周一 · 调研" data-tags="干货向" data-content="**高频需求 TOP 10：**&#10;① 商品文案生成模板（80%）&#10;② 客服回复库（65%）&#10;③ 素材自动归档（55%）&#10;④ 每日数据复盘（50%）&#10;…&#10;&#10;每个需求给 3 项评估：频次、付费意愿、自动化难度。&#10;&#10;#需求调研 #MVP #用户验证" data-tip="需求优先级表">
+      <div class="day-num">D22</div><div class="day-label">需求清单</div><div class="day-type">调研</div>
+    </div>
+    <div class="cal-day" data-day="D23" data-title="3 款 AI 写作工具在商品文案上的盲测结果" data-type="Day 23 · 周二 · 工具测评" data-tags="搜索向|工具" data-content="盲测方法：3 款工具，相同商品资料，相同提示词，看输出。&#10;&#10;评分维度：事实准确 / 文风匹配 / 信息密度 / 需修改量。&#10;&#10;结论：差异 < 提示词差异。&#10;&#10;#盲测 #AI工具 #选型" data-tip="横评表+分数">
+      <div class="day-num">D23</div><div class="day-label">工具测评</div><div class="day-type">横评对比</div>
+    </div>
+    <div class="cal-day" data-day="D24" data-title="完整复现一个「商品→文案→上架」全流程" data-type="Day 24 · 周三 · 教程" data-tags="涨粉向|教程" data-content="从原始商品资料，到生成 3 套文案，到 fact-check，到上架草稿箱。&#10;&#10;全程截图 + 录屏。&#10;&#10;每步标耗时。&#10;&#10;#全流程 #商品上架 #AI教程" data-tip="流程图+截图">
+      <div class="day-num">D24</div><div class="day-label">教程进阶</div><div class="day-type">技术教程</div>
+    </div>
+    <div class="cal-day" data-day="D25" data-title="邀请 2 个真实小电商主分享使用工作流的反馈" data-type="Day 25 · 周四 · 用户案例" data-tags="信任向|案例" data-content="**用户 A：**用了 2 周，客服从每天 3h 压到 1h。&#10;&#10;**用户 B：**用了 1 周，把上架流程从 2 天压到 4h。&#10;&#10;两人原始截图 + 收益数据。&#10;&#10;#用户案例 #真实反馈 #信任" data-tip="头像+引言">
+      <div class="day-num">D25</div><div class="day-label">用户案例</div><div class="day-type">案例</div>
+    </div>
+    <div class="cal-day" data-day="D26" data-title="30 天总结：可复现 ≠ 可商业化，差什么" data-type="Day 26 · 周五 · 方法论" data-tags="人设向|观点" data-content="**可复现：**同样的输入，能产出差不多的输出。&#10;&#10;**可商业化：**用户愿意为这个流程付钱。&#10;&#10;差什么：可发现、可支持、可扩展。&#10;&#10;#可复现 #可商业化 #MVP" data-tip="双栏对比">
+      <div class="day-num">D26</div><div class="day-label">方法论</div><div class="day-type">观点输出</div>
+    </div>
+    <div class="cal-day" data-day="D27" data-title="30 天数据复盘：哪类内容最有效、哪类最差" data-type="Day 27 · 周六 · 数据" data-tags="数据向" data-content="**表现最好：**教程类（A/B/C 对比、避坑清单）&#10;&#10;**表现最差：**纯观点输出（缺数据支撑）&#10;&#10;**意外发现：**情绪类内容收藏率不高，但涨粉最快。&#10;&#10;**互动率最高：**评论区投票类。&#10;&#10;#数据复盘 #内容策略 #迭代" data-tip="数据图+箭头">
+      <div class="day-num">D27</div><div class="day-label">数据复盘</div><div class="day-type">数据</div>
+    </div>
+    <div class="cal-day highlight" data-day="D28" data-title="30 天实验收官：所有模板+数据集打包" data-type="Day 28 · 周日 · 月度总结" data-tags="高转化|福利" data-content="**收官包内容：**&#10;- 3 套可复现工作流（商品文案/客服/素材）&#10;- 9 个提示词模板&#10;- 30 天原始数据&#10;- 1 份 fact-check 检查表&#10;&#10;下阶段方向预告：工具实测 / 用户共创 / 直播答疑。&#10;&#10;#收官 #资源包 #下阶段预告" data-tip="「收官+资源包」">
+      <div class="day-num">D28</div><div class="day-label">月度总结</div><div class="day-type">福利互动</div>
+    </div>
+  </div>
+
+  <!-- 操作提示 -->
+  <div class="card mt-3">
+    <h3 style="margin-top: 0;">💡 使用说明</h3>
+    <ul style="padding-left: 20px;">
+      <li><strong>点击格子</strong>：查看完整脚本 + 封面建议 + 标签</li>
+      <li><strong>双击格子</strong>：标记为已完成（绿色 ✓），会自动持久化到本地</li>
+      <li><strong>进度条</strong>：实时显示完成度，关闭浏览器后仍保留</li>
+      <li><strong>弹窗内按钮</strong>：可一键复制完整文案、切换完成状态</li>
+      <li><strong>重置进度</strong>：浏览器 localStorage 清空 <code>xhs-content-completed-days</code> 即可</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <p>30 天日历 · 进度数据保存在你本地浏览器 · 不会上传</p>
+  <p class="mt-1"><a href="content-kit/30天日历.csv">📥 下载 CSV 版</a> · <a href="playbook.html">看完整方案</a></p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
