@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日笔记预览 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* 共享 XHS 预览样式 */
+    .xhs-preview {
+      max-width: 540px;
+      margin: 24px auto;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+    .xhs-img {
+      width: 100%;
+      display: block;
+    }
+    .xhs-body {
+      padding: 20px 22px 16px;
+    }
+    .xhs-title {
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+    .xhs-meta {
+      color: var(--text-light);
+      font-size: 13px;
+      padding: 12px 0;
+    }
+    .xhs-tag {
+      display: inline-block;
+      background: #f5f5f5;
+      color: #4a5568;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .xhs-actions {
+      display: flex;
+      gap: 20px;
+      padding: 0 22px 18px;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    .xhs-text {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #333;
+      white-space: pre-wrap;
+      font-family: inherit;
+    }
+    .note {
+      background: #fef3c7;
+      border-left: 3px solid #f59e0b;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      color: #92400e;
+      margin: 12px 0;
+    }
+    .copy-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+    .time-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .status-pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-left: 8px;
+    }
+    .status-ready {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .status-draft {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .day-jump {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 16px 0;
+    }
+    .day-jump a {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: #475569;
+      text-decoration: none;
+      transition: all .15s;
+    }
+    .day-jump a:hover {
+      background: #0f766e;
+      color: white;
+    }
+    .day-jump a.current {
+      background: #0f766e;
+      color: white;
+    }
+    .day-jump a.ready::after {
+      content: " ✓";
+      color: #10b981;
+    }
+    .day-jump a.current.ready::after {
+      color: white;
+    }
+    .design-card {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-size: 13px;
+      color: #334155;
+    }
+    .design-card strong {
+      color: #0f766e;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .design-card ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span>
+      <span>Media Content</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="xhs.html">前端转AI电商</a>
+      <a href="D1.html">D1</a>
+      <a href="D2.html">D2</a>
+      <a href="calendar.html">日历</a>
+      <a href="daily.html" class="active">日预览</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill" id="dayPill">加载中…</span>
+    <h1 id="dayTitle">每日笔记预览</h1>
+    <p class="lead">一个模板，每天 1 个 URL：`daily.html?day=N`</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 30 天快速跳转 -->
+  <div class="day-jump" id="dayJump"></div>
+
+  <div class="note" id="statusNote" style="display:none;"></div>
+
+  <!-- 元信息卡 -->
+  <div class="card" style="background: linear-gradient(135deg, #e8f5f1, white); border-color: #0f766e;">
+    <div class="grid grid-3">
+      <div>
+        <div class="muted" style="font-size:11px; font-weight:700; text-transform:uppercase;">字数</div>
+        <div style="font-size: 22px; font-weight: 800; color: var(--secondary);" id="wordCount">—</div>
+        <div class="faint" style="font-size:12px;">小红书最佳 300-800</div>
+      </div>
+      <div>
+        <div class="muted" style="font-size:11px; font-weight:700; text-transform:uppercase;">配图</div>
+        <div style="font-size: 22px; font-weight: 800; color: var(--secondary);" id="imgCount">—</div>
+        <div class="faint" style="font-size:12px;">封面 + 内页</div>
+      </div>
+      <div>
+        <div class="muted" style="font-size:11px; font-weight:700; text-transform:uppercase;">标签</div>
+        <div style="font-size: 22px; font-weight: 800; color: var(--secondary);" id="tagCount">—</div>
+        <div class="faint" style="font-size:12px;">精准 + 热搜</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 复制按钮 -->
+  <div class="copy-row">
+    <button class="btn btn-primary" onclick="copyAll()">📋 复制完整正文</button>
+    <button class="btn" onclick="copyTitle()">📝 复制标题</button>
+    <button class="btn" onclick="copyTags()">🏷️ 复制标签</button>
+    <button class="btn" onclick="copyImageList()">🖼️ 复制配图清单</button>
+  </div>
+
+  <!-- ===== 小红书样式预览卡 ===== -->
+  <div class="xhs-preview" id="xhsPreview">
+    <!-- 由 JS 填充 -->
+  </div>
+
+  <!-- ===== 关键设计点 ===== -->
+  <section class="section" id="designSection">
+    <h2>💡 关键设计点</h2>
+    <div id="designPoints"></div>
+  </section>
+
+  <!-- ===== 完整正文（可复制） ===== -->
+  <section class="section">
+    <h2>📝 完整正文（直接复制）</h2>
+    <button class="btn btn-primary" onclick="copyAll()" style="margin-bottom: 12px;">📋 复制全部</button>
+    <pre id="fullText" style="background:#f8fafc; padding:16px; border-radius:8px; font-size:13px; line-height:1.7; white-space:pre-wrap;"></pre>
+  </section>
+
+  <!-- ===== 配图清单 ===== -->
+  <section class="section">
+    <h2>🖼️ 配图清单</h2>
+    <ol id="imageList" style="line-height:2;"></ol>
+  </section>
+
+  <!-- ===== 上下一天导航 ===== -->
+  <section class="section">
+    <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+      <a class="btn" id="prevDay">← 上一天</a>
+      <a class="btn btn-primary" id="nextDay">下一天 →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script>
+let CURRENT_DAY = null;
+let CURRENT_DATA = null;
+
+const params = new URLSearchParams(window.location.search);
+const day = parseInt(params.get('day') || '1', 10);
+const safeDay = Math.max(1, Math.min(30, isNaN(day) ? 1 : day));
+
+fetch('content-kit/daily-content.json')
+  .then(r => r.json())
+  .then(json => {
+    const data = json.days[String(safeDay)];
+    if (!data) {
+      document.getElementById('xhsPreview').innerHTML = '<div class="note">Day ' + safeDay + ' 还没数据，会在 D' + (safeDay - 1) + ' 发出后第二天补全。</div>';
+      document.getElementById('dayTitle').textContent = 'Day ' + safeDay + ' · 草稿中';
+      document.getElementById('dayPill').textContent = 'D' + safeDay + ' · 草稿';
+      document.getElementById('dayPill').className = 'status-pill status-draft';
+      renderJump(json);
+      return;
+    }
+    CURRENT_DAY = safeDay;
+    CURRENT_DATA = data;
+    renderDay(data);
+    renderJump(json);
+  })
+  .catch(err => {
+    document.getElementById('xhsPreview').innerHTML = '<div class="note">加载数据失败：' + err.message + '</div>';
+  });
+
+function renderDay(d) {
+  // 顶部信息
+  document.getElementById('dayPill').textContent = 'D' + CURRENT_DAY + ' · ' + d.weekday + ' ' + d.publishTime;
+  document.getElementById('dayPill').className = 'time-pill';
+  const statusPill = d.status === 'ready' 
+    ? '<span class="status-pill status-ready">✓ 已就绪</span>'
+    : '<span class="status-pill status-draft">草稿中</span>';
+  document.getElementById('dayTitle').innerHTML = 
+    escapeHtml(d.title) + statusPill;
+
+  // 状态提示
+  if (d.status !== 'ready') {
+    const note = document.getElementById('statusNote');
+    note.style.display = 'block';
+    note.innerHTML = '<strong>草稿中 — </strong> 此日内容还没完成。会在前一晚根据数据反馈补全。你可以参考 D1/D2 模板自行先写。';
+  }
+
+  // 元数据
+  document.getElementById('wordCount').textContent = d.body.length;
+  document.getElementById('imgCount').textContent = (d.images && d.images.length) ? ('1 + ' + (d.images.length - 1)) : '待补';
+  document.getElementById('tagCount').textContent = d.tags.length;
+
+  // 渲染 XHS 预览
+  let imgHtml = '';
+  if (d.images && d.images.length) {
+    imgHtml = d.images.map(i => `<img class="xhs-img" src="${escapeHtml(i.src)}" alt="${escapeHtml(i.alt)}" loading="lazy">`).join('');
+  } else {
+    imgHtml = '<div style="padding:60px 20px; text-align:center; color:#999; background:#f8fafc;">📷 此日配图待补</div>';
+  }
+
+  const tagsHtml = d.tags.map(t => `<span class="xhs-tag">${escapeHtml(t)}</span>`).join(' ');
+
+  document.getElementById('xhsPreview').innerHTML = `
+    ${imgHtml}
+    <div class="xhs-body">
+      <div class="xhs-title">${escapeHtml(d.title_xhs)}</div>
+      <div class="xhs-text">${escapeHtml(d.body)}</div>
+      <div class="xhs-meta" style="padding-top:14px; border-top: 1px solid #f1f5f9;">
+        ${tagsHtml}
+      </div>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  `;
+
+  // 完整正文
+  document.getElementById('fullText').textContent = 
+    d.body + '\n\n' + d.tags.join(' ');
+
+  // 配图清单
+  if (d.images && d.images.length) {
+    document.getElementById('imageList').innerHTML = d.images
+      .map((i, idx) => `<li><code>${escapeHtml(i.src)}</code> — ${escapeHtml(i.alt)}</li>`)
+      .join('');
+  } else {
+    document.getElementById('imageList').innerHTML = '<li>待补</li>';
+  }
+
+  // 设计点
+  if (d.designPoints && d.designPoints.length) {
+    document.getElementById('designPoints').innerHTML = 
+      d.designPoints.map(p => `
+        <div class="design-card">
+          <strong>设计点</strong>
+          <div>${escapeHtml(p)}</div>
+        </div>
+      `).join('');
+  } else {
+    document.getElementById('designPoints').innerHTML = '<div class="design-card">此日设计点待补</div>';
+  }
+
+  // 上下一天导航
+  const prev = Math.max(1, CURRENT_DAY - 1);
+  const next = Math.min(30, CURRENT_DAY + 1);
+  document.getElementById('prevDay').href = 'daily.html?day=' + prev;
+  document.getElementById('nextDay').href = 'daily.html?day=' + next;
+}
+
+function renderJump(json) {
+  let html = '';
+  for (let i = 1; i <= 30; i++) {
+    const isCurrent = i === CURRENT_DAY;
+    const data = json.days[String(i)];
+    const isReady = data && data.status === 'ready';
+    const cls = (isCurrent ? 'current ' : '') + (isReady ? 'ready' : '');
+    html += `<a href="daily.html?day=${i}" class="${cls}">D${i}</a>`;
+  }
+  document.getElementById('dayJump').innerHTML = html;
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function copyAll() {
+  if (!CURRENT_DATA) return;
+  copyToClipboard(CURRENT_DATA.body + '\n\n' + CURRENT_DATA.tags.join(' '));
+}
+function copyTitle() {
+  if (!CURRENT_DATA) return;
+  copyToClipboard(CURRENT_DATA.title_xhs);
+}
+function copyTags() {
+  if (!CURRENT_DATA) return;
+  copyToClipboard(CURRENT_DATA.tags.join(' '));
+}
+function copyImageList() {
+  if (!CURRENT_DATA || !CURRENT_DATA.images) return;
+  const list = CURRENT_DATA.images.map((i, idx) => `${idx + 1}. ${i.src}`).join('\n');
+  copyToClipboard(list);
+}
+function copyToClipboard(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast('已复制 ✓'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
