@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D3 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #fef3c7; border-left: 3px solid #f59e0b; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #92400e; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #7c3aed; }
+    .demo-banner {
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border: 2px dashed #f59e0b; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #78350f;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D3 · 已就绪 · 待发布</span>
+    <h1>Day 3 笔记预览 · 3 个生图工具横评</h1>
+    <p class="lead">D2 验证了"流程化输入 = 稳定输出"，D3 验证"工具按场景组合，不是选最好的"。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    ⚠️ <strong>演示声明：</strong> D3 是演示环境跑的可复现脚本（<code>scripts/d3-product-image-batch.py</code>），不是花真金白银的商业测试。指标体系和统计逻辑是真的，数字是模拟的。商业化前会再花 ¥500 跑一遍真数据替换。
+  </div>
+
+  <div class="note">
+    <strong>使用说明：</strong>所有内容已经按发布标准预排好，发布前请用最后一步的 3 个按钮复制。
+    9 张图按顺序上传小红书即可。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D3-笔记/01-封面.png" alt="封面">
+    <img class="xhs-img" src="content-kit/D3-笔记/02-任务定义.png" alt="任务定义">
+    <img class="xhs-img" src="content-kit/D3-笔记/03-5款商品.png" alt="5款商品">
+    <img class="xhs-img" src="content-kit/D3-笔记/04-Midjourney.png" alt="Midjourney">
+    <img class="xhs-img" src="content-kit/D3-笔记/05-即梦.png" alt="即梦">
+    <img class="xhs-img" src="content-kit/D3-笔记/06-香蕉.png" alt="香蕉">
+    <img class="xhs-img" src="content-kit/D3-笔记/07-4项指标对比.png" alt="4项指标对比">
+    <img class="xhs-img" src="content-kit/D3-笔记/08-3个结论.png" alt="3个结论">
+    <img class="xhs-img" src="content-kit/D3-笔记/09-Day4预告.png" alt="Day4预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">5 款商品 · 一次产出 20 张主图 · 3 工具对比</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">D2 跑完 3 套 AI 文案流程后，我最想验证的事：
+**生图工具能不能也这样横评？**
+
+今天就跑这个 ——
+
+───── 测试规模 ─────
+5 款日用百货商品（不是 D2 那只保温杯）
+3 个生图工具（midjourney / 即梦 / 香蕉）
+4 项指标，全程记录
+
+⚠️ 演示声明：今天是演示环境跑的可复现脚本（scripts/d3-product-image-batch.py），
+不是花真金白银的商业测试。指标体系和统计逻辑是真的，数字是模拟的。
+要商业化前我会再花 ¥500 跑一遍真数据替换。
+
+───── 5 款测试商品 ─────
+P1 304 保温杯 350ml
+P2 北欧陶瓷餐具 6 件套
+P3 纯棉毛巾三件套
+P4 便携折叠收纳袋 3 尺寸
+P5 硅胶厨具 5 件套
+
+───── 4 项指标定义 ─────
+① 准备时间：写 prompt + 调参数的人工耗时（分）
+② 产出张数：一次 API 调用出的可用图
+③ 可商用率：直接能用的张数 ÷ 产出张数
+④ 修改次数：要 PS 重做或调色的次数
+
+───── 3 个工具实测 ─────
+🟣 Midjourney（紫）
+准备 5.6 分 / 产出 13 张 / 可商用 80.8% / 修改 10 次
+→ 质量最高，但 prompt 难写
+
+🔵 即梦（蓝）
+准备 2.1 分 / 产出 17 张 / 可商用 50.8% / 修改 21 次
+→ 出图最快，但商用率最低
+
+🟡 香蕉（黄）
+准备 3.2 分 / 产出 14 张 / 可商用 64.2% / 修改 15 次
+→ 平衡型，性价比中
+
+───── 4 项指标对比表 ─────
+工具      准备  产出  可商用  修改
+Midjourney 5.6分 13张  80.8%   10次
+即梦       2.1分 17张  50.8%   21次
+香蕉       3.2分 14张  64.2%   15次
+
+───── 程序员视角 3 个结论 ─────
+❌ 准备快 ≠ 可用
+即梦最快 2.1 分，但商用率只有 50.8%
+意味着每 10 张要扔 5 张、修 4 次
+真实总工时反而最长
+
+✅ 可商用率比产出量重要
+Midjourney 80.8% 的商用率
+15 张可用图 vs 即梦 17 张里 9 张可用的差距
+每张都直接能上架 = 库存压力最小
+
+💰 综合成本要算修改次数
+改 1 次图平均 3 分钟 × 15 次 = 45 分钟人工
+香蕉虽然中间，但「修改 15 次」是真成本
+Mj 改 10 次 = 30 分钟，多花 ¥3 买个稳定
+
+───── 我的工作流建议 ─────
+主力精图：Midjourney（详情页主图、爆款图）
+批量铺量：即梦（标题图、白底图）
+过渡品类：香蕉（对质量要求不高的 SKU）
+
+这就是 D3 想证明的：
+工具不是选一个，是按"用途"组合。
+和 D2 文案的结论是一脉相承的：
+**流程化思维 = 按场景选工具，不是选"最好的工具"。**
+
+───── Day 4 预告 ─────
+W2 第 2 天 · AI 帮我把客服高频问题整理成自动回复库
+实测：500 条真实客服对话 → AI 聚类 → 30 条标准答案
+评论区猜：能省多少小时/周？
+
+关注我，看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#AI工具测评</span>
+        <span class="xhs-tag">#AI生图</span>
+        <span class="xhs-tag">#电商素材</span>
+        <span class="xhs-tag">#midjourney</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">5 款商品 · 一次产出 20 张主图 · 3 工具对比</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">D2 跑完 3 套 AI 文案流程后，我最想验证的事：
+**生图工具能不能也这样横评？**
+
+今天就跑这个 ——
+
+───── 测试规模 ─────
+5 款日用百货商品（不是 D2 那只保温杯）
+3 个生图工具（midjourney / 即梦 / 香蕉）
+4 项指标，全程记录
+
+⚠️ 演示声明：今天是演示环境跑的可复现脚本（scripts/d3-product-image-batch.py），
+不是花真金白银的商业测试。指标体系和统计逻辑是真的，数字是模拟的。
+要商业化前我会再花 ¥500 跑一遍真数据替换。
+
+───── 5 款测试商品 ─────
+P1 304 保温杯 350ml
+P2 北欧陶瓷餐具 6 件套
+P3 纯棉毛巾三件套
+P4 便携折叠收纳袋 3 尺寸
+P5 硅胶厨具 5 件套
+
+───── 4 项指标定义 ─────
+① 准备时间：写 prompt + 调参数的人工耗时（分）
+② 产出张数：一次 API 调用出的可用图
+③ 可商用率：直接能用的张数 ÷ 产出张数
+④ 修改次数：要 PS 重做或调色的次数
+
+───── 3 个工具实测 ─────
+🟣 Midjourney（紫）
+准备 5.6 分 / 产出 13 张 / 可商用 80.8% / 修改 10 次
+→ 质量最高，但 prompt 难写
+
+🔵 即梦（蓝）
+准备 2.1 分 / 产出 17 张 / 可商用 50.8% / 修改 21 次
+→ 出图最快，但商用率最低
+
+🟡 香蕉（黄）
+准备 3.2 分 / 产出 14 张 / 可商用 64.2% / 修改 15 次
+→ 平衡型，性价比中
+
+───── 4 项指标对比表 ─────
+工具      准备  产出  可商用  修改
+Midjourney 5.6分 13张  80.8%   10次
+即梦       2.1分 17张  50.8%   21次
+香蕉       3.2分 14张  64.2%   15次
+
+───── 程序员视角 3 个结论 ─────
+❌ 准备快 ≠ 可用
+即梦最快 2.1 分，但商用率只有 50.8%
+意味着每 10 张要扔 5 张、修 4 次
+真实总工时反而最长
+
+✅ 可商用率比产出量重要
+Midjourney 80.8% 的商用率
+15 张可用图 vs 即梦 17 张里 9 张可用的差距
+每张都直接能上架 = 库存压力最小
+
+💰 综合成本要算修改次数
+改 1 次图平均 3 分钟 × 15 次 = 45 分钟人工
+香蕉虽然中间，但「修改 15 次」是真成本
+Mj 改 10 次 = 30 分钟，多花 ¥3 买个稳定
+
+───── 我的工作流建议 ─────
+主力精图：Midjourney（详情页主图、爆款图）
+批量铺量：即梦（标题图、白底图）
+过渡品类：香蕉（对质量要求不高的 SKU）
+
+这就是 D3 想证明的：
+工具不是选一个，是按"用途"组合。
+和 D2 文案的结论是一脉相承的：
+**流程化思维 = 按场景选工具，不是选"最好的工具"。**
+
+───── Day 4 预告 ─────
+W2 第 2 天 · AI 帮我把客服高频问题整理成自动回复库
+实测：500 条真实客服对话 → AI 聚类 → 30 条标准答案
+评论区猜：能省多少小时/周？
+
+关注我，看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #AI工具测评 #AI生图 #电商素材 #midjourney</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D3 数据复盘</h2>
+    <div class="data-card">
+      <strong>脚本运行：</strong> 5 商品 × 3 工具 = 15 次模拟调用，0.6 秒完成全部计算 + CSV 落盘 + 结论生成
+    </div>
+    <div class="data-card">
+      <strong>演示成本：</strong> $0.58（按成本单价算：Mj $0.04/张、即梦 $0、蕉 $0.02/张）
+    </div>
+    <div class="data-card">
+      <strong>复现命令：</strong> <code>python3 scripts/d3-product-image-batch.py</code>（固定随机种子 20260625，每次跑数字一致）
+    </div>
+    <div class="data-card">
+      <strong>真测预算：</strong> ¥500（商业化前替换演示数据为真实 API 调用）
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 9 张图（封面 1 + 内页 8），按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题：5 款商品 · 一次产出 20 张主图 · 3 工具对比</li>
+      <li>正文：点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间：周四 20:00-21:00</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1（"演示数据跑通了，真测要花 ¥500"）</td><td>透明感加分</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都回复</td><td>活跃感</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计 W2 节奏（D1/D2/D3 累计）</td><td>决定 W2 第 2 天选题</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 3 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 800</td><td>D1/D2 累计算 W2 增长</td></tr>
+        <tr><td>收藏率</td><td>≥ 6%</td><td>对比表 + 工具名天然高收藏</td></tr>
+        <tr><td>评论</td><td>≥ 50</td><td>工具党天然爱评论</td></tr>
+        <tr><td>涨粉</td><td>≥ 70</td><td>工具粉更精准</td></tr>
+        <tr><td>D4 票数</td><td>客服问题分类数量</td><td>决定 D4 走深还是广</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 4 维钩子</h3>
+    <ul>
+      <li><strong>5 款</strong> = 规模可信</li>
+      <li><strong>20 张</strong> = 数字冲击</li>
+      <li><strong>3 工具</strong> = 对比公正</li>
+      <li><strong>对比</strong> = 答案导向</li>
+    </ul>
+
+    <h3>2. 正文 = 透明 + 数据 + 结论</h3>
+    <ol>
+      <li><strong>演示声明</strong>（不是真测）= 透明感 → 信任加分</li>
+      <li><strong>3 工具实测</strong> = 主体（颜色编码：🟣紫 / 🔵蓝 / 🟡黄）</li>
+      <li><strong>对比表</strong> = 杀手锏</li>
+      <li><strong>3 个结论</strong>（程序员视角）= 差异化</li>
+    </ol>
+
+    <h3>3. 颜色编码统一</h3>
+    <ul>
+      <li>🟣 Midjourney = 紫</li>
+      <li>🔵 即梦 = 蓝</li>
+      <li>🟡 香蕉 = 黄</li>
+      <li>9 张图 + 正文 emoji 贯穿</li>
+    </ul>
+
+    <h3>4. 演示环境 → 真实环境</h3>
+    <ul>
+      <li>脚本可复现：<code>python3 scripts/d3-product-image-batch.py</code></li>
+      <li>指标体系是真的，数字是模拟的</li>
+      <li>商业化前要再花 ¥500 跑真数据</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>不要删"演示声明"段</strong>——这是 D3 的信任锚点（透明感）</li>
+      <li><strong>数字不要改</strong>——脚本跑出来的，改了就不可复现</li>
+      <li><strong>3 工具颜色不要换</strong>——贯穿 9 张图 + 正文</li>
+      <li><strong>不要把"80.8%"改成"80%"</strong>——是脚本输出原值</li>
+      <li><strong>9 张图必须按顺序</strong>——图 07（对比表）是杀手锏</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D2.html">← D2 笔记</a>
+    <a class="btn btn-primary" href="daily.html?day=4" style="margin-left:8px;">Day 4 预览 →</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#7c3aed;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
