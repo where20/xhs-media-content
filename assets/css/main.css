@@ -92,7 +92,7 @@ code, pre {
   color: white; font-size: 14px; font-weight: 800;
 }
 .nav-links {
-  display: flex; gap: 4px; flex-wrap: wrap;
+  display: flex; gap: 4px; flex-wrap: wrap; align-items: center;
 }
 .nav-links a {
   color: var(--text-light);
@@ -104,6 +104,46 @@ code, pre {
 }
 .nav-links a:hover { background: var(--primary-light); color: var(--primary); }
 .nav-links a.active { background: var(--primary); color: white; }
+/* 「前端转AI电商」等高亮入口（区别于 active 红色） */
+.nav-links a.nav-featured {
+  background: var(--secondary);
+  color: white;
+  font-weight: 600;
+}
+.nav-links a.nav-featured:hover { background: #0d645e; color: white; }
+.nav-links a.nav-featured.active { background: var(--primary); color: white; }
+
+/* 汉堡按钮（移动端） */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 40px; height: 40px;
+  padding: 0;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-family: inherit;
+}
+.nav-toggle span {
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 /* ===== 通用元素 ===== */
 h1, h2, h3, h4 { line-height: 1.3; font-weight: 700; }
@@ -154,6 +194,17 @@ p { margin-bottom: 12px; color: var(--text); }
   transition: box-shadow 0.2s, transform 0.2s;
 }
 .card:hover { box-shadow: var(--shadow); }
+a.card { display: block; text-decoration: none; color: inherit; }
+a.card:hover { color: inherit; }
+
+/* 特色卡片（垂类入口） */
+.card-featured {
+  background: linear-gradient(135deg, #e8f5f1, white);
+  border-color: var(--secondary);
+}
+.card-featured:hover { border-color: #0d645e; }
+.card-title .icon.featured { background: var(--secondary); }
+.tag-featured { background: var(--secondary); color: white; }
 
 .card-title {
   display: flex; align-items: center; gap: 10px;
@@ -567,3 +618,43 @@ details.collapse .body { padding-top: 12px; }
   .modal { padding: 20px 22px; }
   pre { font-size: 12px; padding: 14px; }
 }
+
+/* 移动端：导航改汉堡 */
+@media (max-width: 768px) {
+  .nav-inner { padding: 10px 16px; position: relative; }
+  .nav-brand span:last-child { display: none; }   /* 收窄 brand，只剩 logo */
+  .nav-toggle { display: inline-flex; }
+
+  /* nav-links 改成抽屉 */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 8px 12px 12px;
+    margin: 0;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links a {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    text-align: left;
+  }
+  .nav-links a.nav-featured {
+    margin-top: 6px;
+    text-align: center;
+  }
+}
+
+/* 抽屉打开时锁滚动 */
+body.nav-open { overflow: hidden; }

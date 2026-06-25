@@ -199,4 +199,43 @@
 
   /* ---------- 5. 初始化 ---------- */
   renderCompleted();
+
+  /* ---------- 6. 移动端汉堡导航 ---------- */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks  = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    const setOpen = (open) => {
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navLinks.classList.toggle('is-open', open);
+      document.body.classList.toggle('nav-open', open);
+    };
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+    /* 点 nav 链接后自动收起 */
+    navLinks.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    /* 点页面其它地方关闭 */
+    document.addEventListener('click', function (e) {
+      if (!navLinks.classList.contains('is-open')) return;
+      if (e.target.closest('.nav')) return;
+      setOpen(false);
+    });
+    /* ESC 关闭 */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
+        setOpen(false);
+        navToggle.focus();
+      }
+    });
+    /* 视口拉宽到桌面端时强制收起（避免样式不匹配） */
+    let lastIsMobile = window.matchMedia('(max-width: 768px)').matches;
+    window.addEventListener('resize', function () {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (lastIsMobile && !isMobile) setOpen(false);
+      lastIsMobile = isMobile;
+    });
+  }
 })();
