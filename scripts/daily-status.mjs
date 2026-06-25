@@ -105,13 +105,21 @@ function buildReport() {
   const calendarEntry = calendar.find((c) => c.Day === `D${today}`);
   const computedPublish = dayPublishDate(today);
 
+  // 字数统计：XHS 上限 1000 字（去掉空白和换行）
+  const XHS_LIMIT = 1000;
+  const bodyRaw = dayData?.body || '';
+  const bodyCharCount = bodyRaw.replace(/\s/g, '').length;
+
   const report = {
     today,
     status,
     title: dayData?.title || '(未填)',
     publishDate: dayData?.publishDate || computedPublish.date,
     weekday: dayData?.weekday || computedPublish.weekday,
-    bodyLen: dayData?.body?.length || 0,
+    bodyLen: bodyCharCount,
+    bodyLenRaw: bodyRaw.length,
+    bodyOverLimit: bodyCharCount > XHS_LIMIT,
+    bodyLimit: XHS_LIMIT,
     imageCount: dayData?.images?.length || 0,
     calendarTopic: calendarEntry?.Topic || '(无)',
     pillar: dayData?.pillar || calendarEntry?.Type || '(无)',
@@ -141,7 +149,13 @@ function buildReport() {
 function printHuman(r) {
   const lines = [];
   lines.push(`${statusEmoji(r.status)} D${r.today} · ${r.title}`);
-  lines.push(`   状态：${statusText(r.status)} · 字数 ${r.bodyLen} · 配图 ${r.imageCount} 张`);
+  lines.push(`   状态：${statusText(r.status)} · 字数 ${r.bodyLen}/${r.bodyLimit} · 配图 ${r.imageCount} 张`);
+
+  // 字数超限警告（XHS 上限）
+  if (r.bodyOverLimit) {
+    lines.push(`   ❌ 字数超 XHS 上限 ${r.bodyLimit}：${r.bodyLen - r.bodyLimit} 字！必须砍`);
+  }
+
   lines.push(`   发布时间：${r.publishDate} (${r.weekday})`);
   lines.push(`   主题：${r.calendarTopic}`);
   lines.push(`   Pillar：${r.pillar}`);
@@ -154,6 +168,11 @@ function printHuman(r) {
   if (r.status === 'draft') {
     lines.push('');
     lines.push('🟡 这天只有部分内容。继续补完，或发命令：补 D' + r.today);
+  }
+  if (r.bodyOverLimit && r.status === 'ready') {
+    lines.push('');
+    lines.push('❗ ready 状态但字数超 XHS 上限，发出去会被截断');
+    lines.push('   发命令：砍 D' + r.today + ' 字数');
   }
 
   if (r.week) {
