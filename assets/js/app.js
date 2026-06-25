@@ -163,10 +163,14 @@
     document.getElementById('modalCopy').onclick = function () {
       const text = title + '\n\n' + content + (tip ? '\n\n【封面】' + tip : '');
       const btn = document.getElementById('modalCopy');
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(() => {
-          btn.innerText = '✓ 已复制'; setTimeout(() => btn.innerText = '复制文案', 1500);
-        });
+      const done = () => {
+        btn.innerText = '✓ 已复制';
+        setTimeout(() => btn.innerText = '复制文案', 1500);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
       }
     };
   }
