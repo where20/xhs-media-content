@@ -1,6 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "updated": "2026-06-23",
+  "_schemaNote": "可选字段：preSops(发布前 checkbox)、postSops(发布后 24h)、kpiTargets(数据目标卡片)、dataRecap(数据复盘卡)、selfCheck(发布前 3 项自检)。缺则显示占位。selfCheck 字段：cover_3s_test / title_formula / interaction_hook 值为 pass / fail / null；improvements / next_day_pivot 自由文本。",
   "days": {
     "1": {
       "title": "D1 · 立人设 + 公开承诺",
@@ -29,7 +30,40 @@
         "正文 = 4 段（Why / What / What NOT / How）",
         "配图 = 9 张全信息密度",
         "互动 = 3 层（关注/收藏/评论 A/B/C）"
-      ]
+      ],
+      "preSops": [
+        {"text": "打开小红书 App → 创建笔记"},
+        {"text": "选 9 张图（封面 1 + 内页 8）"},
+        {"text": "选 3:4 竖图，按顺序排好（封面在前）", "code": "3:4 竖图"},
+        {"text": "标题用：「32岁前端，决定公开 30 天 AI 电商实验」"},
+        {"text": "正文：复制下方「完整正文」粘贴"},
+        {"text": "加 5 个标签", "code": "#前端转AI电商 #AI电商 #电商副业 #程序员副业 #电商工具"},
+        {"text": "选发布时间：周二 20:00-21:00（黄金时段）", "strong": "周二 20:00-21:00（黄金时段）"},
+        {"text": "发布后立刻自己评论：扣 1 = 「我支持 30 天」"},
+        {"text": "把链接发到 1-2 个群（私域引流）"},
+        {"text": "打开 xhs.html → 找到 D1 → 双击打勾 ✓"}
+      ],
+      "postSops": [
+        {"time": "10 分钟", "action": "自己评论扣 1（占前 3 条）", "goal": "引导评论区氛围"},
+        {"time": "30 分钟", "action": "每条评论都认真回复", "goal": "建立「活跃感」提升推荐"},
+        {"time": "2 小时", "action": "截图保存首日数据", "goal": "数据复盘素材"},
+        {"time": "6 小时", "action": "看一次数据：曝光/点赞/收藏", "goal": "判断是否需要二次推"},
+        {"time": "24 小时", "action": "统计 A/B/C 票数", "goal": "决定 D2 选题方向"}
+      ],
+      "kpiTargets": [
+        {"label": "曝光", "value": "200+", "hint": "首篇 200 算合格"},
+        {"label": "收藏率", "value": "≥3%", "hint": "高质量信号"},
+        {"label": "评论", "value": "≥20", "hint": "互动起点"},
+        {"label": "涨粉", "value": "≥30", "hint": "私域引导"}
+      ],
+      "dataRecap": null,
+      "selfCheck": {
+        "cover_3s_test": "pass",
+        "title_formula": "pass",
+        "interaction_hook": "pass",
+        "improvements": "封面 v1 文字太多（32+身份+决定+公开30天全堆 1 张），改成 v2 大字「30」+ 副标「32岁前端 / 公开实验」视觉冲击强一档。",
+        "next_day_pivot": "D2 沿用 v2 风格：1 个大字 + 2 行副标"
+      }
     },
     "2": {
       "title": "D2 · 3 套 AI 流程实测对比",
@@ -58,7 +92,42 @@
         "3 套流程实测 + 4 项数据 = 信任锚点",
         "颜色编码统一：A红 / B黄 / C绿",
         "图 07 是杀手锏（对比表）"
-      ]
+      ],
+      "preSops": [
+        {"text": "打开小红书 App → 创建笔记"},
+        {"text": "选 9 张图（封面 1 + 内页 8），按顺序排好"},
+        {"text": "选 3:4 竖图", "code": "3:4 竖图"},
+        {"text": "标题用：「同一款保温杯 · 跑了 3 套 AI 流程 · 谁赢」"},
+        {"text": "正文：点「复制正文」按钮粘贴"},
+        {"text": "加 5 个标签", "code": "#前端转AI电商 #AI工具测评 #电商文案 #程序员副业 #AI电商"},
+        {"text": "选发布时间：周三 20:00-21:00（D1 数据看下来这个时段互动最好）", "strong": "周三 20:00-21:00"},
+        {"text": "发布"}
+      ],
+      "postSops": [
+        {"time": "10 分钟", "action": "自己评论扣 1（「实测数据都贴这了」）", "goal": "占前 3 条评论位"},
+        {"time": "30 分钟", "action": "每条评论都回复", "goal": "活跃感提升推荐"},
+        {"time": "2 小时", "action": "截图保存首日数据", "goal": "复盘素材"},
+        {"time": "6 小时", "action": "看一次数据", "goal": "判断是否二次推"},
+        {"time": "24 小时", "action": "统计收藏率 / 完播率", "goal": "决定 D3 主图风格"}
+      ],
+      "kpiTargets": [
+        {"label": "曝光", "value": "≥500", "hint": "比 D1 涨 2.5 倍（D1 评论区已带来流量）"},
+        {"label": "收藏率", "value": "≥5%", "hint": "数据对比表天然高收藏"},
+        {"label": "评论", "value": "≥40", "hint": "争议性强（B 组赢有争议）"},
+        {"label": "涨粉", "value": "≥50", "hint": "精准粉"}
+      ],
+      "dataRecap": [
+        {"label": "耗时实测", "value": "总 2 小时 14 分钟", "detail": "准备 18 分钟 + 实测 3 套 71 秒 + 写笔记 25 分钟 + 出图 90 分钟"},
+        {"label": "3 套流程成本", "value": "全部 0 元", "detail": "用的 ChatGPT 免费版。要商业版建议 B 组用 GPT-4o mini，C 组用 Claude"},
+        {"label": "Fact-check", "value": "数据全真实", "detail": "「316 医用级」是 A 组原话复制，证明 AI 编造事实的问题"}
+      ],
+      "selfCheck": {
+        "cover_3s_test": "pass",
+        "title_formula": "pass",
+        "interaction_hook": "fail",
+        "improvements": "钩子弱：标题「同一款保温杯 · 跑了 3 套 AI 流程 · 谁赢」结尾是问号但没引导用户在评论区给答案。要加「A / B / C 你猜哪个赢」。",
+        "next_day_pivot": "D3 钩子改成「评论区猜 A/B/C，下一篇公布答案」—— 把数据对比表天然高互动用上"
+      }
     },
     "3": {
       "title": "D3 · W2 第1天 · 商品素材自动化",
@@ -72,7 +141,14 @@
       "images": [],
       "body": "（草稿待补 — Day 3 内容方向：5 款同品类商品，分别用 midjourney / 即梦 / 香蕉 一次性产出主图 + 详情页，记录 4 项指标：准备时间、产出张数、可商用率、人工修改量。）",
       "tags": ["#前端转AI电商", "#AI工具测评", "#电商素材", "#Midjourney", "#即梦"],
-      "designPoints": []
+      "designPoints": [],
+      "selfCheck": {
+        "cover_3s_test": null,
+        "title_formula": null,
+        "interaction_hook": null,
+        "improvements": "",
+        "next_day_pivot": ""
+      }
     }
   }
 }

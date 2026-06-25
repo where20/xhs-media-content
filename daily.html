@@ -150,6 +150,273 @@
       padding-left: 18px;
       line-height: 1.8;
     }
+
+    /* ===== 发布前 SOP（checkbox 列表） ===== */
+    .sop-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: sop;
+    }
+    .sop-list li {
+      counter-increment: sop;
+      position: relative;
+      padding: 8px 0 8px 32px;
+      line-height: 1.7;
+      border-bottom: 1px dashed var(--border-light);
+    }
+    .sop-list li:last-child { border-bottom: none; }
+    .sop-list li::before {
+      content: counter(sop);
+      position: absolute;
+      left: 0; top: 8px;
+      width: 22px; height: 22px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sop-list code {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    /* ===== 数据复盘卡（D2 风格） ===== */
+    .recap-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .recap-item {
+      background: #f8fafc;
+      border-left: 3px solid var(--secondary);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+    }
+    .recap-item .label {
+      font-weight: 700;
+      color: var(--text);
+      margin-right: 6px;
+    }
+    .recap-item .value {
+      color: var(--secondary);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .recap-item .detail {
+      color: var(--text-light);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ===== 缺数据占位 ===== */
+    .sop-empty {
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: var(--text-light);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .sop-empty strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ===== 6h 曝光自查 ===== */
+    .check6h {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-top: 18px;
+      border-left: 3px solid var(--secondary);
+    }
+    .check6h h3 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .check6h-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .check6h-row label {
+      flex: 0 0 auto;
+      min-width: 160px;
+    }
+    .check6h-row input {
+      flex: 1 1 120px;
+      max-width: 180px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: inherit;
+      background: white;
+    }
+    .check6h-row input:focus { outline: none; border-color: var(--secondary); }
+    .check6h-result {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+    .check6h-result.pass {
+      background: #d1fae5;
+      color: #065f46;
+      border-left: 3px solid var(--success);
+    }
+    .check6h-result.warn {
+      background: var(--accent-light);
+      color: #92400e;
+      border-left: 3px solid var(--accent);
+    }
+    .check6h-result.fail {
+      background: #fee2e2;
+      color: #991b1b;
+      border-left: 3px solid var(--danger);
+    }
+    .check6h-ratio {
+      font-size: 20px;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+    .check6h-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .check6h-foot {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    @media (max-width: 480px) {
+      .check6h-row label { min-width: 100%; }
+      .check6h-row input { max-width: 100%; flex: 1 1 100%; }
+    }
+
+    /* ===== 发布前自检 selfCheck ===== */
+    .selfcheck-grid {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .selfcheck-item {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--border);
+    }
+    .selfcheck-item.pass { border-left-color: var(--success); }
+    .selfcheck-item.fail { border-left-color: var(--danger); }
+    .selfcheck-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .selfcheck-item-title {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 14px;
+      flex: 1 1 auto;
+    }
+    .selfcheck-item-title .sub {
+      color: var(--text-light);
+      font-weight: 400;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+    .selfcheck-buttons {
+      display: inline-flex;
+      gap: 6px;
+    }
+    .selfcheck-buttons button {
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .selfcheck-buttons button.active.pass {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+    .selfcheck-buttons button.active.fail {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+    .selfcheck-textarea {
+      width: 100%;
+      min-height: 60px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      margin-top: 8px;
+      resize: vertical;
+    }
+    .selfcheck-textarea:focus { outline: none; border-color: var(--secondary); }
+    .selfcheck-textarea + label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    .selfcheck-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border-light);
+    }
+    .selfcheck-summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .selfcheck-summary.all-pass {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .selfcheck-summary.has-fail {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .selfcheck-summary.has-null {
+      background: var(--accent-light);
+      color: #92400e;
+    }
   </style>
 </head>
 <body>
@@ -223,6 +490,69 @@
     <!-- 由 JS 填充 -->
   </div>
 
+  <!-- ===== 数据复盘（可选，D2 风格） ===== -->
+  <section class="section" id="recapSection" style="display:none;">
+    <h2>📊 数据复盘</h2>
+    <div class="recap-grid" id="dataRecap"></div>
+  </section>
+
+  <!-- ===== 发布前自检（selfCheck） ===== -->
+  <section class="section" id="selfCheckSection">
+    <h2>✅ 发布前自检（3 项硬门槛）<span class="selfcheck-summary" id="selfCheckSummary"></span></h2>
+    <p class="muted">每篇发布前必过 3 项。数据会保存到本地（按 D 区分），可导出 JSON 片段粘贴回 <code>daily-content.json</code>。</p>
+    <div class="selfcheck-grid">
+      <div class="selfcheck-item" id="sc-cover">
+        <div class="selfcheck-item-row">
+          <div class="selfcheck-item-title">① 封面 3 秒测试 <span class="sub">— 3 个朋友看封面 3 秒，2 个说对主题算 pass</span></div>
+          <div class="selfcheck-buttons">
+            <button type="button" data-key="cover_3s_test" data-val="pass">✓ pass</button>
+            <button type="button" data-key="cover_3s_test" data-val="fail">✗ fail</button>
+            <button type="button" data-key="cover_3s_test" data-val="null">↺ 重置</button>
+          </div>
+        </div>
+      </div>
+      <div class="selfcheck-item" id="sc-title">
+        <div class="selfcheck-item-row">
+          <div class="selfcheck-item-title">② 标题公式 <span class="sub">— 套「人群 + 场景 + 数字/悬念」三选二</span></div>
+          <div class="selfcheck-buttons">
+            <button type="button" data-key="title_formula" data-val="pass">✓ pass</button>
+            <button type="button" data-key="title_formula" data-val="fail">✗ fail</button>
+            <button type="button" data-key="title_formula" data-val="null">↺ 重置</button>
+          </div>
+        </div>
+      </div>
+      <div class="selfcheck-item" id="sc-hook">
+        <div class="selfcheck-item-row">
+          <div class="selfcheck-item-title">③ 互动钩子 <span class="sub">— 文末必须有「评论区扣 1 / A or B / 你的故事」之一</span></div>
+          <div class="selfcheck-buttons">
+            <button type="button" data-key="interaction_hook" data-val="pass">✓ pass</button>
+            <button type="button" data-key="interaction_hook" data-val="fail">✗ fail</button>
+            <button type="button" data-key="interaction_hook" data-val="null">↺ 重置</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <textarea class="selfcheck-textarea" id="sc-improvements" placeholder="这一版哪些地方还要改？（封面/标题/正文/钩子…）"></textarea>
+    <label for="sc-improvements">↑ improvements · 自由记录要改进的点</label>
+    <textarea class="selfcheck-textarea" id="sc-pivot" placeholder="下一篇要 pivot 什么？（延续套路 / 换方向 / 换人群）"></textarea>
+    <label for="sc-pivot">↑ next_day_pivot · 下一篇的方向调整</label>
+    <div class="selfcheck-actions">
+      <button class="btn btn-primary" type="button" id="sc-export">📋 复制 JSON 片段</button>
+      <button class="btn" type="button" id="sc-reset-all">🗑️ 清空本天</button>
+      <a class="btn" href="content-kit/冷启动SOP.md#1-重新定义复盘别看数据看过程">🔗 SOP §1 详细</a>
+    </div>
+  </section>
+
+  <!-- ===== 发布前 SOP（可选） ===== -->
+  <section class="section" id="preSopSection" style="display:none;">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol class="sop-list" id="preSops"></ol>
+    <div class="sop-empty" id="preSopsEmpty" style="display:none;">
+      <strong>此日发布前 SOP 待补</strong>
+      参考 D1 / D2 的 10 步 SOP 模板，在 <code>content-kit/daily-content.json</code> 的 <code>preSops</code> 字段里补。
+    </div>
+  </section>
+
   <!-- ===== 关键设计点 ===== -->
   <section class="section" id="designSection">
     <h2>💡 关键设计点</h2>
@@ -242,6 +572,49 @@
     <ol id="imageList" style="line-height:2;"></ol>
   </section>
 
+  <!-- ===== 发布后 24h SOP（可选） ===== -->
+  <section class="section" id="postSopSection" style="display:none;">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table id="postSopsTable">
+      <thead>
+        <tr><th>时间</th><th>动作</th><th>目标</th></tr>
+      </thead>
+      <tbody id="postSops"></tbody>
+    </table>
+    <div class="sop-empty" id="postSopsEmpty" style="display:none;">
+      <strong>此日发布后 SOP 待补</strong>
+      参考 D1 的 24h 5 段时间表，在 JSON 的 <code>postSops</code> 字段里补。
+    </div>
+    <!-- 6h 曝光自查（实时计算 B/A） -->
+    <div class="check6h" id="check6h" style="display:none;">
+      <h3>⏱️ 6h 曝光自查（判定是否进入二级流量池）</h3>
+      <div class="check6h-row">
+        <label for="check6h-a">发布 30 分钟曝光 (A)：</label>
+        <input type="number" id="check6h-a" min="0" placeholder="例 200" inputmode="numeric">
+      </div>
+      <div class="check6h-row">
+        <label for="check6h-b">发布 6 小时曝光 (B)：</label>
+        <input type="number" id="check6h-b" min="0" placeholder="例 500" inputmode="numeric">
+      </div>
+      <div class="check6h-result" id="check6h-result" style="display:none;"></div>
+      <div class="check6h-actions" id="check6h-actions" style="display:none;">
+        <a class="btn" href="content-kit/冷启动SOP.md#3-6h-曝光自查唯一该看的">🔗 查看救援步骤</a>
+        <button class="btn" type="button" id="check6h-clear">🗑️ 清空数据</button>
+      </div>
+      <div class="check6h-foot" id="check6h-foot"></div>
+    </div>
+  </section>
+
+  <!-- ===== 数据目标（可选） ===== -->
+  <section class="section" id="kpiSection" style="display:none;">
+    <h2>🎯 数据目标（不要焦虑）</h2>
+    <div class="grid grid-4" id="kpiTargets"></div>
+    <div class="sop-empty" id="kpiEmpty" style="display:none;">
+      <strong>此日数据目标待补</strong>
+      参考 D1 的 4 项指标卡（曝光/收藏率/评论/涨粉），在 JSON 的 <code>kpiTargets</code> 字段里补。
+    </div>
+  </section>
+
   <!-- ===== 上下一天导航 ===== -->
   <section class="section">
     <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
@@ -256,6 +629,7 @@
   <p>© 2026 前端转AI电商 · 30 天公开实验</p>
 </footer>
 
+<script src="assets/js/app.js"></script>
 <script>
 let CURRENT_DAY = null;
 let CURRENT_DATA = null;
@@ -268,21 +642,24 @@ fetch('content-kit/daily-content.json')
   .then(r => r.json())
   .then(json => {
     const data = json.days[String(safeDay)];
+    CURRENT_DAY = safeDay;
     if (!data) {
       document.getElementById('xhsPreview').innerHTML = '<div class="note">Day ' + safeDay + ' 还没数据，会在 D' + (safeDay - 1) + ' 发出后第二天补全。</div>';
       document.getElementById('dayTitle').textContent = 'Day ' + safeDay + ' · 草稿中';
       document.getElementById('dayPill').textContent = 'D' + safeDay + ' · 草稿';
       document.getElementById('dayPill').className = 'status-pill status-draft';
+      initSelfCheck(null);  /* 无 data 也启用 selfCheck */
       renderJump(json);
       return;
     }
-    CURRENT_DAY = safeDay;
     CURRENT_DATA = data;
     renderDay(data);
     renderJump(json);
   })
   .catch(err => {
     document.getElementById('xhsPreview').innerHTML = '<div class="note">加载数据失败：' + err.message + '</div>';
+    CURRENT_DAY = safeDay;
+    initSelfCheck(null);
   });
 
 function renderDay(d) {
@@ -359,11 +736,277 @@ function renderDay(d) {
     document.getElementById('designPoints').innerHTML = '<div class="design-card">此日设计点待补</div>';
   }
 
+  // 数据复盘（D2 风格，缺则隐藏整段 — D1/D2 之外多数天没复盘数据，意义不大）
+  if (d.dataRecap && d.dataRecap.length) {
+    document.getElementById('recapSection').style.display = '';
+    document.getElementById('dataRecap').innerHTML = d.dataRecap.map(r => `
+      <div class="recap-item">
+        <div><span class="label">${escapeHtml(r.label || '')}：</span><span class="value">${escapeHtml(r.value || '')}</span></div>
+        ${r.detail ? `<div class="detail">${escapeHtml(r.detail)}</div>` : ''}
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('recapSection').style.display = 'none';
+  }
+
+  // 发布前 SOP（缺则整段隐藏）
+  if (d.preSops && d.preSops.length) {
+    document.getElementById('preSopSection').style.display = '';
+    document.getElementById('preSops').innerHTML = d.preSops.map(s => {
+      const codePart = s.code ? ` <code>${escapeHtml(s.code)}</code>` : '';
+      const strongPart = s.strong ? ` <strong>${escapeHtml(s.strong)}</strong>` : '';
+      return `<li>${escapeHtml(s.text || '')}${codePart}${strongPart}</li>`;
+    }).join('');
+  } else {
+    document.getElementById('preSopSection').style.display = 'none';
+  }
+
+  // 发布后 24h SOP（缺则整段隐藏）
+  if (d.postSops && d.postSops.length) {
+    document.getElementById('postSopSection').style.display = '';
+    document.getElementById('postSops').innerHTML = d.postSops.map(s => `
+      <tr>
+        <td><strong>${escapeHtml(s.time || '')}</strong></td>
+        <td>${escapeHtml(s.action || '')}</td>
+        <td>${escapeHtml(s.goal || '')}</td>
+      </tr>
+    `).join('');
+  } else {
+    document.getElementById('postSopSection').style.display = 'none';
+  }
+
+  // 数据目标（缺则整段隐藏）
+  if (d.kpiTargets && d.kpiTargets.length) {
+    document.getElementById('kpiSection').style.display = '';
+    document.getElementById('kpiTargets').innerHTML = d.kpiTargets.map(k => `
+      <div class="text-center">
+        <div style="font-size: 28px; font-weight: 800; color: var(--secondary);">${escapeHtml(k.value || '')}</div>
+        <div class="muted">${escapeHtml(k.label || '')}</div>
+        ${k.hint ? `<div class="faint" style="font-size:12px;">${escapeHtml(k.hint)}</div>` : ''}
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('kpiSection').style.display = 'none';
+  }
+
+  // 6h 曝光自查（仅在 postSopSection 显示时启用 — 即有 postSops 数据的 D）
+  init6hCheck();
+
+  // 发布前自检 selfCheck（始终启用，data.selfCheck 是初始值）
+  initSelfCheck(d.selfCheck);
+
   // 上下一天导航
   const prev = Math.max(1, CURRENT_DAY - 1);
   const next = Math.min(30, CURRENT_DAY + 1);
   document.getElementById('prevDay').href = 'daily.html?day=' + prev;
   document.getElementById('nextDay').href = 'daily.html?day=' + next;
+}
+
+function initSelfCheck(initial) {
+  const STORAGE_KEY = 'xhs-selfcheck-D' + CURRENT_DAY;
+  const TEXT_KEYS   = ['improvements', 'next_day_pivot'];
+  const BOOL_KEYS   = ['cover_3s_test', 'title_formula', 'interaction_hook'];
+
+  /* 读取：localStorage 优先，fallback 到 JSON 传入的 initial */
+  function load() {
+    try {
+      const ls = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (ls && typeof ls === 'object') return ls;
+    } catch (e) {}
+    return initial || {};
+  }
+  function save(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function getState() {
+    const s = {};
+    BOOL_KEYS.forEach(k => {
+      const btn = document.querySelector('.selfcheck-buttons button.active[data-key="' + k + '"]');
+      s[k] = btn ? btn.getAttribute('data-val') : null;
+    });
+    TEXT_KEYS.forEach(k => {
+      const id = k === 'improvements' ? 'sc-improvements' : 'sc-pivot';
+      s[k] = document.getElementById(id).value || '';
+    });
+    return s;
+  }
+  function render() {
+    const state = load();
+
+    /* 设置按钮 active 态 */
+    BOOL_KEYS.forEach(k => {
+      document.querySelectorAll('.selfcheck-buttons button[data-key="' + k + '"]').forEach(btn => {
+        const v = btn.getAttribute('data-val');
+        if (v === 'null') return; /* 重置按钮永远不高亮 */
+        btn.classList.toggle('active', state[k] === v);
+        btn.classList.toggle('pass', btn.classList.contains('active') && v === 'pass');
+        btn.classList.toggle('fail', btn.classList.contains('active') && v === 'fail');
+      });
+      /* item 容器左边框颜色 */
+      const itemId = k === 'cover_3s_test' ? 'sc-cover'
+                   : k === 'title_formula'  ? 'sc-title'
+                   : 'sc-hook';
+      const item = document.getElementById(itemId);
+      item.classList.remove('pass', 'fail');
+      if (state[k] === 'pass') item.classList.add('pass');
+      else if (state[k] === 'fail') item.classList.add('fail');
+    });
+
+    /* 文本框 */
+    document.getElementById('sc-improvements').value = state.improvements || '';
+    document.getElementById('sc-pivot').value        = state.next_day_pivot || '';
+
+    /* 顶部 summary */
+    const sum = document.getElementById('selfCheckSummary');
+    const hasAny = BOOL_KEYS.some(k => state[k] === 'pass' || state[k] === 'fail');
+    const allPass = BOOL_KEYS.every(k => state[k] === 'pass');
+    const hasFail = BOOL_KEYS.some(k => state[k] === 'fail');
+    const hasNull = BOOL_KEYS.some(k => state[k] == null);
+    if (!hasAny) {
+      sum.className = 'selfcheck-summary';
+      sum.textContent = '未开始';
+    } else if (allPass) {
+      sum.className = 'selfcheck-summary all-pass';
+      sum.textContent = '✓ 3/3 通过';
+    } else if (hasFail) {
+      sum.className = 'selfcheck-summary has-fail';
+      sum.textContent = '✗ ' + BOOL_KEYS.filter(k => state[k] === 'fail').length + ' 项未通过';
+    } else if (hasNull) {
+      sum.className = 'selfcheck-summary has-null';
+      sum.textContent = '○ ' + BOOL_KEYS.filter(k => state[k] === null).length + ' 项未填';
+    }
+  }
+
+  /* 绑定按钮 click */
+  document.querySelectorAll('.selfcheck-buttons button').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const k = btn.getAttribute('data-key');
+      const v = btn.getAttribute('data-val'); /* "pass" / "fail" / "null" */
+      const state = load();
+      if (v === 'null') {
+        state[k] = null;
+      } else {
+        /* 同一项切到另一状态：直接覆盖 */
+        state[k] = v;
+      }
+      save(state);
+      render();
+    });
+  });
+
+  /* 绑定 textarea input */
+  document.getElementById('sc-improvements').addEventListener('input', () => save(getState()));
+  document.getElementById('sc-pivot').addEventListener('input', () => save(getState()));
+
+  /* 导出 JSON 片段 */
+  document.getElementById('sc-export').addEventListener('click', function () {
+    const state = getState();
+    const text = JSON.stringify(state, null, 2);
+    const jsonSnippet = ',\n    "selfCheck": ' + text;
+    const fullHint = '—— 把这段粘贴到 daily-content.json 的对应 day 节点下 ——';
+    const clipboardText = jsonSnippet + '\n' + fullHint;
+    copyTextWithFallback(clipboardText, '✓ 已复制 JSON 片段');
+  });
+
+  /* 清空本天 */
+  document.getElementById('sc-reset-all').addEventListener('click', function () {
+    if (!confirm('清空 D' + CURRENT_DAY + ' 的 selfCheck 数据？\n\n（清空后只显示 daily-content.json 里的初始值，刷新页面会重新 load）')) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    render();
+  });
+
+  render();
+}
+
+function init6hCheck() {
+  const section = document.getElementById('postSopSection');
+  const card    = document.getElementById('check6h');
+  if (!section || !card) return;
+  // 没有 postSops 数据时整段隐藏，6h 卡片也跟着隐藏
+  if (section.style.display === 'none') {
+    card.style.display = 'none';
+    return;
+  }
+  card.style.display = '';
+
+  const STORAGE_KEY = 'xhs-6h-check-D' + CURRENT_DAY;
+  const inputA = document.getElementById('check6h-a');
+  const inputB = document.getElementById('check6h-b');
+  const result  = document.getElementById('check6h-result');
+  const actions = document.getElementById('check6h-actions');
+  const foot    = document.getElementById('check6h-foot');
+
+  function load() {
+    try {
+      const v = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (v && typeof v.a === 'number') inputA.value = v.a;
+      if (v && typeof v.b === 'number') inputB.value = v.b;
+    } catch (e) {}
+  }
+  function save(a, b) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({a, b, ts: Date.now()})); } catch (e) {}
+  }
+  function compute() {
+    const a = parseInt(inputA.value, 10);
+    const b = parseInt(inputB.value, 10);
+    if (!Number.isFinite(a) || !Number.isFinite(b) || a < 0 || b < 0) {
+      result.style.display = 'none';
+      actions.style.display = 'none';
+      foot.textContent = '';
+      return;
+    }
+    if (a === 0 && b === 0) {
+      result.style.display = 'none';
+      actions.style.display = 'none';
+      foot.textContent = '两次曝光都还是 0，说明笔记还没发出去或没被分发到一级流量池。';
+      return;
+    }
+    if (a === 0) {
+      result.className = 'check6h-result warn';
+      result.innerHTML = '<span class="check6h-ratio">B / A = ∞</span> 6h 有曝光但 30 分钟时为 0，可能是发布后立刻改动了标题/封面触发了二次审核。';
+      result.style.display = '';
+      actions.style.display = '';
+      foot.textContent = '已自动保存到本地 · 隔天复看可继续编辑';
+      return;
+    }
+    const ratio = b / a;
+    const pct   = ratio.toFixed(2);
+    let cls, msg, foot2;
+    if (ratio >= 2) {
+      cls = 'pass';
+      msg = '<span class="check6h-ratio">B / A = ' + pct + '</span> ✅ 进入二级流量池 · 按原计划继续';
+      foot2 = 'B/A ≥ 2 是健康信号，下一篇可延续当前标题/封面套路。';
+    } else if (ratio >= 1) {
+      cls = 'warn';
+      msg = '<span class="check6h-ratio">B / A = ' + pct + '</span> ⚠️ 接近阈值 · 6h 内曝光只翻 ' + pct + ' 倍，建议改标题 + 私域发群拉互动';
+      foot2 = '没进二级池但没沉底，今晚 22:00 前补一轮私域分发还来得及。';
+    } else {
+      cls = 'fail';
+      msg = '<span class="check6h-ratio">B / A = ' + pct + '</span> ❌ 没动 · 24h 内立即改标题 + 改封面 + 私域发 3-5 个群拉真实评论';
+      foot2 = 'B/A < 1 说明笔记基本没进入二级池，按冷启动 SOP §3.2 救援。';
+    }
+    result.className = 'check6h-result ' + cls;
+    result.innerHTML = msg;
+    result.style.display = '';
+    actions.style.display = '';
+    foot.textContent = foot2 + ' · 数据已自动保存到本地';
+    save(a, b);
+  }
+
+  inputA.addEventListener('input', compute);
+  inputB.addEventListener('input', compute);
+  document.getElementById('check6h-clear').addEventListener('click', function () {
+    if (!confirm('清空 D' + CURRENT_DAY + ' 的曝光数据？')) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    inputA.value = '';
+    inputB.value = '';
+    result.style.display = 'none';
+    actions.style.display = 'none';
+    foot.textContent = '';
+  });
+
+  load();
+  compute();
 }
 
 function renderJump(json) {
@@ -406,17 +1049,18 @@ function copyImageList() {
   copyToClipboard(list);
 }
 function copyToClipboard(text) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => showToast('已复制 ✓'));
-  } else {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    ta.remove();
-    showToast('已复制 ✓');
-  }
+  copyTextWithFallback(text, '已复制 ✓');
+}
+function copyTextWithFallback(text, message) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  ta.remove();
+  showToast(message);
 }
 function showToast(msg) {
   const t = document.createElement('div');
