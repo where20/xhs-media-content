@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D6 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D6 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D6 · 已就绪 · 待发布</span>
+    <h1>Day 6 笔记预览 · 一人电商最累的不是任务多</h1>
+    <p class="lead">D5 给出"流程化思维"。D6 推导痛点:流程化没跑通时,你的每一天都在"重做"—— 累的不是事,是循环。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>情绪共鸣笔记:</strong> D6 不给方法,只给共鸣 —— 一人电商每天"重做"清单 + 告别重做 4 项。
+    配 6 张图按"钩子 → 共鸣 → 4 类痛 → 成本 → 行动 → 预告"的钩子顺序走。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已经按发布标准预排好,发布前请用最后一步的 3 个按钮复制。
+    6 张图按顺序上传小红书即可。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D6-笔记/01-封面.png" alt="封面">
+    <img class="xhs-img" src="content-kit/D6-笔记/02-重做的一天.png" alt="重做的一天">
+    <img class="xhs-img" src="content-kit/D6-笔记/03-4类重做的事.png" alt="4 类重做的事">
+    <img class="xhs-img" src="content-kit/D6-笔记/04-重做的成本.png" alt="重做的成本">
+    <img class="xhs-img" src="content-kit/D6-笔记/05-告别重做清单.png" alt="告别重做清单">
+    <img class="xhs-img" src="content-kit/D6-笔记/06-Day7预告.png" alt="Day7预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">一人电商最累的不是任务多 · 是每天重做</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">做电商第 7 天,我突然意识到一件事:
+
+我每天在做的,不是"卖货"。
+是把昨天做过的事,再做一遍。
+
+文案:昨天写过 10 条,今天再写 10 条。
+客服:昨天回过 50 人,今天再回 50 人。
+选品:昨天看 30 个,今天再看 30 个。
+复盘:昨天总结 1 份,今天再总结 1 份。
+
+每天的"新任务" = 昨天的复制粘贴。
+
+───── 真正累的不是任务,是"重做" ─────
+昨天说:把"凭感觉"变"可重复"。
+今天想补一句:别把"重复"做成"重做"。
+
+你以为你累的是"事多"。
+其实你累的是"每一件事都是新的"。
+
+没有清单 → 每件都从头想
+没有 SOP → 每件都重新摸索
+没有版本 → 每件都重新改
+没有归档 → 每件都重新找
+
+启动成本 + 重复成本 = 一天的"空转"。
+累的不是身体,是"怎么又是这件事"的心态。
+
+───── 一人电商最常"重做"的 4 类事 ─────
+❌ 文案:同一款商品,每周写 5 篇(其实可以改模板)
+❌ 客服:同一个问题,每天回 10 次(其实可以整理 FAQ)
+❌ 选品:每次都从 0 看 30 个(其实可以维护候选池)
+❌ 复盘:每天都从 0 拉数据(其实可以模板化日报)
+
+每一件,都在"重做"。
+每一件,都没沉淀成"明天的资产"。
+
+───── 我给自己定的"告别重做"清单 ─────
+✅ 文案 → 写 5 篇通用模板,改 30% 就上
+✅ 客服 → 把高频 20 问整理成自动回复库
+✅ 选品 → 每周追加 5 个候选,不重复看
+✅ 复盘 → 固定 4 项指标 + 模板表,5 分钟出
+
+每少重做 1 小时,我就多出 1 小时做"新事"。
+一个月下来,新事比重事多 = 真的在积累,不是原地转。
+
+───── 一句话总结 ─────
+你累,不是任务多。
+是你没把昨天的工作"沉淀"成今天的资产。
+
+评论区:你最常重做的 3 件事是什么? 👇
+我列清单,你列你的,看谁先脱"重做"坑。
+
+───── Day 7 预告 ─────
+W1 第 7 天 · 第一周实验复盘
+什么有效 / 什么无效 / 下周测什么
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#一人电商</span>
+        <span class="xhs-tag">#电商日常</span>
+        <span class="xhs-tag">#效率提升</span>
+        <span class="xhs-tag">#电商副业</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">一人电商最累的不是任务多 · 是每天重做</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">做电商第 7 天,我突然意识到一件事:
+
+我每天在做的,不是"卖货"。
+是把昨天做过的事,再做一遍。
+
+文案:昨天写过 10 条,今天再写 10 条。
+客服:昨天回过 50 人,今天再回 50 人。
+选品:昨天看 30 个,今天再看 30 个。
+复盘:昨天总结 1 份,今天再总结 1 份。
+
+每天的"新任务" = 昨天的复制粘贴。
+
+───── 真正累的不是任务,是"重做" ─────
+昨天说:把"凭感觉"变"可重复"。
+今天想补一句:别把"重复"做成"重做"。
+
+你以为你累的是"事多"。
+其实你累的是"每一件事都是新的"。
+
+没有清单 → 每件都从头想
+没有 SOP → 每件都重新摸索
+没有版本 → 每件都重新改
+没有归档 → 每件都重新找
+
+启动成本 + 重复成本 = 一天的"空转"。
+累的不是身体,是"怎么又是这件事"的心态。
+
+───── 一人电商最常"重做"的 4 类事 ─────
+❌ 文案:同一款商品,每周写 5 篇(其实可以改模板)
+❌ 客服:同一个问题,每天回 10 次(其实可以整理 FAQ)
+❌ 选品:每次都从 0 看 30 个(其实可以维护候选池)
+❌ 复盘:每天都从 0 拉数据(其实可以模板化日报)
+
+每一件,都在"重做"。
+每一件,都没沉淀成"明天的资产"。
+
+───── 我给自己定的"告别重做"清单 ─────
+✅ 文案 → 写 5 篇通用模板,改 30% 就上
+✅ 客服 → 把高频 20 问整理成自动回复库
+✅ 选品 → 每周追加 5 个候选,不重复看
+✅ 复盘 → 固定 4 项指标 + 模板表,5 分钟出
+
+每少重做 1 小时,我就多出 1 小时做"新事"。
+一个月下来,新事比重事多 = 真的在积累,不是原地转。
+
+───── 一句话总结 ─────
+你累,不是任务多。
+是你没把昨天的工作"沉淀"成今天的资产。
+
+评论区:你最常重做的 3 件事是什么? 👇
+我列清单,你列你的,看谁先脱"重做"坑。
+
+───── Day 7 预告 ─────
+W1 第 7 天 · 第一周实验复盘
+什么有效 / 什么无效 / 下周测什么
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #一人电商 #电商日常 #效率提升 #电商副业</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D6 数据复盘</h2>
+    <div class="data-card">
+      <strong>核心共鸣:</strong> 一人电商每天的"新任务" = 昨天的复制粘贴 —— 累的不是事多,是"重做"
+    </div>
+    <div class="data-card">
+      <strong>对比维度:</strong> 凭感觉(每天重做)/ 流程化(每件沉淀资产) — 承接 D5 流程化结论,推出"重做"是流程缺失的副作用
+    </div>
+    <div class="data-card">
+      <strong>4 类重做事:</strong> 文案 / 客服 / 选品 / 复盘 — 每个都给出"沉淀方案"(模板/FAQ/候选池/日报)
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> "你最常重做的 3 件事" —— 列清单比二选一门槛更低、易晒经验、利于评论区
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:一人电商最累的不是任务多 · 是每天重做</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周一 20:00-21:00(承接周末情绪蓄水)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("你最常重做的 3 件事是什么?")</td><td>激活评论区话题</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复</td><td>建立活跃感</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计 D1-D6 累计,决定 D7 钩子</td><td>W1 收官</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 6 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1000</td><td>W1 末段叠加 + 情绪共鸣天然易爆</td></tr>
+        <tr><td>收藏率</td><td>≥ 5%</td><td>共鸣类收藏低于干货,正常</td></tr>
+        <tr><td>评论</td><td>≥ 120</td><td>"列清单"互动比二选一更易触发</td></tr>
+        <tr><td>涨粉</td><td>≥ 150</td><td>情绪共鸣易出圈,W1 末段冲一波</td></tr>
+        <tr><td>D7 钩子</td><td>第一周实验复盘</td><td>承接 D6 的"告别重做清单"</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 反常识钩子</h3>
+    <ul>
+      <li><strong>"最累的不是任务多"</strong> = 反常识(大家以为任务多是累的根源)</li>
+      <li><strong>"是每天重做"</strong> = 把"累"重新定义为"循环",刷新用户认知</li>
+    </ul>
+
+    <h3>2. 正文 = 5 段式钩子</h3>
+    <ol>
+      <li><strong>场景铺垫</strong>(每天重做的 4 件事,具体数字)</li>
+      <li><strong>观点反转</strong>(累的不是事多,是循环)</li>
+      <li><strong>4 类清单</strong>(文案/客服/选品/复盘,各加"其实可以...")</li>
+      <li><strong>行动清单</strong>(4 项告别重做的具体动作)</li>
+      <li><strong>互动钩子</strong>(列清单而非二选一,降低门槛)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面("别再每天重做"大字 + 循环箭头被切断)</li>
+      <li>图 02 = 重做的一天(时间轴 8am/10am/2pm/6pm,每个节点带循环符号)</li>
+      <li>图 03 = 4 类重做的事(❌ 清单,直接传达痛点)</li>
+      <li>图 04 = 重做的成本(饼图 40% 启动 + 60% 重复)</li>
+      <li>图 05 = 告别重做清单(4 项 ✅,可立即抄作业)</li>
+      <li>图 06 = Day7 预告(第一周实验报告)</li>
+    </ul>
+
+    <h3>4. 承接 D5 + 升级钩子</h3>
+    <ul>
+      <li>D5 钩子:凭感觉 vs 流程化(二选一,低门槛)</li>
+      <li>D6 钩子升级:列清单(更开放、更易晒经验、评论数 ×1.5)</li>
+      <li>D5 给出方法 → D6 给痛点共鸣 → D7 给复盘 = W1 三段式收官</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>不要删"重做的一天"时间轴图</strong>—— 这是 D6 的核心场景可视化,8am/10am/2pm/6pm 数字必须保留</li>
+      <li><strong>"告别重做 4 项"清单要保留全部 4 条</strong>—— 评论互动钩子依赖用户照抄</li>
+      <li><strong>正文用"我"视角而非"你"</strong>—— 情绪共鸣类笔记第一人称更易拉近距离(对比 D5 用的"你")</li>
+      <li><strong>6 张图必须按顺序</strong>—— 封面(钩子)→ 时间轴(场景)→ 4类(痛点)→ 成本(数据)→ 行动(方法)→ 预告(系列)</li>
+      <li><strong>正文里 ❌ 用小红书红 #ff2442</strong>—— 警示色贯穿(重做 = 警示)</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D5.html">← D5 笔记</a>
+    <a class="btn btn-primary" href="daily.html?day=7" style="margin-left:8px;">Day 7 预览 →</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
