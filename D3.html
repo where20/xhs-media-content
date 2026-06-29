@@ -67,6 +67,21 @@
   </div>
 </nav>
 
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D2.html">← 上一日（D2）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D4.html">下一日（D4）→</a>
+</div>
+
 <header class="page-header">
   <div class="container">
     <span class="time-pill">D3 · 已就绪 · 待发布</span>
@@ -336,7 +351,8 @@ W2 第 2 天 · AI 帮我把客服高频问题整理成自动回复库
 
   <div style="margin: 32px 0; text-align: center;">
     <a class="btn btn-secondary" href="D2.html">← D2 笔记</a>
-    <a class="btn btn-primary" href="daily.html?day=4" style="margin-left:8px;">Day 4 预览 →</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D4.html" style="margin-left:8px;">Day 4 预览 →</a>
   </div>
 
 </main>

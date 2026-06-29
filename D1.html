@@ -108,6 +108,21 @@
   </div>
 </nav>
 
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a class="disabled" href="#" aria-disabled="true">← 上一日（D0 · 起始）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D2.html">下一日（D2）→</a>
+</div>
+
 <div class="container" style="padding-top: 24px; padding-bottom: 40px;">
 
   <!-- 顶部信息 -->
@@ -377,7 +392,9 @@ W1 立人设 / W2 工作流 / W3 避坑 / W4 MVP 验证
 <footer class="footer">
   <p>D1 完整笔记 · 2026-06-23 · 前端转AI电商 · D1</p>
   <p class="mt-1">
-    <a href="xhs.html">← 返回 xhs 起号包</a> ·
+    <a href="calendar.html">📅 返回 30 天日历</a> ·
+    <a href="D2.html">D2 笔记 →</a> ·
+    <a href="xhs.html">xhs 起号包</a> ·
     <a href="content-kit/D1-笔记/">📁 配图目录</a> ·
     <a href="index.html">主页</a>
   </p>

@@ -133,7 +133,8 @@
     const tip = day.getAttribute('data-tip') || '';
     const id = day.getAttribute('data-day');
 
-    let html = `<div class="day-label" style="font-size:12px; color:var(--text-faint); font-weight:700; letter-spacing:1px; text-transform:uppercase;">${escapeHTML(dayNum)} · ${escapeHTML(type)}</div>`;
+    const dateText = window.__xhs_day_dates && window.__xhs_day_dates[dayNum] ? window.__xhs_day_dates[dayNum] : '';
+    let html = `<div class="day-label" style="font-size:12px; color:var(--text-faint); font-weight:700; letter-spacing:1px; text-transform:uppercase;">${escapeHTML(dayNum)} · ${escapeHTML(type)}${dateText ? ' · ' + escapeHTML(dateText) : ''}</div>`;
     html += `<h2>${escapeHTML(title)}</h2>`;
     if (tags.length) {
       html += '<div class="mb-2">' + tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join('') + '</div>';
@@ -148,9 +149,20 @@
     if (tip) {
       html += `<div class="callout info mt-2"><strong>封面建议：</strong>${escapeHTML(tip)}</div>`;
     }
+    /* 检测详情页是否存在（D1-D6 已生成，后续待补） */
+    const dayPage = dayNum && /^D\d+$/.test(dayNum) ? dayNum + '.html' : null;
+    let pageBtn = '';
+    if (dayPage) {
+      /* 用 HEAD 探测，但避免真的发请求：直接读页面里有没有配置好的硬编码清单 */
+      const exists = window.__xhs_day_pages && window.__xhs_day_pages[dayNum];
+      pageBtn = exists
+        ? `<a class="btn btn-primary" href="${dayPage}" style="text-decoration:none; display:inline-flex; align-items:center;">📄 打开 ${dayNum} 详情页</a>`
+        : `<button class="btn" type="button" disabled title="详情页待生成" style="opacity:.55; cursor:not-allowed;">📄 详情页待生成</button>`;
+    }
     html += `<div class="mt-3" style="display:flex; gap:8px; flex-wrap:wrap;">
       <button class="btn btn-primary" id="modalToggle" type="button">${getCompleted()[id] ? '✓ 已完成（点击取消）' : '标记为已完成'}</button>
       <button class="btn" id="modalCopy" type="button">复制文案</button>
+      ${pageBtn}
     </div>`;
 
     modalBody.innerHTML = html;
@@ -198,6 +210,76 @@
   });
 
   /* ---------- 5. 初始化 ---------- */
+  /* 详情页存在清单（SSOT：手动维护，新增 D{N}.html 时在这里加一行） */
+  window.__xhs_day_pages = {
+    D1: true, D2: true, D3: true, D4: true, D5: true, D6: true
+  };
+
+  /* D{N} → 实际日期映射（SSOT：起始日 = 2026-06-24 周三） */
+  /* 来源：content-kit/daily-content.json（已与现实日期校准） */
+  window.__xhs_day_dates = {
+    D1: '2026-06-24 · 周三',
+    D2: '2026-06-25 · 周四',
+    D3: '2026-06-26 · 周五',
+    D4: '2026-06-27 · 周六',
+    D5: '2026-06-28 · 周日',
+    D6: '2026-06-29 · 周一',
+    D7: '2026-06-30 · 周二',
+    D8: '2026-07-01 · 周三',
+    D9: '2026-07-02 · 周四',
+    D10: '2026-07-03 · 周五',
+    D11: '2026-07-04 · 周六',
+    D12: '2026-07-05 · 周日',
+    D13: '2026-07-06 · 周一',
+    D14: '2026-07-07 · 周二',
+    D15: '2026-07-08 · 周三',
+    D16: '2026-07-09 · 周四',
+    D17: '2026-07-10 · 周五',
+    D18: '2026-07-11 · 周六',
+    D19: '2026-07-12 · 周日',
+    D20: '2026-07-13 · 周一',
+    D21: '2026-07-14 · 周二',
+    D22: '2026-07-15 · 周三',
+    D23: '2026-07-16 · 周四',
+    D24: '2026-07-17 · 周五',
+    D25: '2026-07-18 · 周六',
+    D26: '2026-07-19 · 周日',
+    D27: '2026-07-20 · 周一',
+    D28: '2026-07-21 · 周二'
+  };
+
+  /* 给每个 cal-day 注入日期条 + 高亮"今天" */
+  const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  document.querySelectorAll('.cal-day').forEach(function (day) {
+    const id = day.getAttribute('data-day'); // D1..D28
+    const dateText = window.__xhs_day_dates[id];
+    if (!dateText) return;
+    /* 拆成 ISO 日期 + 周几两段 */
+    const [iso, weekday] = dateText.split(' · ');
+    /* 在 day-num 后追加日期 */
+    const numEl = day.querySelector('.day-num');
+    if (numEl && !day.querySelector('.day-date')) {
+      const dateEl = document.createElement('div');
+      dateEl.className = 'day-date';
+      dateEl.textContent = iso.slice(5); // MM-DD
+      dateEl.title = dateText;            // hover 显示完整
+      numEl.appendChild(dateEl);
+    }
+    /* 标记"今天" */
+    if (iso === todayStr) {
+      day.classList.add('is-today');
+      const tag = document.createElement('span');
+      tag.className = 'day-today-tag';
+      tag.textContent = '今天';
+      day.appendChild(tag);
+    }
+    /* 标记"已过期未完成"——软提醒 */
+    if (iso < todayStr) {
+      const isDone = getCompleted()[id];
+      if (!isDone) day.classList.add('is-overdue');
+    }
+  });
+
   renderCompleted();
 
   /* ---------- 6. 移动端汉堡导航 ---------- */
