@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D7 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D7 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D6.html">← 上一日（D6）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D8.html" title="D8 由评论区 A/B/C 投票决定">下一日（D8）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D7 · 已就绪 · 待发布</span>
+    <h1>Day 7 笔记预览 · W1 复盘 · 3 有效 3 无效</h1>
+    <p class="lead">W1 收官日:把有效/无效/意外发现 沉淀成可投票的方法论 —— 评论区 A/B/C 选下周实验方向。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>周复盘 + 共创笔记:</strong> D7 不堆方法,只做 8 件事的真假清单 + 2 个意外发现 + W2 三选一投票。
+    配 6 张图按"封面 → 有效 → 无效 → 意外 → 下周 → 预告"递进,投 A/B/C 决定 D8。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已经按发布标准预排好,发布前请用最后一步的 3 个按钮复制。
+    6 张图按顺序上传小红书即可。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D7-笔记/01-封面.png" alt="封面">
+    <img class="xhs-img" src="content-kit/D7-笔记/02-有效.png" alt="5 件有效的事">
+    <img class="xhs-img" src="content-kit/D7-笔记/03-无效.png" alt="3 件无效的事">
+    <img class="xhs-img" src="content-kit/D7-笔记/04-意外发现.png" alt="2 个意外发现">
+    <img class="xhs-img" src="content-kit/D7-笔记/05-下周测什么.png" alt="下周测什么">
+    <img class="xhs-img" src="content-kit/D7-笔记/06-Day8预告.png" alt="Day8预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">W1 复盘 · 3 有效 3 无效</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">开了 7 天,5 件事真的有效,3 件事完全无效。
+W1 收官,把这周 8 个测试讲透,
+评论区投下周 A/B/C,票数最高的先做。
+
+───── 5 件有效的事 ─────
+1️⃣ D2 跑 3 套 AI 文案流程
+   B 组"先给 6 个卖点" = 0 错误 0 改稿
+   团队每人每天能产 20 篇不重复
+2️⃣ D4 抓 4 类事实翻车
+   材质 / 容量 / 认证 / 价格
+   90% 翻车在前两类,小团队先盯死
+3️⃣ D5 提"流程化思维"
+   输入 → 流程 → 输出
+   凭感觉的人 30 天后还在凭感觉
+4️⃣ D6 推"重做"是流程缺失的副作用
+   累的不是事多,是每天复制粘贴
+5️⃣ 每天 1 张封面 + 1 段正文
+   没间断 = 系列感 = 关注欲
+
+───── 3 件无效的事 ─────
+❌ A 组 AI 一句话直接写
+   准备 0 分钟看起来快
+   改稿成本反而高 5 倍
+❌ 工具横评当爆款做
+   MJ / 即梦 / 香蕉 4 指标对比
+   数据党爱看,路人划走
+❌ 纯观点无清单
+   "程序员为什么做电商"
+   收藏率 0.8%,远低于干货类 6%
+
+───── 2 个意外发现 ─────
+📌 凭感觉 vs 流程化 评论区投票 5:1
+   5 个人 4 个在用流程
+📌 "列清单"比"二选一"互动率高 50%
+   D6 钩子升级验证成功
+
+───── W2 测什么(3 选 1)─────
+🅰 客服自动回复库
+   500 条对话 → AI 聚类 → 30 条标准答案
+   目标:每天省 1.5 小时
+🅱 商品图片自动命名+分类
+   文件名乱 → 规则引擎自动归档
+   目标:30 分钟 → 5 分钟
+🅲 每日数据复盘自动化
+   4 项指标模板化,5 分钟出日报
+   目标:复盘时间压到 1/3
+
+评论区:投 A / B / C
+我会在 D8 公布票数 + 选票最高那个先做
+票数前三都给一套完整脚本
+
+───── W1 一句话 ─────
+有效的事,值得 30 天一直做。
+无效的事,只值得做 1 次验证。
+30 天里,2/8 的时间在选方向 = 浪费时间。
+7/8 的时间在跑流程 = 真的积累。
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#AI电商复盘</span>
+        <span class="xhs-tag">#周复盘</span>
+        <span class="xhs-tag">#用户共创</span>
+        <span class="xhs-tag">#真实实验</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">W1 复盘 · 3 有效 3 无效</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">开了 7 天,5 件事真的有效,3 件事完全无效。
+W1 收官,把这周 8 个测试讲透,
+评论区投下周 A/B/C,票数最高的先做。
+
+───── 5 件有效的事 ─────
+1️⃣ D2 跑 3 套 AI 文案流程
+   B 组"先给 6 个卖点" = 0 错误 0 改稿
+   团队每人每天能产 20 篇不重复
+2️⃣ D4 抓 4 类事实翻车
+   材质 / 容量 / 认证 / 价格
+   90% 翻车在前两类,小团队先盯死
+3️⃣ D5 提"流程化思维"
+   输入 → 流程 → 输出
+   凭感觉的人 30 天后还在凭感觉
+4️⃣ D6 推"重做"是流程缺失的副作用
+   累的不是事多,是每天复制粘贴
+5️⃣ 每天 1 张封面 + 1 段正文
+   没间断 = 系列感 = 关注欲
+
+───── 3 件无效的事 ─────
+❌ A 组 AI 一句话直接写
+   准备 0 分钟看起来快
+   改稿成本反而高 5 倍
+❌ 工具横评当爆款做
+   MJ / 即梦 / 香蕉 4 指标对比
+   数据党爱看,路人划走
+❌ 纯观点无清单
+   "程序员为什么做电商"
+   收藏率 0.8%,远低于干货类 6%
+
+───── 2 个意外发现 ─────
+📌 凭感觉 vs 流程化 评论区投票 5:1
+   5 个人 4 个在用流程
+📌 "列清单"比"二选一"互动率高 50%
+   D6 钩子升级验证成功
+
+───── W2 测什么(3 选 1)─────
+🅰 客服自动回复库
+   500 条对话 → AI 聚类 → 30 条标准答案
+   目标:每天省 1.5 小时
+🅱 商品图片自动命名+分类
+   文件名乱 → 规则引擎自动归档
+   目标:30 分钟 → 5 分钟
+🅲 每日数据复盘自动化
+   4 项指标模板化,5 分钟出日报
+   目标:复盘时间压到 1/3
+
+评论区:投 A / B / C
+我会在 D8 公布票数 + 选票最高那个先做
+票数前三都给一套完整脚本
+
+───── W1 一句话 ─────
+有效的事,值得 30 天一直做。
+无效的事,只值得做 1 次验证。
+30 天里,2/8 的时间在选方向 = 浪费时间。
+7/8 的时间在跑流程 = 真的积累。
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #AI电商复盘 #周复盘 #用户共创 #真实实验</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D7 数据复盘</h2>
+    <div class="data-card">
+      <strong>复盘结构:</strong> 5 件有效 + 3 件无效 + 2 个意外发现 + W2 三选一投票 = W1 收官四段式方法论
+    </div>
+    <div class="data-card">
+      <strong>5 件有效:</strong> B 组 AI 文案 / 4 类事实翻车 / 流程化思维 / 重做痛点 / 每天 1 篇不间断 —— 把"流程"立住
+    </div>
+    <div class="data-card">
+      <strong>3 件无效:</strong> A 组 AI 直写 / 工具横评当爆款 / 纯观点无清单 —— 把"坑"摆明
+    </div>
+    <div class="data-card">
+      <strong>2 个意外:</strong> 流程化认同 5:1 + 钩子"列清单"升级成功 —— 数据修正下一天方向
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> 投 A/B/C 选 W2 实验方向 —— 投票型钩子 W1 末段评论高峰,票数前三都给脚本
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:W1 复盘 · 3 有效 3 无效</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周二 20:00-21:00(W1 收官叠加 + 复盘天然高曝光)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("A/B/C 投下周实验 · 票数最高的先做")</td><td>激活投票型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复 + 引导追加投票</td><td>投票率提升</td></tr>
+        <tr><td>2 小时</td><td>截图保存 W1 收官数据</td><td>复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计 A/B/C 票数 + 收藏率,决定 D8 选题</td><td>W2 开篇方向</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 7 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1500</td><td>W1 收官叠加 + 复盘天然高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 8%</td><td>复盘内容天然高收藏(留底用)</td></tr>
+        <tr><td>评论</td><td>≥ 200</td><td>投票类钩子 W1 末段评论高峰</td></tr>
+        <tr><td>涨粉</td><td>≥ 200</td><td>W1 收官冲一波,沉淀私域</td></tr>
+        <tr><td>D8 钩子</td><td>按 A/B/C 投票决定</td><td>W2 开篇方向由 D7 评论区投票决定</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 数字 + 复盘钩子</h3>
+    <ul>
+      <li><strong>"W1 复盘"</strong> = 系列节点(用户知道"这是个连载")</li>
+      <li><strong>"3 有效 3 无效"</strong> = 数字冲击 + 三段式预告(暗示文章结构)</li>
+      <li>总字数 13 字 ≤ XHS 20 字上限 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 4 段式钩子</h3>
+    <ol>
+      <li><strong>复盘结论</strong>(5 有效 3 无效 8 个测试,具体到 D 编号)</li>
+      <li><strong>意外发现</strong>(凭感觉 5:1 + 列清单升级,数据驱动)</li>
+      <li><strong>W2 三选一</strong>(A/B/C 投票 + 票数前三都给脚本)</li>
+      <li><strong>一句话总结</strong>(2/8 选方向 = 浪费时间,7/8 跑流程 = 真的积累)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面("W1 复盘 · 3 有效 3 无效"大字 + "第一周实验报告"副标)</li>
+      <li>图 02 = 5 件有效(✅ 清单,绿色 = 经验证有效)</li>
+      <li>图 03 = 3 件无效(❌ 清单,红色 = 已踩坑)</li>
+      <li>图 04 = 2 个意外发现(数据点 + 反常识结论)</li>
+      <li>图 05 = W2 三选一(A/B/C 投票感,引导评论)</li>
+      <li>图 06 = Day 8 预告(承接投票,引导关注)</li>
+    </ul>
+
+    <h3>4. 承接 D1-D6 + 升级钩子</h3>
+    <ul>
+      <li>D2 跑流程 → D4 抓翻车 → D5 立方法 → D6 给痛点 → D7 复盘 + 共创 = 5 段式递进</li>
+      <li>钩子升级:D5 二选一 → D6 列清单 → D7 投票(0 门槛 + 强参与 + 票数转化关注)</li>
+      <li>D7 是 W1 收官日,投票决定 D8 选题 = 数据驱动下一天</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>正文里 5+3+2 数字必须准确</strong>—— 用户按这个数投票,错了会被打回</li>
+      <li><strong>A/B/C 三个选项内容不要改</strong>—— 投票承诺在 D8 兑现,改了 = 失信</li>
+      <li><strong>票数前三都给脚本的承诺要兑现</strong>—— D8 / D9 / D10 必须有对应公开</li>
+      <li><strong>正文用"我"视角而非"你"</strong>—— 复盘类笔记第一人称更易拉近距离(对比 D5/D6 用的"你")</li>
+      <li><strong>6 张图必须按顺序</strong>—— 封面(钩子)→ 有效(经验)→ 无效(避坑)→ 意外(数据)→ 下周(投票)→ 预告(关注)</li>
+      <li><strong>正文里 ✅ 用墨绿 #0f766e,❌ 用小红书红 #ff2442</strong>—— 颜色编码贯穿(经验 = 绿,踩坑 = 红)</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D6.html">← D6 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D8.html" style="margin-left:8px;" title="D8 选题由 A/B/C 投票决定,待 D7 发布后填">Day 8（W2 开篇）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
