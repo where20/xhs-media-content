@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D9 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D9 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D8.html">← 上一日（D8）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D10.html" title="D10 数据复盘自动化 · 由 D9 评论区投票决定">下一日（D10）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D9 · 已就绪 · 待发布</span>
+    <h1>Day 9 笔记预览 · 商品图自动命名 · 30 分钟变 5 分钟</h1>
+    <p class="lead">W2 第 2 天 · 兑现 D7 投票"B 计划":4 段命名规则 + 1 条脚本,220 张图 30 分钟 → 5 分钟,把"找图 30 分钟"压缩到"检查 5 张异常"。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>工作流验证笔记:</strong> D9 不堆理论,只给 3 样东西:1 套 4 段命名规则 + 1 条 4 行 Python 脚本 + 30 分钟→5 分钟 实测对比。
+    配 6 张图按"封面 → 痛点 → 规则 → 5 文件夹 → 对比+脚本 → Day10 预告"递进,评论区扣"手动/半自动/全自动"看你现在的状态。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
+    6 张图按顺序上传,标题"商品图自动命名 · 30 分钟变 5 分钟"(XHS 上限 20 字 ✓)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D9-笔记/01-封面.png" alt="封面">
+    <img class="xhs-img" src="content-kit/D9-笔记/02-痛点.png" alt="乱文件名痛点">
+    <img class="xhs-img" src="content-kit/D9-笔记/03-命名规则.png" alt="4 段命名规则">
+    <img class="xhs-img" src="content-kit/D9-笔记/04-5个文件夹.png" alt="5 个文件夹自动归档">
+    <img class="xhs-img" src="content-kit/D9-笔记/05-对比+脚本.png" alt="30 分钟 vs 5 分钟 + Python 脚本">
+    <img class="xhs-img" src="content-kit/D9-笔记/06-Day10预告.png" alt="Day10 预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">商品图自动命名 · 30 分钟变 5 分钟</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">D7 投票里"B 计划"票数第二，今天把它兑现。
+
+我 220 张商品图之前是这种状态：
+IMG_20260501_143022.jpg
+微信图片_20260504.jpg
+WeChat_Image_xxx(3).png
+Screenshot_20260506_214658.png
+
+要上架一件商品，找图平均 30 分钟。
+手动改文件名 + 拖进类目文件夹，又 20 分钟。
+累的不是上传，是"找得到吗"。
+
+───── 我花 1 小时写的命名规则（前端式脑回路）─────
+4 段命名：类目 - 编号 - 颜色 - 场景
+↓
+保温杯-001-白-通勤.jpg
+餐具-002-黑-居家.jpg
+毛巾-003-粉-礼品.jpg
+
+类目 5 选 1：保温杯 / 餐具 / 毛巾 / 收纳 / 厨具
+编号 001-999：按上架顺序
+颜色 5 选 1：白 / 黑 / 粉 / 蓝 / 绿
+场景 4 选 1：通勤 / 居家 / 户外 / 礼品
+
+所有文件 = 4 段 + 1 后缀 = 正则可解析
+文件名首段 = 类目 = 自动归档
+
+───── 流程 = 1 条 Python 命令 ─────
+按 4 段解析 → 自动 mv 到类目文件夹
+不用再点"放进哪个文件夹"
+
+脚本核心 4 行：
+import os, shutil, glob, re
+for f in glob.glob("*.jpg"):
+    name = re.split(r"[-.]", f)[:4]
+    shutil.move(f, f"{name[0]}/{f}")
+
+───── 实测数字 ─────
+商品图：220 张
+手动命名 + 归档：30 分钟/张 × 7 张 = 30 分钟（够上架一次）
+脚本跑完 220 张：90 秒
+AI 复核 5 张异常：3 分钟
+合计上架：5 分钟
+
+30 分钟 → 5 分钟，省下 25 分钟/次
+
+───── 我给自己定的"归档 3 条"─────
+✅ 上架前 1 秒命名，不要等积累了再补
+✅ 类目用 5 个固定词，不要每次新造
+✅ 跑完脚本一定要复盘 5 张"异常"
+
+异常 = AI 推荐错 / 颜色写错 / 编号断号
+5 张不修 = 后面所有脚本都会"继承错"
+
+───── Day 10 预告 ─────
+W2 第 3 天 · 4 项指标 → AI 自动出日报
+每天复盘从 30 分钟压到 5 分钟
+评论区猜：D10 能压到几分钟？👇
+
+评论区：你现在怎么命名商品图？
+扣"手动" / "半自动" / "全自动"
+扣"半自动"满 30 我 D10 专门写一段识别细节
+
+关注我，看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#商品图归档</span>
+        <span class="xhs-tag">#AI电商</span>
+        <span class="xhs-tag">#电商效率</span>
+        <span class="xhs-tag">#程序员副业</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">商品图自动命名 · 30 分钟变 5 分钟</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">D7 投票里"B 计划"票数第二，今天把它兑现。
+
+我 220 张商品图之前是这种状态：
+IMG_20260501_143022.jpg
+微信图片_20260504.jpg
+WeChat_Image_xxx(3).png
+Screenshot_20260506_214658.png
+
+要上架一件商品，找图平均 30 分钟。
+手动改文件名 + 拖进类目文件夹，又 20 分钟。
+累的不是上传，是"找得到吗"。
+
+───── 我花 1 小时写的命名规则（前端式脑回路）─────
+4 段命名：类目 - 编号 - 颜色 - 场景
+↓
+保温杯-001-白-通勤.jpg
+餐具-002-黑-居家.jpg
+毛巾-003-粉-礼品.jpg
+
+类目 5 选 1：保温杯 / 餐具 / 毛巾 / 收纳 / 厨具
+编号 001-999：按上架顺序
+颜色 5 选 1：白 / 黑 / 粉 / 蓝 / 绿
+场景 4 选 1：通勤 / 居家 / 户外 / 礼品
+
+所有文件 = 4 段 + 1 后缀 = 正则可解析
+文件名首段 = 类目 = 自动归档
+
+───── 流程 = 1 条 Python 命令 ─────
+按 4 段解析 → 自动 mv 到类目文件夹
+不用再点"放进哪个文件夹"
+
+脚本核心 4 行：
+import os, shutil, glob, re
+for f in glob.glob("*.jpg"):
+    name = re.split(r"[-.]", f)[:4]
+    shutil.move(f, f"{name[0]}/{f}")
+
+───── 实测数字 ─────
+商品图：220 张
+手动命名 + 归档：30 分钟/张 × 7 张 = 30 分钟（够上架一次）
+脚本跑完 220 张：90 秒
+AI 复核 5 张异常：3 分钟
+合计上架：5 分钟
+
+30 分钟 → 5 分钟，省下 25 分钟/次
+
+───── 我给自己定的"归档 3 条"─────
+✅ 上架前 1 秒命名，不要等积累了再补
+✅ 类目用 5 个固定词，不要每次新造
+✅ 跑完脚本一定要复盘 5 张"异常"
+
+异常 = AI 推荐错 / 颜色写错 / 编号断号
+5 张不修 = 后面所有脚本都会"继承错"
+
+───── Day 10 预告 ─────
+W2 第 3 天 · 4 项指标 → AI 自动出日报
+每天复盘从 30 分钟压到 5 分钟
+评论区猜：D10 能压到几分钟？👇
+
+评论区：你现在怎么命名商品图？
+扣"手动" / "半自动" / "全自动"
+扣"半自动"满 30 我 D10 专门写一段识别细节
+
+关注我，看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #商品图归档 #AI电商 #电商效率 #程序员副业</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D9 数据复盘</h2>
+    <div class="data-card">
+      <strong>规则成本:</strong> 4 段命名 = 1 小时定稿,后面所有商品图复用(只要不新造类目/颜色/场景就不改规则)
+    </div>
+    <div class="data-card">
+      <strong>脚本成本:</strong> 4 行 Python + 1 个类目文件夹总览表(共 5 分钟写完),跑 220 张图 90 秒
+    </div>
+    <div class="data-card">
+      <strong>实测数字:</strong> 手动 30 分钟 / 张 → 脚本 5 分钟 / 220 张(总耗时含 AI 复核)= 省下 25 分钟/次
+    </div>
+    <div class="data-card">
+      <strong>异常处理:</strong> 5 张异常必须人工修(AI 推荐错/颜色写错/编号断号)= 流程化思维里的"复核关卡"不可省
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> 扣"手动/半自动/全自动"看你现在的状态 —— 引导型钩子,W2 工具类实测天然高评论
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:商品图自动命名 · 30 分钟变 5 分钟</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周三 20:00-21:00(W2 第 2 篇 + 工具实测天然高互动)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("你现在怎么命名商品图?" + 三选一)</td><td>激活引导型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复(尤其扣"半自动"的继续追问 1-2 句)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>W2 复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/三选一分布)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计"半自动"票数(满 30 D10 兑现识别细节承诺)</td><td>决定 D10 选题方向</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 9 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1200</td><td>W2 工具类 + 标题数字钩子天然高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 8%</td><td>规则清单 + 脚本片段天然高收藏(留底用)</td></tr>
+        <tr><td>评论</td><td>≥ 80</td><td>三选一钩子(手动/半自动/全自动)易参与</td></tr>
+        <tr><td>涨粉</td><td>≥ 100</td><td>工具粉更精准,W2 节奏冲一波</td></tr>
+        <tr><td>三选一分布</td><td>"半自动" ≥ 30</td><td>满 30 兑现 D10 识别细节承诺</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 数字+动作+对照</h3>
+    <ul>
+      <li><strong>"商品图自动命名"</strong> = 主题(用户知道在讲什么)</li>
+      <li><strong>"30 分钟变 5 分钟"</strong> = 数字对照钩子(暗示流程化思维的力量)</li>
+      <li>字数 16 字,XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 4 段式钩子</h3>
+    <ol>
+      <li><strong>痛点</strong>(4 个真实乱文件名 + 找图 30 分钟成本)</li>
+      <li><strong>规则</strong>(4 段命名 + 5×5×4 组合清单 + 3 个示例)</li>
+      <li><strong>脚本</strong>(4 行 Python 核心 + 自动归档逻辑)</li>
+      <li><strong>实测对比</strong>(30 分钟 → 5 分钟 + 25 分钟省下)</li>
+      <li><strong>互动</strong>(三选一 + 半自动满 30 兑现承诺)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面("30 min → 5 min"大字 + "商品图自动命名归档"副标)</li>
+      <li>图 02 = 痛点(乱文件名前后对比,红色 ❌ 标记)</li>
+      <li>图 03 = 命名规则(4 段 + 3 个示例,工程师文档风)</li>
+      <li>图 04 = 5 个文件夹自动归档(可视化核心论点)</li>
+      <li>图 05 = 对比表+脚本(上半红手动 / 下半绿脚本,中部"省 25 分钟")</li>
+      <li>图 06 = Day 10 预告(承接评论区投票)</li>
+    </ul>
+
+    <h3>4. 承接 D7-D8 + 升级钩子</h3>
+    <ul>
+      <li>D7 投票"B 计划" → D9 兑现承诺(票数前三都给完整脚本 = 工作流验证)</li>
+      <li>D8 客服回复库 → D9 商品图归档 → D10 数据复盘 = W2 三件工作流验证全部兑现</li>
+      <li>钩子升级:D7 投票 A/B/C → D9 三状态(手动/半自动/全自动)= 更精准、更易兑现承诺</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>4 段命名不要改字段顺序</strong> —— 已经是"类目-编号-颜色-场景"最优解,改了正则就废</li>
+      <li><strong>5 个类目/5 个颜色/4 个场景清单不要扩</strong> —— 闭环兜底,扩了规则就失效</li>
+      <li><strong>"半自动"票数累计必须真兑现</strong> —— D10 写识别细节是公开承诺,跳过 = 失信</li>
+      <li><strong>正文用"我"视角</strong> —— 跟 D7 复盘一致,工作流验证类第一人称拉近距离</li>
+      <li><strong>6 张图必须按顺序</strong> —— 封面(钩子)→ 痛点 → 规则 → 归档 → 对比(杀手锏)→ 预告</li>
+      <li><strong>5 张异常必须人工复盘</strong> —— 流程化思维里"复核关卡"不可省,90 秒脚本 + 3 分钟人工 = 真 5 分钟</li>
+      <li><strong>tags 用 5 个版本</strong> —— 跟 D7 一致:#前端转AI电商 #商品图归档 #AI电商 #电商效率 #程序员副业</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D8.html">← D8 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D10.html" style="margin-left:8px;" title="D10 数据复盘自动化 · 由 D9 评论区投票决定">Day 10（W2 数据复盘）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
