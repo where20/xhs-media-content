@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D10 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D10 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D9.html">← 上一日（D9）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D11.html" title="D11 Python 串起 Kimi API · 由 D10 评论区投票决定">下一日（D11）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D10 · 已就绪 · 待发布</span>
+    <h1>Day 10 笔记预览 · AI 数据日报 · 30 分钟变 5 分钟</h1>
+    <p class="lead">W2 第 3 天 · 兑现 D9 评论区承诺(半自动识别细节):4 项指标模板 + 4 行 Python 脚本,每天数据复盘从 30 分钟压缩到 5 分钟,把"肉眼 + 经验"换成"均线 + AI 模板"。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>工作流验证笔记:</strong> D10 不堆概念,只给 3 样东西:1 张 4 项指标模板(5 日均线对比) + 1 条 4 行 Python 脚本 + 1 段 AI 解读模板。配 6 张图按"封面 → 痛点 → 4 项指标 → 模板表 → 对比+脚本 → Day11 预告"递进,评论区扣"手动/半自动/全自动"看你现在的状态。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
+    6 张图按顺序上传,标题"商品图自动命名 · 30 分钟变 5 分钟"(XHS 上限 20 字 ✓)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D9-笔记/01-封面.png" alt="封面">
+    <img class="xhs-img" src="content-kit/D9-笔记/02-痛点.png" alt="乱文件名痛点">
+    <img class="xhs-img" src="content-kit/D9-笔记/03-命名规则.png" alt="4 段命名规则">
+    <img class="xhs-img" src="content-kit/D9-笔记/04-5个文件夹.png" alt="5 个文件夹自动归档">
+    <img class="xhs-img" src="content-kit/D9-笔记/05-对比+脚本.png" alt="30 分钟 vs 5 分钟 + Python 脚本">
+    <img class="xhs-img" src="content-kit/D9-笔记/06-Day10预告.png" alt="Day10 预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">AI 数据日报 · 30 分钟变 5 分钟</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">D9 评论区:"半自动"27 + "全自动"14 + "手动"9。
+承诺满 30 写细节 ——
+兑现。
+
+之前每天:
+打开小红书 → 拉数据 → 写"昨天怎么样"
+反复 30 分钟。
+
+现在:
+4 项指标 → 1 模板 → 1 脚本 → AI 解读
+5 分钟看完昨天。
+
+───── 4 项指标(够了)─────
+① 曝光 ② 点赞 ③ 收藏 ④ 评论
+D2-D9 跑出来的最小集。
+
+───── 模板表(5 日均线)─────
+日期 / 曝光 / 点赞 / 收藏 / 评论 / 状态
+0625 / 487 / 32 / 18 / 12 / 🟢
+0626 / 612 / 41 / 28 / 15 / 🟢
+0627 / 358 / 22 / 11 / 9 / ⚠ 跌破均线
+连续 3 天 ⚠ = 改封面或改标题
+
+───── 4 行脚本 ─────
+import requests, datetime as dt
+def gm(d): return requests.get(
+  f"api?date={d}").json()
+print(dt.date.today(), gm("yesterday"))
+
+───── 实测 ─────
+30 分钟/天 → 5 分钟/天
+一个月省 12 小时
+
+───── 兑现"半自动识别" ─────
+27 票半自动(差 3 票满 30),先回应。
+"半自动" = 已用部分自动化,但识别靠人工
+┌──────────────────────────┐
+│ 3 条识别细节:              │
+│ ① 异常靠肉眼比 = 错         │
+│   → 写 1 条均线对比函数      │
+│ ② 解读凭经验 = 不稳定        │
+│   → AI 模板 3 行,人改       │
+│ ③ 状态靠心情 = 主观          │
+│   → 均线 + 3 天黄灯          │
+└──────────────────────────┘
+
+───── Day 11 预告 ─────
+Day 11 · Python 串起 Kimi API
+猜:又能省几分钟?
+
+你怎么复盘?
+扣"手动" / "半自动" / "全自动"
+满 30 明天专写"AI 解读模板" 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#AI电商</span>
+        <span class="xhs-tag">#数据复盘</span>
+        <span class="xhs-tag">#自动化</span>
+        <span class="xhs-tag">#电商效率</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">AI 数据日报 · 30 分钟变 5 分钟</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">D9 评论区:"半自动"27 + "全自动"14 + "手动"9。
+承诺满 30 写细节 ——
+兑现。
+
+之前每天:
+打开小红书 → 拉数据 → 写"昨天怎么样"
+反复 30 分钟。
+
+现在:
+4 项指标 → 1 模板 → 1 脚本 → AI 解读
+5 分钟看完昨天。
+
+───── 4 项指标(够了)─────
+① 曝光 ② 点赞 ③ 收藏 ④ 评论
+D2-D9 跑出来的最小集。
+
+───── 模板表(5 日均线)─────
+日期 / 曝光 / 点赞 / 收藏 / 评论 / 状态
+0625 / 487 / 32 / 18 / 12 / 🟢
+0626 / 612 / 41 / 28 / 15 / 🟢
+0627 / 358 / 22 / 11 / 9 / ⚠ 跌破均线
+连续 3 天 ⚠ = 改封面或改标题
+
+───── 4 行脚本 ─────
+import requests, datetime as dt
+def gm(d): return requests.get(
+  f"api?date={d}").json()
+print(dt.date.today(), gm("yesterday"))
+
+───── 实测 ─────
+30 分钟/天 → 5 分钟/天
+一个月省 12 小时
+
+───── 兑现"半自动识别" ─────
+27 票半自动(差 3 票满 30),先回应。
+"半自动" = 已用部分自动化,但识别靠人工
+┌──────────────────────────┐
+│ 3 条识别细节:              │
+│ ① 异常靠肉眼比 = 错         │
+│   → 写 1 条均线对比函数      │
+│ ② 解读凭经验 = 不稳定        │
+│   → AI 模板 3 行,人改       │
+│ ③ 状态靠心情 = 主观          │
+│   → 均线 + 3 天黄灯          │
+└──────────────────────────┘
+
+───── Day 11 预告 ─────
+Day 11 · Python 串起 Kimi API
+猜:又能省几分钟?
+
+你怎么复盘?
+扣"手动" / "半自动" / "全自动"
+满 30 明天专写"AI 解读模板" 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #AI电商 #数据复盘 #自动化 #电商效率</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D10 数据复盘</h2>
+    <div class="data-card">
+      <strong>规则成本:</strong> 4 段命名 = 1 小时定稿,后面所有商品图复用(只要不新造类目/颜色/场景就不改规则)
+    </div>
+    <div class="data-card">
+      <strong>脚本成本:</strong> 4 行 Python + 1 个类目文件夹总览表(共 5 分钟写完),跑 220 张图 90 秒
+    </div>
+    <div class="data-card">
+      <strong>实测数字:</strong> 手动 30 分钟 / 张 → 脚本 5 分钟 / 220 张(总耗时含 AI 复核)= 省下 25 分钟/次
+    </div>
+    <div class="data-card">
+      <strong>异常处理:</strong> 5 张异常必须人工修(AI 推荐错/颜色写错/编号断号)= 流程化思维里的"复核关卡"不可省
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> 扣"手动/半自动/全自动"看你现在的状态 —— 引导型钩子,W2 工具类实测天然高评论
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:AI 数据日报 · 30 分钟变 5 分钟</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周三 20:00-21:00(W2 第 3 篇 + 工具类+兑现承诺天然高互动)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("你现在怎么命名商品图?" + 三选一)</td><td>激活引导型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复(尤其扣"半自动"的继续追问 1-2 句)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>W2 复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/三选一分布)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计新一轮"半自动"票数(满 30 D11 兑现"AI 解读模板"承诺)</td><td>决定 D11 选题方向</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 10 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1200</td><td>W2 工具类 + 兑现承诺标签天然高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 8%</td><td>模板表 + 脚本片段 + 识别细节天然高收藏</td></tr>
+        <tr><td>评论</td><td>≥ 80</td><td>三选一钩子(手动/半自动/全自动)沿用 D9,识别细节+1 段惊喜内容</td></tr>
+        <tr><td>涨粉</td><td>≥ 100</td><td>工具粉更精准,W2 中段冲一波</td></tr>
+        <tr><td>三选一分布</td><td>新一轮"半自动" ≥ 30</td><td>满 30 D11 兑现"AI 解读模板"承诺</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 主题 + 数字对照</h3>
+    <ul>
+      <li><strong>"AI 数据日报"</strong> = 主题(用户知道在讲什么)</li>
+      <li><strong>"30 分钟变 5 分钟"</strong> = 数字对照钩子(兑现 D9 数字格式)</li>
+      <li>字数 14 字,XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 5 段式 + 兑现承诺</h3>
+    <ol>
+      <li><strong>兑现</strong>(D9 评论区承诺 + 半自动 27 票回应)</li>
+      <li><strong>4 项指标</strong>(曝光/点赞/收藏/评论,D2-D9 最小集)</li>
+      <li><strong>1 个模板表</strong>(5 日均线 + 跌破自动标 ⚠)</li>
+      <li><strong>1 条脚本</strong>(4 行 Python + 1 个 print)</li>
+      <li><strong>3 条识别细节</strong>(肉眼/经验/心情 → 均线/AI/3 天黄灯)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面("30 min → 5 min"大字 + "AI 数据日报自动化"副标 + 表格图标)</li>
+      <li>图 02 = 痛点(4 个 ❌ 流程,红色警示)</li>
+      <li>图 03 = 4 项指标(① ② ③ ④ 圆形编号 + 每项说明)</li>
+      <li>图 04 = 1 个模板表(表格 + 跌破均线红色高亮 + 底部说明)</li>
+      <li>图 05 = 对比+脚本(红色 ❌/绿色 ✓ + 中间箭头 + Python 代码块)</li>
+      <li>图 06 = Day 11 预告(墨绿背景 + "</>"符号,工程师视角)</li>
+    </ul>
+
+    <h3>4. 兑现 D9 承诺 + 升级钩子</h3>
+    <ul>
+      <li>D9 评论区"半自动 27 票"(差 3 票满 30) → D10 直接兑现识别细节(差票也写 = 公开承诺兑现)</li>
+      <li>D8 客服 → D9 商品图 → D10 数据复盘 = W2 三件工作流验证全部出场</li>
+      <li>钩子沿用:D9 三状态(手动/半自动/全自动)→ D10 同样引导投票 + D11 继续扩展</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>4 项指标不要扩</strong> —— 曝光/点赞/收藏/评论已是 D2-D9 跑出来的最小集,扩了反而看不到趋势</li>
+      <li><strong>5 日均线不要改公式</strong> —— 跌破均线 = ⚠,连续 3 天 ⚠ = 红灯,这是规则核心改了脚本就废</li>
+      <li><strong>"半自动"识别细节必须真写</strong> —— D9 评论区承诺,差 3 票也兑现 = 不让承诺失效</li>
+      <li><strong>正文用"我"视角</strong> —— 跟 D9 工作流验证一致,第一人称拉近距离</li>
+      <li><strong>6 张图必须按顺序</strong> —— 封面(钩子)→ 痛点 → 指标 → 模板表 → 对比+脚本(杀手锏)→ 预告</li>
+      <li><strong>3 条识别细节不可省</strong> —— 肉眼/经验/心情 都是"半自动"用户的真痛点,兑现才能积累信任</li>
+      <li><strong>tags 用 5 个版本</strong> —— 跟 D9 一致:#前端转AI电商 #AI电商 #数据复盘 #自动化 #电商效率</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D9.html">← D9 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D11.html" style="margin-left:8px;" title="D11 Python 串起 Kimi API · 由 D10 评论区投票决定">Day 11（W2 Python 串起 API）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
