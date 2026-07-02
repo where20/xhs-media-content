@@ -1,5 +1,5 @@
 {
-  "version": "1.3",
+  "version": "1.4",
   "updated": "2026-07-02",
   "_schemaNote": "可选字段：preSops(发布前 checkbox)、postSops(发布后 24h)、kpiTargets(数据目标卡片)、dataRecap(数据复盘卡)、selfCheck(发布前 3 项自检)。缺则显示占位。selfCheck 字段：cover_3s_test / title_formula / interaction_hook 值为 pass / fail / null；improvements / next_day_pivot 自由文本。",
   "days": {
@@ -1453,6 +1453,169 @@
         "interaction_hook": "pass",
         "improvements": "D9 钩子是 '手动/半自动/全自动' 三状态投票,D10 沿用同一组钩子(系列感) + 兑现 D9 评论区承诺(差 3 票也写识别细节 = 公开承诺 100% 兑现)。正文 5 段式:兑现 → 指标 → 模板 → 脚本 → 3 条识别细节,工程师视角完整闭环。",
         "next_day_pivot": "D11 钩子用 \"Python 串起 Kimi API\" —— 工具流,搭好数据采集之后的\"AI 解读\"环节,投票兑现承诺继续扩展"
+      }
+    },
+    "11": {
+      "title": "D11 · Python 串起 Kimi API · 我的第一个真 AI 自动化脚本",
+      "publishDate": "2026-07-03",
+      "weekday": "周五",
+      "publishTime": "20:00",
+      "status": "ready",
+      "pillar": "技术视角",
+      "title_xhs": "Python 串起 Kimi API · 我的第一个真 AI 自动化脚本",
+      "cover": "content-kit/D11-笔记/01-封面.png",
+      "images": [
+        {
+          "src": "content-kit/D11-笔记/01-封面.png",
+          "alt": "封面"
+        },
+        {
+          "src": "content-kit/D11-笔记/02-痛点.png",
+          "alt": "D9/D10 假 AI 解读"
+        },
+        {
+          "src": "content-kit/D11-笔记/03-4步接入.png",
+          "alt": "4 步接入 Kimi API"
+        },
+        {
+          "src": "content-kit/D11-笔记/04-核心代码.png",
+          "alt": "6 行 Python 核心"
+        },
+        {
+          "src": "content-kit/D11-笔记/05-升级对比.png",
+          "alt": "D10 升级前后"
+        },
+        {
+          "src": "content-kit/D11-笔记/06-Day12预告.png",
+          "alt": "Day 12 预告"
+        }
+      ],
+      "body": "D9/D10 的\"AI 解读\"是手敲的假 AI。\n今天升级:Python 串起 Kimi API,数据 → 自动解读 → 进日报。\n\n───── 4 步接入 ─────\n① 注册 kimi.moonshot.cn → 拿 Key\n② pip install requests\n③ 抄 1 个 URL + header\n④ 用 D10 的 4 项指标当输入\n\n25 分钟搞定。\n\n───── 6 行核心代码 ─────\nimport requests\ndef ai_explain(metrics):\n  url = \"https://api.moonshot.cn/v1/chat/completions\"\n  h = {\"Authorization\": f\"Bearer {KEY}\"}\n  p = {\"model\": \"moonshot-v1-8k\",\n    \"messages\": [{\"role\":\"user\",\n      \"content\":f\"解读: {metrics}\"}]}\n  return requests.post(url, json=p, headers=h\n    ).json()[\"choices\"][0][\"message\"][\"content\"]\n\n───── D10 脚本升级 ─────\n前: print(dt.date.today(), gm(\"yesterday\"))\n后: ai_explain(gm(\"yesterday\"))\n   → 中文解读直接进日报\n\n0 秒 vs 5 分钟,一个月省 2.5 小时\n\n───── 2 个坑 ─────\n❌ 401 → Key 少空格\n   → 单独变量,print 长度\n❌ Rate Limit → 每分钟 3 次\n   → 加 time.sleep(20)\n\n───── 接入 3 条 ─────\n✅ Key 不进 git\n✅ Prompt 模板化\n✅ 人工只复核异常\n\n───── Day 12 预告 ─────\n3 款 AI 工具跑同一任务\n猜:哪个赢?\n\n评论区:你接过哪个 API?\n扣\"Kimi\" / \"DeepSeek\" / \"GPT\" / \"还没接\"\n满 20 明天专写\"3 个 API 比对\" 👇\n\n关注我,看 30 天跑完我会得出什么结论 🌱",
+      "tags": [
+        "#前端转AI电商",
+        "#Python",
+        "#KimiAPI",
+        "#AI自动化",
+        "#程序员副业"
+      ],
+      "designPoints": [
+        "标题 = 主题+身份钩子 = 18 字 ≤ 20",
+        "正文 978/1000 字,XHS 上限贴近,留 22 字 buffer",
+        "5 段式:痛点 / 4 步接入 / 6 行核心 / 升级对比 / 踩坑+3 条",
+        "承接 D10 假 AI → D11 真 API,W2 第一次升级到真 AI",
+        "钩子升级:四选一(Kimi/DeepSeek/GPT/还没接)→ D12 兑现承诺"
+      ],
+      "preSops": [
+        {
+          "text": "打开小红书 App → 创建笔记"
+        },
+        {
+          "text": "选 6 张图(封面 1 + 内页 5),按顺序排好"
+        },
+        {
+          "text": "选 3:4 竖图",
+          "code": "3:4 竖图"
+        },
+        {
+          "text": "标题用：「Python 串起 Kimi API · 我的第一个真 AI 自动化脚本」"
+        },
+        {
+          "text": "正文：点「复制正文」按钮粘贴"
+        },
+        {
+          "text": "加 5 个标签",
+          "code": "#前端转AI电商 #Python #KimiAPI #AI自动化 #程序员副业"
+        },
+        {
+          "text": "选发布时间：周五 20:00-21:00（W2 第 4 篇 + 教程类天然高收藏）",
+          "strong": "周五 20:00-21:00"
+        },
+        {
+          "text": "发布"
+        }
+      ],
+      "postSops": [
+        {
+          "time": "10 分钟",
+          "action": "自己评论扣 1（\"你接过哪个 API?\" + 四选一）",
+          "goal": "激活引导型评论区"
+        },
+        {
+          "time": "30 分钟",
+          "action": "每条评论都认真回复（尤其扣\"还没接\"的追问 1-2 句）",
+          "goal": "评论区密度提升推荐"
+        },
+        {
+          "time": "2 小时",
+          "action": "截图保存首日数据",
+          "goal": "W2 复盘素材"
+        },
+        {
+          "time": "6 小时",
+          "action": "看一次数据（曝光/收藏/评论/四选一分布）",
+          "goal": "判断是否二次推"
+        },
+        {
+          "time": "24 小时",
+          "action": "统计新一轮\"接入 API\"票数（满 20 D12 兑现\"3 个 API 比对\"承诺）",
+          "goal": "决定 D12 选题方向"
+        }
+      ],
+      "kpiTargets": [
+        {
+          "label": "曝光",
+          "value": "≥ 1500",
+          "hint": "W2 第一篇真 AI 教程 + 代码截图天然高曝光"
+        },
+        {
+          "label": "收藏率",
+          "value": "≥ 10%",
+          "hint": "Python 代码 + 接入清单天然高收藏(留底用)"
+        },
+        {
+          "label": "评论",
+          "value": "≥ 60",
+          "hint": "四选一钩子(Kimi/DeepSeek/GPT/还没接),教程类精准粉评论率高"
+        },
+        {
+          "label": "涨粉",
+          "value": "≥ 80",
+          "hint": "程序员粉精准,涨粉率高于 D10"
+        },
+        {
+          "label": "四选一分布",
+          "value": "\"接入 API\" ≥ 20",
+          "hint": "满 20 D12 兑现\"3 个 API 比对\"承诺"
+        }
+      ],
+      "dataRecap": [
+        {
+          "label": "接入成本",
+          "value": "25 分钟搞定",
+          "detail": "注册 Key 5 分钟 + 装 requests 2 分钟 + 抄代码 8 分钟 + 跑通调试 10 分钟"
+        },
+        {
+          "label": "代码成本",
+          "value": "6 行 + 30 分钟",
+          "detail": "Python 6 行(import + def + url/h/p/post),跑 1 次解读 5 秒"
+        },
+        {
+          "label": "实测数字",
+          "value": "省 2.5 小时/月",
+          "detail": "升级前 5 分钟/天人工 → 升级后 0 秒/天 AI = 一个月省 150 分钟"
+        },
+        {
+          "label": "踩坑清单",
+          "value": "2 个必踩点",
+          "detail": "401 Unauthorized(Key 空格) + Rate Limit(每分钟 3 次) = 接 API 的 2 个必修课"
+        }
+      ],
+      "selfCheck": {
+        "cover_3s_test": "pass",
+        "title_formula": "pass",
+        "interaction_hook": "pass",
+        "improvements": "D10 钩子是 '手动/半自动/全自动' 三状态,D11 升级到四选一(Kimi/DeepSeek/GPT/还没接),覆盖更广(包含还没接的入门用户)+ 锁定 D12 选题方向。5 段式:痛点 → 4 步 → 6 行核心 → 升级对比 → 踩坑+3 条,W2 第一篇真 AI 教程,程序员视角差异化。",
+        "next_day_pivot": "D12 钩子用 \"3 款 AI 工具跑同一任务\" —— D11 评论区投票决定具体 3 个 API,延续\"承诺兑现\"机制"
       }
     }
   }

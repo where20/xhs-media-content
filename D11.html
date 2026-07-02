@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D11 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D11 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D10.html">← 上一日（D10）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D12.html" title="D12 3款AI工具跑同一任务 · 由 D11 评论区投票决定">下一日（D12）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D11 · 已就绪 · 待发布</span>
+    <h1>Day 11 笔记预览 · Python 串起 Kimi API · 第一个真 AI 自动化脚本</h1>
+    <p class="lead">W2 第 4 天 · Python 串起 Kimi API · 6 行核心代码 · D9/D10 假 AI 解读升级成真 AI,数据异常 → 自动解读 → 直接进日报,一个月省 2.5 小时。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>教程类笔记:</strong> D11 是 W2 第一篇"真 AI"教程,只给 3 样东西:4 步接入流程 + 6 行核心 Python 代码 + 2 个踩坑排查。配 6 张图按"封面 → 痛点 → 4 步接入 → 核心代码 → 升级对比 → Day12 预告"递进,评论区扣"Kimi/DeepSeek/GPT/还没接"看你现在接入的是哪个 API。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
+    6 张图按顺序上传,标题"商品图自动命名 · 30 分钟变 5 分钟"(XHS 上限 20 字 ✓)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D9-笔记/01-封面.png" alt="封面">
+    <img class="xhs-img" src="content-kit/D9-笔记/02-痛点.png" alt="乱文件名痛点">
+    <img class="xhs-img" src="content-kit/D9-笔记/03-命名规则.png" alt="4 段命名规则">
+    <img class="xhs-img" src="content-kit/D9-笔记/04-5个文件夹.png" alt="5 个文件夹自动归档">
+    <img class="xhs-img" src="content-kit/D9-笔记/05-对比+脚本.png" alt="30 分钟 vs 5 分钟 + Python 脚本">
+    <img class="xhs-img" src="content-kit/D9-笔记/06-Day10预告.png" alt="Day10 预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">Python 串起 Kimi API · 我的第一个真 AI 自动化脚本</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">D9/D10 的"AI 解读"是手敲的假 AI。
+今天升级:Python 串起 Kimi API,数据 → 自动解读 → 进日报。
+
+───── 4 步接入 ─────
+① 注册 kimi.moonshot.cn → 拿 Key
+② pip install requests
+③ 抄 1 个 URL + header
+④ 用 D10 的 4 项指标当输入
+
+25 分钟搞定。
+
+───── 6 行核心代码 ─────
+import requests
+def ai_explain(metrics):
+  url = "https://api.moonshot.cn/v1/chat/completions"
+  h = {"Authorization": f"Bearer {KEY}"}
+  p = {"model": "moonshot-v1-8k",
+    "messages": [{"role":"user",
+      "content":f"解读: {metrics}"}]}
+  return requests.post(url, json=p, headers=h
+    ).json()["choices"][0]["message"]["content"]
+
+───── D10 脚本升级 ─────
+前: print(dt.date.today(), gm("yesterday"))
+后: ai_explain(gm("yesterday"))
+   → 中文解读直接进日报
+
+0 秒 vs 5 分钟,一个月省 2.5 小时
+
+───── 2 个坑 ─────
+❌ 401 → Key 少空格
+   → 单独变量,print 长度
+❌ Rate Limit → 每分钟 3 次
+   → 加 time.sleep(20)
+
+───── 接入 3 条 ─────
+✅ Key 不进 git
+✅ Prompt 模板化
+✅ 人工只复核异常
+
+───── Day 12 预告 ─────
+3 款 AI 工具跑同一任务
+猜:哪个赢?
+
+评论区:你接过哪个 API?
+扣"Kimi" / "DeepSeek" / "GPT" / "还没接"
+满 20 明天专写"3 个 API 比对" 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#Python</span>
+        <span class="xhs-tag">#KimiAPI</span>
+        <span class="xhs-tag">#AI自动化</span>
+        <span class="xhs-tag">#程序员副业</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">Python 串起 Kimi API · 我的第一个真 AI 自动化脚本</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">D9/D10 的"AI 解读"是手敲的假 AI。
+今天升级:Python 串起 Kimi API,数据 → 自动解读 → 进日报。
+
+───── 4 步接入 ─────
+① 注册 kimi.moonshot.cn → 拿 Key
+② pip install requests
+③ 抄 1 个 URL + header
+④ 用 D10 的 4 项指标当输入
+
+25 分钟搞定。
+
+───── 6 行核心代码 ─────
+import requests
+def ai_explain(metrics):
+  url = "https://api.moonshot.cn/v1/chat/completions"
+  h = {"Authorization": f"Bearer {KEY}"}
+  p = {"model": "moonshot-v1-8k",
+    "messages": [{"role":"user",
+      "content":f"解读: {metrics}"}]}
+  return requests.post(url, json=p, headers=h
+    ).json()["choices"][0]["message"]["content"]
+
+───── D10 脚本升级 ─────
+前: print(dt.date.today(), gm("yesterday"))
+后: ai_explain(gm("yesterday"))
+   → 中文解读直接进日报
+
+0 秒 vs 5 分钟,一个月省 2.5 小时
+
+───── 2 个坑 ─────
+❌ 401 → Key 少空格
+   → 单独变量,print 长度
+❌ Rate Limit → 每分钟 3 次
+   → 加 time.sleep(20)
+
+───── 接入 3 条 ─────
+✅ Key 不进 git
+✅ Prompt 模板化
+✅ 人工只复核异常
+
+───── Day 12 预告 ─────
+3 款 AI 工具跑同一任务
+猜:哪个赢?
+
+评论区:你接过哪个 API?
+扣"Kimi" / "DeepSeek" / "GPT" / "还没接"
+满 20 明天专写"3 个 API 比对" 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #Python #KimiAPI #AI自动化 #程序员副业</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D11 数据复盘</h2>
+    <div class="data-card">
+      <strong>规则成本:</strong> 4 段命名 = 1 小时定稿,后面所有商品图复用(只要不新造类目/颜色/场景就不改规则)
+    </div>
+    <div class="data-card">
+      <strong>脚本成本:</strong> 4 行 Python + 1 个类目文件夹总览表(共 5 分钟写完),跑 220 张图 90 秒
+    </div>
+    <div class="data-card">
+      <strong>实测数字:</strong> 手动 30 分钟 / 张 → 脚本 5 分钟 / 220 张(总耗时含 AI 复核)= 省下 25 分钟/次
+    </div>
+    <div class="data-card">
+      <strong>异常处理:</strong> 5 张异常必须人工修(AI 推荐错/颜色写错/编号断号)= 流程化思维里的"复核关卡"不可省
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> 扣"手动/半自动/全自动"看你现在的状态 —— 引导型钩子,W2 工具类实测天然高评论
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:Python 串起 Kimi API · 我的第一个真 AI 自动化脚本</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周三 20:00-21:00(W2 第 3 篇 + 工具类+兑现承诺天然高互动)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("你现在怎么命名商品图?" + 三选一)</td><td>激活引导型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复(尤其扣"半自动"的继续追问 1-2 句)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>W2 复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/三选一分布)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计新一轮"接入 API"票数(满 20 D12 兑现"3 个 API 比对")</td><td>决定 D12 选题方向</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 11 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1500</td><td>W2 第一篇真 AI 教程 + 代码截图天然高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 8%</td><td>Python 代码 + 接入清单天然高收藏(留底用)</td></tr>
+        <tr><td>评论</td><td>≥ 80</td><td>四选一钩子(Kimi/DeepSeek/GPT/还没接),教程类精准粉评论率高</td></tr>
+        <tr><td>涨粉</td><td>≥ 100</td><td>程序员粉精准,涨粉率高于 D10</td></tr>
+        <tr><td>三选一分布</td><td>新一轮"接入 API" ≥ 20</td><td>满 20 D12 兑现"3 个 API 比对"承诺</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 主题 + 身份</h3>
+    <ul>
+      <li><strong>"Python 串起 Kimi API"</strong> = 主题(用户知道在讲什么)</li>
+      <li><strong>"我的第一个真 AI 自动化脚本"</strong> = 身份钩子(程序员视角差异化)</li>
+      <li>字数 18 字,XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 5 段式 + 踩坑清单</h3>
+    <ol>
+      <li><strong>痛点</strong>(D9/D10 假 AI + 升级必要性)</li>
+      <li><strong>4 步接入</strong>(注册/装包/抄代码/跑通)</li>
+      <li><strong>6 行核心</strong>(Python requests + Kimi API)</li>
+      <li><strong>升级对比</strong>(D10 脚本前 5 分钟 vs 升级后 0 秒)</li>
+      <li><strong>2 个坑 + 接入 3 条</strong>(401/Rate Limit + Key/prompt/复核)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面("Python 串起 API"红色大字 + 副标"我的第一个真 AI 自动化脚本"+ </> + API 图标)</li>
+      <li>图 02 = 痛点(3 个 ❌ 列举 + 红色下降箭头,警示色)</li>
+      <li>图 03 = 4 步接入(① ② ③ ④ 圆形编号 + 4 个绿色 ✓ + 浏览器图标)</li>
+      <li>图 04 = 6 行核心(纯黑代码块背景 + 浅灰等宽字体 Python 代码)</li>
+      <li>图 05 = 升级对比(左红 ❌ 代码 + 右绿 ✓ 代码 + 中间箭头 + 底部大字"省 2.5 小时")</li>
+      <li>图 06 = Day 12 预告(墨绿背景 + "</>" + 3 个工具图标)</li>
+    </ul>
+
+    <h3>4. 升级 D9/D10 + 新钩子</h3>
+    <ul>
+      <li>D9/D10 假 AI 解读 → D11 真 API 接入 = W2 第一次从"模拟脚本"升级到"真 AI 自动化"</li>
+      <li>D11 是 W2 第二篇教程类(技术视角 40% 支柱),前面 D8 客服 / D9 商品图 / D10 数据复盘都是工作流</li>
+      <li>钩子升级:D10 三选一(手动/半自动/全自动)→ D11 四选一(Kimi/DeepSeek/GPT/还没接) → D12 兑现承诺</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>API Key 不进 git</strong> —— 用环境变量或 .env 文件,.gitignore 加 .env,泄漏 = 别人刷你额度</li>
+      <li><strong>Prompt 模板化</strong> —— 解读 prompt 别每次临时写,抽到 config 字典,改一处全局生效</li>
+      <li><strong>401 错误先 print 长度</strong> —— 调试 API Key 必看 len(KEY) 是不是 40 位,空格/换行都能看</li>
+      <li><strong>Rate Limit 必 sleep</strong> —— Kimi 每分钟 3 次,加 time.sleep(20),攒 5 条批量发更省</li>
+      <li><strong>正文用"我"视角</strong> —— D9/D10 一致,程序员视角拉近距离</li>
+      <li><strong>6 张图按顺序</strong> —— 封面(钩子)→ 痛点 → 4 步接入 → 核心代码(杀手锏)→ 升级对比 → 预告</li>
+      <li><strong>tags 5 个版本</strong> —— #前端转AI电商 #Python #KimiAPI #AI自动化 #程序员副业</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D10.html">← D10 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D12.html" style="margin-left:8px;" title="D12 3款AI工具跑同一任务 · 由 D11 评论区投票决定">Day 12（W2 3 款工具横评）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+D9/D10 的"AI 解读"是手敲的假 AI。
+今天升级:Python 串起 Kimi API,数据 → 自动解读 → 进日报。
+
+───── 4 步接入 ─────
+① 注册 kimi.moonshot.cn → 拿 Key
+② pip install requests
+③ 抄 1 个 URL + header
+④ 用 D10 的 4 项指标当输入
+
+25 分钟搞定。
+
+───── 6 行核心代码 ─────
+import requests
+def ai_explain(metrics):
+  url = "https://api.moonshot.cn/v1/chat/completions"
+  h = {"Authorization": f"Bearer {KEY}"}
+  p = {"model": "moonshot-v1-8k",
+    "messages": [{"role":"user",
+      "content":f"解读: {metrics}"}]}
+  return requests.post(url, json=p, headers=h
+    ).json()["choices"][0]["message"]["content"]
+
+───── D10 脚本升级 ─────
+前: print(dt.date.today(), gm("yesterday"))
+后: ai_explain(gm("yesterday"))
+   → 中文解读直接进日报
+
+0 秒 vs 5 分钟,一个月省 2.5 小时
+
+───── 2 个坑 ─────
+❌ 401 → Key 少空格
+   → 单独变量,print 长度
+❌ Rate Limit → 每分钟 3 次
+   → 加 time.sleep(20)
+
+───── 接入 3 条 ─────
+✅ Key 不进 git
+✅ Prompt 模板化
+✅ 人工只复核异常
+
+───── Day 12 预告 ─────
+3 款 AI 工具跑同一任务
+猜:哪个赢?
+
+评论区:你接过哪个 API?
+扣"Kimi" / "DeepSeek" / "GPT" / "还没接"
+满 20 明天专写"3 个 API 比对" 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱
