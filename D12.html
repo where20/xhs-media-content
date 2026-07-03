@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D12 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D12 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D11.html">← 上一日（D11）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D13.html" title="D13 100 个组件 vs 1 个工作流">下一日（D13）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D12 · 已就绪 · 待发布</span>
+    <h1>Day 12 笔记预览 · 3 个 API 跑同一任务 · 谁赢</h1>
+    <p class="lead">W2 第 5 天 · Kimi vs DeepSeek vs GPT · 同一段商品文案 · 3 个 API 跑一次 · 0 错但文风差异巨大。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>横评类笔记:</strong> D12 是 W2 第二篇横评(第一个 D3 是生图工具横评),兑现 D11 评论区"满 20 写 3 个 API 比对"的承诺。配 6 张图按"封面 → 任务定义 → Kimi → DeepSeek → GPT → 4项对比+Day13 预告"递进,完全相同的提示词,看 3 个 API 的输出差异。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
+    6 张图按顺序上传,标题"3 个 API 跑同一任务 · 谁赢"(XHS 上限 20 字 ✓)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D12-笔记/01-封面.png" alt="封面 3 个 API">
+    <img class="xhs-img" src="content-kit/D12-笔记/02-任务+提示词.png" alt="任务定义+统一提示词">
+    <img class="xhs-img" src="content-kit/D12-笔记/03-Kimi.png" alt="Kimi 输出">
+    <img class="xhs-img" src="content-kit/D12-笔记/04-DeepSeek.png" alt="DeepSeek 输出">
+    <img class="xhs-img" src="content-kit/D12-笔记/05-GPT.png" alt="GPT-4o-mini 输出">
+    <img class="xhs-img" src="content-kit/D12-笔记/06-对比+Day13预告.png" alt="4 项对比 + Day13 预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">3 个 API 跑同一任务 · 谁赢</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">D11 评论里 80% 选了 Kimi。
+那今天就跑一遍 — 同一段商品文案,3 个 API 跑一次。
+测试商品:350ml 保温杯 · 304 不锈钢 · 5 色可选。
+任务:写 200 字小红书文案,卖点全给齐。
+
+───── 完全相同的提示词 ─────
+"请基于以下卖点写小红书文案:
+350ml / 304 / 12h 保温 / 单手开盖 / 5 色
+要求:200 字内,带 2 个 emoji,1 个数字钩子。"
+
+───── 3 个 API 实测 ─────
+🟢 Kimi (moonshot-v1-8k)
+  8 秒 / 192 字 / 0 错 / 钩子中
+  → 工业感强,功能罗列清晰
+🟡 DeepSeek (deepseek-chat)
+  6 秒 / 198 字 / 0 错 / 钩子强
+  → 故事感强,自动加场景
+🔵 GPT-4o-mini
+  11 秒 / 196 字 / 0 错 / 钩子中
+  → 中规中矩,出错率最低
+
+───── 4 项对比 ─────
+速度:6s < 8s < 11s
+字数:全部 200 字内达标
+事实:3 个 API 都 0 错(都按"卖点全给齐"走)
+钩子:DeepSeek 强 / Kimi 中 / GPT 中
+
+───── 我的结论 ─────
+✅ 想快:DeepSeek 6 秒最快
+✅ 想稳:GPT 几乎不出错
+✅ 想场景:Kimi 工业感更对
+没有"最强 API",只有"最合适场景"。
+
+评论区:你常用哪个 API? 跑什么任务?
+扣 "Kimi" / "DeepSeek" / "GPT" / "其他"
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#AI横评</span>
+        <span class="xhs-tag">#API对比</span>
+        <span class="xhs-tag">#Kimi</span>
+        <span class="xhs-tag">#DeepSeek</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">3 个 API 跑同一任务 · 谁赢</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">D11 评论里 80% 选了 Kimi。
+那今天就跑一遍 — 同一段商品文案,3 个 API 跑一次。
+测试商品:350ml 保温杯 · 304 不锈钢 · 5 色可选。
+任务:写 200 字小红书文案,卖点全给齐。
+
+───── 完全相同的提示词 ─────
+"请基于以下卖点写小红书文案:
+350ml / 304 / 12h 保温 / 单手开盖 / 5 色
+要求:200 字内,带 2 个 emoji,1 个数字钩子。"
+
+───── 3 个 API 实测 ─────
+🟢 Kimi (moonshot-v1-8k)
+  8 秒 / 192 字 / 0 错 / 钩子中
+  → 工业感强,功能罗列清晰
+🟡 DeepSeek (deepseek-chat)
+  6 秒 / 198 字 / 0 错 / 钩子强
+  → 故事感强,自动加场景
+🔵 GPT-4o-mini
+  11 秒 / 196 字 / 0 错 / 钩子中
+  → 中规中矩,出错率最低
+
+───── 4 项对比 ─────
+速度:6s < 8s < 11s
+字数:全部 200 字内达标
+事实:3 个 API 都 0 错(都按"卖点全给齐"走)
+钩子:DeepSeek 强 / Kimi 中 / GPT 中
+
+───── 我的结论 ─────
+✅ 想快:DeepSeek 6 秒最快
+✅ 想稳:GPT 几乎不出错
+✅ 想场景:Kimi 工业感更对
+没有"最强 API",只有"最合适场景"。
+
+评论区:你常用哪个 API? 跑什么任务?
+扣 "Kimi" / "DeepSeek" / "GPT" / "其他"
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #AI横评 #API对比 #Kimi #DeepSeek</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D12 数据复盘</h2>
+    <div class="data-card">
+      <strong>测试规模:</strong> 1 款商品 × 3 个 API × 1 个完全相同的提示词 = 3 个独立结果
+    </div>
+    <div class="data-card">
+      <strong>实测速度:</strong> DeepSeek 6 秒 > Kimi 8 秒 > GPT-4o-mini 11 秒(差异 < 一倍但够用)
+    </div>
+    <div class="data-card">
+      <strong>事实错误:</strong> 3 个 API 全 0 错(都按"卖点全给齐"走 = D11 接入流程的副产品)
+    </div>
+    <div class="data-card">
+      <strong>字数达标:</strong> 100%(192/198/196 全部在 200 字内,3 个 API 都按指令走)
+    </div>
+    <div class="data-card">
+      <strong>钩子强度:</strong> DeepSeek 故事感强 > Kimi 工业感清晰 > GPT 中规中矩
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:3 个 API 跑同一任务 · 谁赢</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周五 20:00-21:00(W2 第 5 篇 + 横评类天然高互动)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("你常用哪个 API?跑什么任务?" + 四选一)</td><td>激活引导型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复(尤其选"其他"的继续追问 1-2 句)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>W2 复盘素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/四选一分布)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计"最常用 API"票数,准备 D13 "100 vs 1" 观点稿</td><td>W2 末段收官节奏</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 12 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1500</td><td>W2 第 5 篇 + 横评类天然高曝光(API 关键词搜索)</td></tr>
+        <tr><td>收藏率</td><td>≥ 8%</td><td>对比表 + 4 项数据天然高收藏(留底用)</td></tr>
+        <tr><td>评论</td><td>≥ 80</td><td>四选一钩子(API 选择天然有立场)</td></tr>
+        <tr><td>涨粉</td><td>≥ 100</td><td>横评类沉淀精准程序员粉</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+    <h3>1. 标题 = 3 + 悬念</h3>
+    <ul>
+      <li><strong>"3 个 API"</strong> = 数字钩子(让人想点进来看是哪 3 个)</li>
+      <li><strong>"跑同一任务"</strong> = 实验设计(完全相同提示词 = 公平对比)</li>
+      <li><strong>"谁赢"</strong> = 悬念钩子(激发评论"我选 X")</li>
+      <li>字数 18 字,XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 4 段式 + 颜色编码</h3>
+    <ol>
+      <li><strong>任务定义</strong>(测试商品 + 提示词原文)</li>
+      <li><strong>3 个 API 实测</strong>(速度/字数/错误/钩子 4 项数据)</li>
+      <li><strong>4 项对比</strong>(速度/字数/事实/钩子 = 杀手锏数据图)</li>
+      <li><strong>我的结论</strong>(3 条:想快/想稳/想场景)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面(大字"3 个 API"+ 副标"跑同一任务 · 谁赢"+ Kimi/DeepSeek/GPT 圆球)</li>
+      <li>图 02 = 任务定义(测试商品 + 完全相同的提示词代码块)</li>
+      <li>图 03 = Kimi 输出(🟢 + "Kimi moonshot-v1-8k" + 黑色代码框 + 8秒/192字/钩子中)</li>
+      <li>图 04 = DeepSeek 输出(🟡 + "DeepSeek deepseek-chat" + 黑色代码框 + 6秒/198字/钩子强)</li>
+      <li>图 05 = GPT 输出(🔵 + "GPT-4o-mini" + 黑色代码框 + 11秒/196字/钩子中)</li>
+      <li>图 06 = 4 项对比 + Day13 预告(墨绿底部 "Day 13 预告 100 个组件 vs 1 个工作流")</li>
+    </ul>
+
+    <h3>4. 兑现 D11 承诺 + 承接 D13</h3>
+    <ul>
+      <li>D11 评论区四选一(Kimi/DeepSeek/GPT/还没接)→ D12 兑现"3 个 API 比对"承诺</li>
+      <li>D12 选 Kimi/DeepSeek/GPT 是 D11 评论中 80% 用户的选择(国内可访问性 + 覆盖度)</li>
+      <li>钩子升级:D11 "你接过哪个 API"(身份)→ D12 "你常用哪个 API + 跑什么任务"(场景 + 工具双轴)</li>
+      <li>D13 预告 "100 个组件 vs 1 个工作流" 直接承接 D12 "工具组合" 主题,引出 W2 收官观点</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>完全相同的提示词</strong> —— 3 个 API 必须用同一段 prompt,差异才公平(否则测的是"提示词"不是"API")</li>
+      <li><strong>速度只算一次调用</strong> —— DeepSeek 6 秒是单次响应时间,不是批量平均,别按"API 总吞吐量"比较</li>
+      <li><strong>0 错是因为"全给齐卖点"</strong> —— D4 验证过"AI 编造事实"在"卖点没给齐"时才发生,这次给齐了 = 0 错 ≠ "API 更准"</li>
+      <li><strong>钩子强 ≠ 文案好</strong> —— DeepSeek 钩子强适合"小红书爆款",Kimi 工业感适合"商品详情页",场景不同选择不同</li>
+      <li><strong>不选 Claude / Gemini</strong> —— 国内可访问性差,D11 评论里也没人选,加进来反而稀释对比</li>
+      <li><strong>6 张图按顺序</strong> —— 封面(钩子)→ 任务定义(背景)→ Kimi → DeepSeek → GPT(并列)→ 4 项对比+预告(收官)</li>
+      <li><strong>tags 5 个版本</strong> —— #前端转AI电商 #AI横评 #API对比 #Kimi #DeepSeek</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D11.html">← D11 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D13.html" style="margin-left:8px;" title="D13 100 个组件 vs 1 个工作流">Day 13（W2 末段收官）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
