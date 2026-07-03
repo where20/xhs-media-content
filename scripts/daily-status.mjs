@@ -55,9 +55,9 @@ function loadCalendar() {
 }
 
 function todayDayNumber() {
-  // 30 天实验：2026-06-23 = D1（基准日，2026-06-28 用户对齐进度时调整）
+  // 30 天实验：2026-06-22 = D1（2026-07-03 用户对齐到 1/day 节奏: 6/22→D1, 7/4→D13）
   // 推算今天 = D几
-  const baseDate = new Date('2026-06-23T00:00:00+08:00');
+  const baseDate = new Date('2026-06-22T00:00:00+08:00');
   const now = new Date();
   // 按本地"日历日"算差（避免 timezone 坑）
   const todayLocal = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -86,7 +86,7 @@ function statusText(s) {
 // ===== 主流程 =====
 function dayPublishDate(dayNumber) {
   // 基准日 2026-06-23 = D1（2026-06-28 用户对齐进度时调整）
-  const base = new Date(2026, 5, 23);  // 月份从 0 开始，6月 = 5
+  const base = new Date(2026, 5, 22);  // 月份从 0 开始，6月 = 5
   base.setDate(base.getDate() + (dayNumber - 1));
   const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
   return {
