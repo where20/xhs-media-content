@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D13 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D13 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D12.html">← 上一日（D12）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D14.html" title="D14 W2 复盘:可复现的 3 套工作流沉淀">下一日（D14）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D13 · 已就绪 · 待发布</span>
+    <h1>Day 13 笔记预览 · 100 组件 vs 1 工作流 · 思维转变</h1>
+    <p class="lead">W2 末段收官观点 · 写了 5 年 React 组件, 转电商后最大思维转变: 写 100 个组件, 不如写 1 个工作流。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="demo-banner">
+    🟢 <strong>观点类笔记:</strong> D13 是 W2 第 6 篇,也是 W2 收官观点。承接 D5「把凭感觉变可重复」+ D6「告别重做」+ D9「30 分钟变 5 分钟」,把工作流思维立到「组件是给页面用的,工作流是给生意用的」这个核心句。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
+    6 张图按顺序上传,标题"100 组件 vs 1 工作流 · 思维转变"(XHS 上限 20 字 ✓)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D13-笔记/01-封面.png" alt="封面 100 组件 vs 1 工作流">
+    <img class="xhs-img" src="content-kit/D13-笔记/02-为什么100组件不够用.png" alt="为什么 100 组件不够用">
+    <img class="xhs-img" src="content-kit/D13-笔记/03-组件vs工作流.png" alt="组件思维 vs 工作流思维">
+    <img class="xhs-img" src="content-kit/D13-笔记/04-我犯过的错.png" alt="我犯过的错 通用组件搞砸">
+    <img class="xhs-img" src="content-kit/D13-笔记/05-怎么判断.png" alt="怎么判断 组件 vs 工作流">
+    <img class="xhs-img" src="content-kit/D13-笔记/06-Day14预告.png" alt="Day14 W2 复盘预告">
+
+    <div class="xhs-body">
+      <div class="xhs-title">100 组件 vs 1 工作流 · 思维转变</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">做了 5 年 React 组件,转电商后最大的思维转变:
+写 100 个组件,不如写 1 个工作流。
+
+───── 为什么 100 个组件不够用 ─────
+做前端时,我以为"复用"是 UI 层面的事。
+Button、Card、Modal — 抽出来跨页面共用。
+但电商里要复用的不是按钮,是流程。
+选品 → 上架 → 文案 → 客服 → 复盘
+5 件事每天重做,你抽不出"按钮组件"复用它们。
+你只能抽出 1 个"工作流"复用它们。
+
+───── 组件思维 vs 工作流思维 ─────
+组件思维:复用 UI 片段
+· 抽 Button → 跨 10 个页面共用
+· 抽 Card → 跨 3 个业务共用
+· 适合:UI 一致、交互一致
+
+工作流思维:复用「输入 → 输出」流程
+· 文案流程 → 每天 20 篇
+· 客服流程 → 自动 + 人工复核
+· 数据流程 → 5 分钟出日报
+· 适合:每天重复、业务线性
+
+电商 = 每天重复 + 业务线性 = 必须用工作流思维。
+只抽组件,你会卡在"按钮好看,但每天还是重做"。
+
+───── 我犯过的错 ─────
+第 1 个月我想做"商品上架组件"。
+抽 SKU、价格、库存、详情页 — 写成 1 个大表单。
+结果:每个类目都要魔改,维护成本 = 重做的 2 倍。
+真相是:上架没有"通用组件",只有"流程":
+选品 → 整理 → 填表 → 配图 → 提交 → 复盘 6 步。
+把 6 步串成 1 条工作流 = 真的省时间。
+
+商品图命名也是同理:
+不是写个工具 UI,而是 1 小时定 4 段命名规则
++ 4 行 Python 脚本 = 30 分钟变 5 分钟。
+没有 UI,没有组件,只有 1 条命令。
+这就是 1 个工作流干掉 100 个按钮的意义。
+
+───── 怎么判断该写「组件」还是「工作流」 ─────
+✅ 一天做 1 次 → 随手做,不抽
+✅ 一天做 3 次 → 抽工作流
+✅ 一天做 10 次 → 工作流 + 自动脚本
+✅ 跨人协作 → 必须写 SOP
+❌ 只有跨页面复用 UI → 才抽组件
+
+一句话:
+组件是给"页面"用的,
+工作流是给"生意"用的。
+电商老板不缺组件,缺的是每条业务线都跑通的工作流。
+
+───── Day 14 预告 ─────
+W2 第 7 天 · W2 复盘:可复现的 3 套工作流沉淀
+评论区猜:3 套工作流分别是什么? 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#组件思维</span>
+        <span class="xhs-tag">#工作流</span>
+        <span class="xhs-tag">#工程化思维</span>
+        <span class="xhs-tag">#程序员转电商</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">100 组件 vs 1 工作流 · 思维转变</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">做了 5 年 React 组件,转电商后最大的思维转变:
+写 100 个组件,不如写 1 个工作流。
+
+───── 为什么 100 个组件不够用 ─────
+做前端时,我以为"复用"是 UI 层面的事。
+Button、Card、Modal — 抽出来跨页面共用。
+但电商里要复用的不是按钮,是流程。
+选品 → 上架 → 文案 → 客服 → 复盘
+5 件事每天重做,你抽不出"按钮组件"复用它们。
+你只能抽出 1 个"工作流"复用它们。
+
+───── 组件思维 vs 工作流思维 ─────
+组件思维:复用 UI 片段
+· 抽 Button → 跨 10 个页面共用
+· 抽 Card → 跨 3 个业务共用
+· 适合:UI 一致、交互一致
+
+工作流思维:复用「输入 → 输出」流程
+· 文案流程 → 每天 20 篇
+· 客服流程 → 自动 + 人工复核
+· 数据流程 → 5 分钟出日报
+· 适合:每天重复、业务线性
+
+电商 = 每天重复 + 业务线性 = 必须用工作流思维。
+只抽组件,你会卡在"按钮好看,但每天还是重做"。
+
+───── 我犯过的错 ─────
+第 1 个月我想做"商品上架组件"。
+抽 SKU、价格、库存、详情页 — 写成 1 个大表单。
+结果:每个类目都要魔改,维护成本 = 重做的 2 倍。
+真相是:上架没有"通用组件",只有"流程":
+选品 → 整理 → 填表 → 配图 → 提交 → 复盘 6 步。
+把 6 步串成 1 条工作流 = 真的省时间。
+
+商品图命名也是同理:
+不是写个工具 UI,而是 1 小时定 4 段命名规则
++ 4 行 Python 脚本 = 30 分钟变 5 分钟。
+没有 UI,没有组件,只有 1 条命令。
+这就是 1 个工作流干掉 100 个按钮的意义。
+
+───── 怎么判断该写「组件」还是「工作流」 ─────
+✅ 一天做 1 次 → 随手做,不抽
+✅ 一天做 3 次 → 抽工作流
+✅ 一天做 10 次 → 工作流 + 自动脚本
+✅ 跨人协作 → 必须写 SOP
+❌ 只有跨页面复用 UI → 才抽组件
+
+一句话:
+组件是给"页面"用的,
+工作流是给"生意"用的。
+电商老板不缺组件,缺的是每条业务线都跑通的工作流。
+
+───── Day 14 预告 ─────
+W2 第 7 天 · W2 复盘:可复现的 3 套工作流沉淀
+评论区猜:3 套工作流分别是什么? 👇
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #组件思维 #工作流 #工程化思维 #程序员转电商</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D13 数据复盘</h2>
+    <div class="data-card">
+      <strong>核心论点:</strong> 100 组件 vs 1 工作流 —— 组件是给页面用的,工作流是给生意用的(电商老板不缺组件,缺每条业务线都跑通的工作流)
+    </div>
+    <div class="data-card">
+      <strong>对比维度:</strong> 组件思维(UI 复用 / 跨页面) vs 工作流思维(流程复用 / 每天重复 + 业务线性)
+    </div>
+    <div class="data-card">
+      <strong>真实踩坑:</strong> 第 1 个月做"商品上架组件" = 每个类目都要魔改,维护成本 = 重做的 2 倍(诚实记录,不藏拙)
+    </div>
+    <div class="data-card">
+      <strong>决策清单:</strong> 一天 1 次 / 3 次 / 10 次 / 跨人协作 → 决策"抽不抽、抽组件还是抽工作流"
+    </div>
+    <div class="data-card">
+      <strong>承接 W2:</strong> D5 流程化 + D6 告别重做 + D9 工作流 + D11/D12 数据/工具流 → D13 立"W2 末段收官观点"
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:100 组件 vs 1 工作流 · 思维转变</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周六 20:00-21:00(W2 末段观点 + 周末情绪共鸣)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("你做电商,先抽组件还是抽工作流?"+ 二选一)</td><td>激活引导型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复(尤其选"抽组件"的追问 1-2 句)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存首日数据</td><td>W2 末段收官素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/二选一分布)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计评论观点倾向,准备 D14 "3 套工作流" 复盘稿</td><td>W2 收官节奏</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 13 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1500</td><td>W2 末段叠加 + 观点类周末高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 7%</td><td>决策表 + 真实踩坑案例天然高收藏</td></tr>
+        <tr><td>评论</td><td>≥ 100</td><td>二选一钩子易参与 + 周末情绪共鸣</td></tr>
+        <tr><td>涨粉</td><td>≥ 150</td><td>观点类 W2 末段冲一波,沉淀人设粉</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+
+    <h3>1. 标题 = 数字反差 + 思维关键词</h3>
+    <ul>
+      <li><strong>"100 组件 vs 1 工作流"</strong> = 数字反差(让人一眼想点进来看"为什么 100 个不如 1 个")</li>
+      <li><strong>"思维转变"</strong> = 立人设关键词(承接 D5/D6/D9 的工程师视角)</li>
+      <li>字数 15 字,XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 4 段式 + 二选一钩子</h3>
+    <ol>
+      <li><strong>为什么 100 个组件不够用</strong>(电商 = 流程复用 ≠ UI 复用)</li>
+      <li><strong>组件思维 vs 工作流思维</strong>(左右对比,杀手锏图 03)</li>
+      <li><strong>我犯过的错</strong>(真实踩坑案例,反向佐证)</li>
+      <li><strong>怎么判断</strong>(决策清单:1/3/10 次 + 跨人协作)</li>
+    </ol>
+
+    <h3>3. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面(墨绿底 + 大字"100 组件 vs 1 工作流" + 副标"前端转电商的思维转变" + 顶部"D13 · W2 末段 · 观点")</li>
+      <li>图 02 = 为什么 100 组件不够用(组件堆 vs 流程图,视觉反差)</li>
+      <li>图 03 = 组件 vs 工作流(左组件思维 / 右工作流思维,4-4 对比表)</li>
+      <li>图 04 = 我犯过的错(浅红警示底 + 大表单打叉 + 3 行红字 "维护成本 = 重做的 2 倍")</li>
+      <li>图 05 = 怎么判断(决策清单,4 行绿勾 + 1 行红叉)</li>
+      <li>图 06 = Day14 预告(墨绿底大字"Day 14 · W2 复盘"+ 副标"可复现的 3 套工作流沉淀")</li>
+    </ul>
+
+    <h3>4. 承接 W2 收官</h3>
+    <ul>
+      <li>D5 把凭感觉变可重复 → D6 告别重做 → D9 30 分钟变 5 分钟 → D11/D12 工具流程 → D13 立"W2 末段观点"</li>
+      <li>钩子升级:D11 "你接过哪个 API"(身份)/ D12 "你常用哪个 API + 跑什么任务"(场景+工具)/ D13 "先抽组件还是抽工作流"(观点投票,立场型)</li>
+      <li>D14 预告"W2 复盘 · 3 套工作流"直接承接 D13 的工作流观点,把评论区投票沉淀成 D14 复盘素材</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>"组件"不等于"代码组件"</strong> —— 这里指泛指 UI 抽取的复用单元(Button / Card / 模板 / 配置项),不只是 React 组件</li>
+      <li><strong>"工作流"指业务流</strong> —— 不是 BPMN 流程图那种重文档,是"输入→流程→输出"的可重复序列</li>
+      <li><strong>诚实记录</strong> —— 第 1 个月做"商品上架组件"失败要诚实写,不藏拙,真实感比"完美方案"更容易涨粉</li>
+      <li><strong>决策清单不要复杂</strong> —— 4 行勾 + 1 行叉就够,不要列 10 条决策树(用户读不完)</li>
+      <li><strong>"组件是给页面用的,工作流是给生意用的"</strong> —— 这句是 D13 的核心句,要出现在结尾加强记忆点</li>
+      <li><strong>不要写 BPMN 流程图</strong> —— 电商老板用不到那种重文档,讲"4 行 Python"比"流程图引擎"更落地</li>
+      <li><strong>6 张图按顺序</strong> —— 封面(钩子) → 为什么不够用(铺垫) → 组件 vs 工作流(对比) → 我犯的错(反证) → 怎么判断(收官) → Day14 预告(W2 收官节奏)</li>
+      <li><strong>tags 5 个版本</strong> —— #前端转AI电商 #组件思维 #工作流 #工程化思维 #程序员转电商</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D12.html">← D12 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D14.html" style="margin-left:8px;" title="D14 W2 复盘:可复现的 3 套工作流沉淀">Day 14（W2 收官）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
