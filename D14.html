@@ -101,14 +101,10 @@
     🟢 <strong>周复盘 + 共创笔记:</strong> D14 是 W2 第 7 篇,也是 W2 收官日。承接 D9(商品图归档)/D10(AI 日报)/D11/D12(API 工作流)/D13(工作流思维),把这周沉淀成可复制的"输入 → 流程 → 输出"3 套模板。W3 开篇接 D15 真实小团队案例。
   </div>
 
-  <div class="warn-banner">
-    ⚠️ <strong>配图待补:</strong> 正文已就绪(647 字 ≤ 1000 上限 ✓),但本次 cron 触发时 mavis CLI 异常(exit 137, SIGKILL),matrix_generate_image 暂不可用。
-    图片路径已预留 `<code>content-kit/D14-笔记/01-封面.png</code>` 等 6 张,等 MCP 恢复后补图即可。
-  </div>
-
   <div class="note">
     <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
     6 张图按顺序上传,标题"W2 复盘 · 3 套工作流沉淀"(XHS 上限 20 字 ✓)。
+    配图已通过 mmx image-01 生成(mavis CLI 这次不通,绕到 mmx CLI 走的)。
   </div>
 
   <!-- 小红书样式预览卡 -->
@@ -268,7 +264,7 @@ D15 起连更 3 个真实小团队用 AI 工作流省 10h/周的故事。
     <h2>🚀 发布前 15 分钟 SOP</h2>
     <ol>
       <li>打开小红书 App → 创建笔记</li>
-      <li>选 6 张图(封面 1 + 内页 5),按顺序排好(<strong>配图待补,见顶部橙色提示</strong>)</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
       <li>选 3:4 竖图</li>
       <li>标题:W2 复盘 · 3 套工作流沉淀</li>
       <li>正文:点"复制正文"按钮粘贴</li>
@@ -355,7 +351,7 @@ D15 起连更 3 个真实小团队用 AI 工作流省 10h/周的故事。
       <li><strong>正文用"我"视角而非"你"</strong>—— 复盘类笔记第一人称更易拉近距离</li>
       <li><strong>6 张图必须按顺序</strong>—— 封面(钩子)→ 工作流 1(图片)→ 工作流 2(数据)→ 工作流 3(API)→ 可复现 4 标(收官)→ Day15 预告(W3 开篇)</li>
       <li><strong>正文里 ✅ 用墨绿 #0f766e,❌ 用小红书红 #ff2442</strong>—— 颜色编码贯穿(可复现 = 绿,不可复现 = 红)</li>
-      <li><strong>配图待补</strong>—— mavis CLI 异常,本次 cron 跑不出图。等 daemon/MCP 恢复后用 matrix_generate_image 补 6 张 3:4 图到 <code>content-kit/D14-笔记/</code></li>
+      <li><strong>配图已补</strong>—— mavis CLI 这次触发时仍 exit 137,但绕到 <code>mmx image generate</code> 直跑 image-01 出了 6 张 3:4 图(mavis 修好后建议保留 mmx 备用路径)</li>
     </ol>
   </section>
 

@@ -1957,7 +1957,7 @@
         "cover_3s_test": null,
         "title_formula": null,
         "interaction_hook": null,
-        "improvements": "配图待补:mavis CLI 异常(exit 137)导致 matrix_generate_image 不可用,等 daemon 恢复后补 6 张 3:4 图到 content-kit/D14-笔记/。",
+        "improvements": "配图已通过 mmx image-01 生成(6 张 3:4,走 mmx CLI 绕过 mavis CLI 异常)。下次 mavis 修好后建议把 mmx 路径作为 fallback。",
         "next_day_pivot": "D15 是 W3 开篇,钩子按 D14 评论区投票决定(小团队类型选哪个写哪个)"
       }
     }
