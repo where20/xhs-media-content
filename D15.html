@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D15 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    /* D15 预览页专用样式 */
+    .xhs-preview {
+      max-width: 540px; margin: 24px auto; background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border);
+    }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .xhs-tag {
+      display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px;
+      padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note {
+      background: #ecfeff; border-left: 3px solid #0f766e; padding: 10px 14px;
+      border-radius: 0 6px 6px 0; font-size: 13px; color: #115e59; margin: 12px 0;
+    }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill {
+      display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .data-card {
+      background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0;
+      font-size: 13px; color: #334155;
+    }
+    .data-card strong { color: #0f766e; }
+    .demo-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #064e3b;
+    }
+    .warn-banner {
+      background: linear-gradient(135deg, #fff7ed, #fed7aa);
+      border: 2px dashed #f59e0b; border-radius: 8px; padding: 12px 16px;
+      margin: 16px 0; font-size: 13px; color: #92400e;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="logo">X</span><span>Media Content</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+      <a href="strategy.html">策略方案</a>
+      <a href="playbook.html" class="active">30天起号</a>
+      <a href="prompts.html">提示词库</a>
+      <a href="calendar.html">日历</a>
+      <a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<!-- D页面导航条：上一日 / 日历 / 下一日 -->
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D14.html">← 上一日（D14）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D16.html" title="D16 12 款 AI 工具按内容/素材/客服/复盘分类" class="disabled" style="opacity:.4;pointer-events:none;">下一日（D16）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D15 · 已就绪 · 待发布</span>
+    <h1>Day 15 笔记预览 · W3 开篇 · 3 类小电商典型场景</h1>
+    <p class="lead">承接 D14 W2 收官"评论扣 1 选 W3 方向"的承诺 —— 这周先发 3 类典型场景预告,真实团队深度访谈见 D16/D17/D18。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="warn-banner">
+    🟡 <strong>骨架版提示:</strong> D15 是 <strong>W3 开篇 · 3 类典型场景预告版</strong>。"1 人饰品店 / 3 人服装工作室 / 2 人母婴电商店"是基于 W2 工作流的典型应用场景示例,数字来自 D14 复盘的"5-10h/周"区间。<strong>具体真实团队访谈素材待补</strong>,深度版会由 D16/D17/D18 承接。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong>所有内容已按发布标准预排好,发布前请用最下方 3 个复制按钮。
+    6 张图按顺序上传,标题"W3 开篇 · 3 类小电商典型场景"(XHS 上限 20 字 ✓)。
+    配图已通过 HTML+Chrome headless 截图 1242×1660 PNG 生成(中文 100% 清晰,沿用 D14 经验)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D15-笔记/01-封面.png" alt="封面 W3 开篇 · 3 类小电商典型场景" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D15-笔记/02-场景1饰品店.png" alt="场景 1:1 人饰品店 商品图归档" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D15-笔记/03-场景2服装工作室.png" alt="场景 2:3 人服装工作室 AI 数据日报" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D15-笔记/04-场景3母婴电商店.png" alt="场景 3:2 人母婴电商店 客服自动回复" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D15-笔记/05-共同点.png" alt="3 类场景共同点" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D15-笔记/06-D16预告.png" alt="Day 16 预告 · W3 案例深度版" onerror="this.style.display='none'">
+
+    <div class="xhs-body">
+      <div class="xhs-title">W3 开篇 · 3 类小电商典型场景</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">W3 开篇。承接 D14"评论扣 1 选 W3 方向",这周连更 3 类小电商场景。
+不是工具横评,是 W2 工作流在 1-3 人小团队里的应用 + 痛点 + 节省时间。
+(注:以下是 3 类典型场景预告,真实团队深度访谈见 D16/D17/D18)
+
+────── 场景 1:1 人饰品店主 ──────
+痛点:每天 50 张商品图手动改命名 + 归档
+工作流:D9 商品图自动归档(4 行 Python + 命名规则)
+效果:从 30 分钟/天 → 5 分钟/天
+
+────── 场景 2:3 人服装工作室 ──────
+痛点:每天手动统计销售数据 + 写日报
+工作流:D10 AI 数据日报(Kimi API + 4 行提示词)
+效果:从 30 分钟/天 → 5 分钟/天
+
+────── 场景 3:2 人母婴电商店 ──────
+痛点:客服高频问题重复回答,新员工上手慢
+工作流:D11 Python 串 API 自动回复草稿
+效果:每天省 2 小时,每周省 10 小时
+
+────── 3 类场景的共同点 ──────
+✅ 不是买了新工具,是把现有工作流化
+✅ 节省时间都在 5-10h/周(D14 沉淀区间)
+✅ 1-3 人小团队 + 程序员朋友帮搭脚手架
+✅ 痛点都是"每天重复做一遍"的高频任务
+
+────── W3 接下来怎么做 ──────
+如果你愿意公开你的小团队场景(脱敏后),评论留言。
+D16 起会精选 3 个真实案例出深度版。
+评论扣 1:你最想看哪类场景的详情?
+🅰️ 1 人单兵(独立店主)
+🅱️ 3-5 人小工作室
+🅰️2 5-10 人小电商
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#W3开篇</span>
+        <span class="xhs-tag">#小电商团队</span>
+        <span class="xhs-tag">#AI工作流</span>
+        <span class="xhs-tag">#提效场景</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">W3 开篇 · 3 类小电商典型场景</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">W3 开篇。承接 D14"评论扣 1 选 W3 方向",这周连更 3 类小电商场景。
+不是工具横评,是 W2 工作流在 1-3 人小团队里的应用 + 痛点 + 节省时间。
+(注:以下是 3 类典型场景预告,真实团队深度访谈见 D16/D17/D18)
+
+────── 场景 1:1 人饰品店主 ──────
+痛点:每天 50 张商品图手动改命名 + 归档
+工作流:D9 商品图自动归档(4 行 Python + 命名规则)
+效果:从 30 分钟/天 → 5 分钟/天
+
+────── 场景 2:3 人服装工作室 ──────
+痛点:每天手动统计销售数据 + 写日报
+工作流:D10 AI 数据日报(Kimi API + 4 行提示词)
+效果:从 30 分钟/天 → 5 分钟/天
+
+────── 场景 3:2 人母婴电商店 ──────
+痛点:客服高频问题重复回答,新员工上手慢
+工作流:D11 Python 串 API 自动回复草稿
+效果:每天省 2 小时,每周省 10 小时
+
+────── 3 类场景的共同点 ──────
+✅ 不是买了新工具,是把现有工作流化
+✅ 节省时间都在 5-10h/周(D14 沉淀区间)
+✅ 1-3 人小团队 + 程序员朋友帮搭脚手架
+✅ 痛点都是"每天重复做一遍"的高频任务
+
+────── W3 接下来怎么做 ──────
+如果你愿意公开你的小团队场景(脱敏后),评论留言。
+D16 起会精选 3 个真实案例出深度版。
+评论扣 1:你最想看哪类场景的详情?
+🅰️ 1 人单兵(独立店主)
+🅱️ 3-5 人小工作室
+🅰️2 5-10 人小电商
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #W3开篇 #小电商团队 #AI工作流 #提效场景</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D15 数据复盘</h2>
+    <div class="data-card">
+      <strong>W3 开篇定位:</strong> 承接 D14 W2 收官"评论扣 1 选 W3 方向"的承诺 → 3 类典型场景预告 → D16 起真实团队深度版
+    </div>
+    <div class="data-card">
+      <strong>3 类典型场景:</strong> 1 人饰品店(D9 商品图)+ 3 人服装工作室(D10 数据日报)+ 2 人母婴店(D11 客服 API)—— 把 W2 工作流在 3 类典型团队里的应用列出来
+    </div>
+    <div class="data-card">
+      <strong>数据来源:</strong> "5-10h/周"来自 D14 复盘沉淀;"30min→5min"来自 D9/D10 跑通数据;"省 2h/天"来自 D11 客服场景估算
+    </div>
+    <div class="data-card">
+      <strong>骨架版 vs 真实版:</strong> 本篇是 <strong>3 类典型场景预告版</strong>(数字基于已有 D9-D11 工作流),真实团队脱敏案例由 D16/D17/D18 承接
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> 评论扣 1(三选一)+ 邀请留言"愿意公开团队场景"—— 把"预告版"转成"深度版选题池"
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 内页 5),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:W3 开篇 · 3 类小电商典型场景</li>
+      <li>正文:点"复制正文"按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周一 20:00-21:00(W3 开篇 + 周一晚高峰天然高曝光)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论扣 1("W3 你最想看哪类场景?+ 三选一")</td><td>激活引导型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论都认真回复(尤其"愿意公开团队场景"的留言要追问 1-2 句)</td><td>收集 D16 真实案例素材</td></tr>
+        <tr><td>2 小时</td><td>截图保存 W3 开篇数据</td><td>W3 中段素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/场景投票分布)</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计评论里"愿意公开的团队"+ 场景投票分布,准备 D16 真实案例</td><td>D16 深度版方向</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 15 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 1500</td><td>W3 开篇 + 周一晚高峰天然高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 6%</td><td>骨架预告版收藏率会低一些(没深度干货)</td></tr>
+        <tr><td>评论</td><td>≥ 80</td><td>投票 + 邀请公开团队场景 = 双钩子</td></tr>
+        <tr><td>涨粉</td><td>≥ 100</td><td>W3 开篇冲一波</td></tr>
+        <tr><td>D16 钩子</td><td>收集 ≥ 5 个"愿意公开团队场景"的留言</td><td>真实案例池是 D16-D18 的命脉</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+
+    <h3>1. 标题 = 节点 + 数字 + 场景关键词</h3>
+    <ul>
+      <li><strong>"W3 开篇"</strong> = 系列节点(用户知道"这是个连载 + 进入 W3")</li>
+      <li><strong>"3 类小电商典型场景"</strong> = 数字冲击 + 类型暗示(预告版)</li>
+      <li>字数 14 字,XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 3 场景 + 共同点 + W3 钩子</h3>
+    <ol>
+      <li><strong>3 类典型场景</strong>(每类痛点/工作流/效果,引用 D9/D10/D11)</li>
+      <li><strong>3 类场景共同点</strong>(4 行绿勾,沉淀性观点)</li>
+      <li><strong>W3 钩子</strong>(投票三选一 + 邀请公开团队场景,把预告转成深度版选题池)</li>
+    </ol>
+
+    <h3>3. 骨架版定位(关键决策)</h3>
+    <ul>
+      <li><strong>为什么用"典型场景"而非"真实小团队"</strong>: 没有真实团队访谈素材前,典型场景基于已有 D9-D11 工作流推演,数字来自 D14 沉淀区间,不编造外部数据</li>
+      <li><strong>"评论邀请公开团队"是关键钩子</strong>: 用户的真实素材 → D16/D17/D18 深度版</li>
+      <li><strong>数据目标调低</strong>: 收藏率从 ≥8% 调低到 ≥6%(骨架预告版收藏价值低)</li>
+    </ul>
+
+    <h3>4. 图文对应</h3>
+    <ul>
+      <li>图 01 = 封面(墨绿底 + "W3 开篇"大字 + 红色"3"数字 + 副标"3 类小电商典型场景")</li>
+      <li>图 02 = 场景 1:1 人饰品店商品图归档(流程图:50 张图 → 4 行脚本 → 5 分钟)</li>
+      <li>图 03 = 场景 2:3 人服装工作室 AI 数据日报(表格 + 警示色,4 项指标)</li>
+      <li>图 04 = 场景 3:2 人母婴店客服自动回复(对话气泡 + API 流程)</li>
+      <li>图 05 = 3 类场景共同点(4 行绿勾 + 节省时间区间)</li>
+      <li>图 06 = Day 16 预告(墨绿底大字"Day 16 · W3 案例深度版" + 副标"工具 × 内容 × 素材 × 客服 × 复盘")</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>骨架版不是终稿</strong>—— D16/D17/D18 必须有真实团队素材,否则会失信于评论区</li>
+      <li><strong>不要把"3 类典型场景"说成"3 个真实小团队"</strong>—— 副标题明确"典型场景预告版",正文括号说明"D16 起真实团队深度版"</li>
+      <li><strong>"5-10h/周"必须标来源</strong>—— 来自 D14 复盘沉淀,不是凭空</li>
+      <li><strong>"30min→5min"必须标 D9/D10</strong>—— 引用已有工作流的真实数据,不编造</li>
+      <li><strong>互动钩子是"收集真实素材"</strong>—— 不只是投票,要追问"愿意公开团队场景"的具体留言</li>
+      <li><strong>配图沿用 D14 经验</strong>—— HTML+Chrome headless 截图,中文 100% 清晰(避开 mmx 中文乱码)</li>
+      <li><strong>正文用"我"视角而非"你"</strong>—— "以下是 3 类典型场景"而不是"你应该做"</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D14.html">← D14 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-secondary" href="#" style="margin-left:8px; opacity:.4; pointer-events:none;" title="D16 待生成">Day 16（W3 案例）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssSheet = '';
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#0f766e;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
