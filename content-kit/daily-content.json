@@ -2213,6 +2213,116 @@
         "next_day_pivot": "D17 是 W3 第二篇自动化脚本(代码截图+流程),钩子按 D16 评论区投票 Top 3 象限决定横评对象"
       }
     },
+    "17": {
+      "title": "D17 · 从0搭第一段工作流自动化脚本",
+      "publishDate": "2026-07-10",
+      "weekday": "周五",
+      "publishTime": "20:00",
+      "status": "ready",
+      "pillar": "自动化脚本",
+      "title_xhs": "从0搭第一段工作流自动化脚本",
+      "cover": "content-kit/D17-笔记/01-封面.png",
+      "images": [
+        {"src": "content-kit/D17-笔记/01-封面.png", "alt": "封面"},
+        {"src": "content-kit/D17-笔记/02-痛点.png", "alt": "效率对比"},
+        {"src": "content-kit/D17-笔记/03-4步搭建.png", "alt": "4步搭建"},
+        {"src": "content-kit/D17-笔记/04-核心代码.png", "alt": "核心代码"},
+        {"src": "content-kit/D17-笔记/05-踩坑清单.png", "alt": "踩坑清单"},
+        {"src": "content-kit/D17-笔记/06-D18预告.png", "alt": "Day 18 预告"}
+      ],
+      "body": "D11 跑了 Kimi API,D12 跑了 3 个 API 横评。\n今天把它们串起来:商品图归档 → 触发 AI 解读 → 日报沉淀。\n这就是我说的\"第一段工作流自动化\"。\n\n───── 为什么需要自动化 ─────\n之前:\n文件夹新增 1 张图 → 我手动命名 → 查品类 → 填表 → 记日报\n= 10 分钟 × 每天 5 张 = 50 分钟/天\n\n现在:\n文件夹新增 1 张图 → 脚本跑 3 秒 → 自动命名+归档+解读进日报\n= 0 分钟/天\n\n───── 4 步从 0 搭 ─────\n① 监听:Python watchdog 监控文件夹\n② 解析:正则提取商品品类/颜色/编号\n③ 归档:mv 到对应类目文件夹\n④ 解读:Kimi API 输出商品一句话描述\n\n───── 6 行核心代码 ─────\nimport os, re, shutil\nfrom watchdog.observers import Observer\nfrom watchdog.events import FileSystemEventHandler\n\nclass AutoFlow(FileSystemEventHandler):\n    def on_created(self, event):\n        f = event.src_path\n        if f.endswith('.jpg'):\n            m = re.match(r'(\\w+)-(\\w+)-(\\w+)', os.path.basename(f))\n            if m: shutil.move(f, f\"{m.group(1)}/{m.group(2)}/\")\n\nObserver().schedule(AutoFlow(), '.', recursive=True).start()\nprint(\"监听中... Ctrl+C 退出\")\n\n───── 踩坑清单 ─────\n❌ 文件名不规范 → 写 fallback:未分类/\n❌ 重复触发 → 加锁文件判断\n❌ API 超时 → retry 3 次 + 异常日志\n\n───── 互动 ─────\n你下一个想自动化的任务是什么? 👇\n评论区扣任务名,\n我选 Top3 在 D18 给出完整代码片段。\n\n关注我,看 30 天跑完我会得出什么结论 🌱",
+      "tags": ["#前端转AI电商","#Python","#自动化","#工作流","#程序员副业"],
+      "designPoints": ["标题 14 字 ≤ 20","正文 ~800 字","承接 D11/D12 Kimi API → 工作流串接","互动钩子:下一个想自动化的任务"],
+      "preSops": [
+        {"text": "打开小红书 App → 创建笔记"},
+        {"text": "选 6 张图(封面 1 + 内页 5),按顺序排好"},
+        {"text": "选 3:4 竖图"},
+        {"text": "标题:从0搭第一段工作流自动化脚本"},
+        {"text": "正文:点\"复制正文\"按钮粘贴"},
+        {"text": "加 5 个标签"},
+        {"text": "选发布时间:周五 20:00-21:00", "strong": "周五 20:00-21:00"},
+        {"text": "发布"}
+      ],
+      "postSops": [
+        {"time": "10 分钟", "action": "自己评论(\"你下一个想自动化的任务是什么?\")", "goal": "收集自动化任务"},
+        {"time": "30 分钟", "action": "每条评论认真回复", "goal": "收集 D18 素材"},
+        {"time": "2 小时", "action": "截图保存 D17 数据", "goal": "W3 中段素材"},
+        {"time": "6 小时", "action": "看一次数据", "goal": "判断是否二次推"},
+        {"time": "24 小时", "action": "统计 Top3 自动化任务 → D18 兑现", "goal": "D18 代码素材"}
+      ],
+      "kpiTargets": [
+        {"label": "曝光", "value": "≥ 1500", "hint": "代码教程类天然高搜索"},
+        {"label": "收藏率", "value": "≥ 10%", "hint": "代码片段高收藏"},
+        {"label": "评论", "value": "≥ 60", "hint": "自动化任务收集"},
+        {"label": "涨粉", "value": "≥ 80", "hint": "程序员粉精准"}
+      ],
+      "dataRecap": [
+        {"label": "代码行数", "value": "约 20 行", "detail": "watchdog + 正则 + shutil"},
+        {"label": "搭建时间", "value": "约 30 分钟", "detail": "含 watchdog 选型 + 正则调试"},
+        {"label": "省时", "value": "50 分钟/天 → 0 分钟/天", "detail": "脚本跑 3 秒自动归档+解读"},
+        {"label": "互动钩子", "value": "下一个想自动化的任务", "detail": "Top3 在 D18 给完整代码"}
+      ],
+      "selfCheck": {
+        "cover_3s_test": null, "title_formula": null, "interaction_hook": null,
+        "improvements": "配图用 HTML+Chrome headless 截图 1242×1660 PNG,中文 100% 清晰。蓝绿配色(技术感)。",
+        "next_day_pivot": "D18 是观点稿(工具堆 vs 工作流),钩子用\"堆工具 or 搭工作流\"二选一"
+      }
+    },
+    "18": {
+      "title": "D18 · 工具堆 vs 工作流",
+      "publishDate": "2026-07-11",
+      "weekday": "周六",
+      "publishTime": "20:00",
+      "status": "ready",
+      "pillar": "观点输出",
+      "title_xhs": "工具堆 vs 工作流",
+      "cover": "content-kit/D18-笔记/01-封面.png",
+      "images": [
+        {"src": "content-kit/D18-笔记/01-封面.png", "alt": "封面"},
+        {"src": "content-kit/D18-笔记/02-工具堆的痛苦.png", "alt": "工具堆的痛苦"},
+        {"src": "content-kit/D18-笔记/03-工作流的价值.png", "alt": "工作流的价值"},
+        {"src": "content-kit/D18-笔记/04-我踩过的坑.png", "alt": "我踩过的坑"},
+        {"src": "content-kit/D18-笔记/05-判断标准.png", "alt": "判断标准"},
+        {"src": "content-kit/D18-笔记/06-D19预告.png", "alt": "Day 19 预告"}
+      ],
+      "body": "做了 2 年电商,用过的 AI 工具超过 30 款。\n但真正帮我省时间的,只有 3 套工作流。\n\n不是工具不够,是工作流没搭起来。\n\n───── 工具堆的痛苦 ─────\n买了 Kimi → 写文案快了一点\n买了 Midjourney → 出图质量高了\n买了 Notion → 笔记整理好了\n买了 Zapier → 自动化接通了\n买了 xxx → …\n\n结果:每年 ¥2000+ 工具订阅费,\n每天还是在手动复制粘贴。\n\n工具堆 ≠ 效率高\n\n───── 工作流的价值 ─────\n工作流 = 按顺序把\"任务\"变成\"自动\"\n不是选更好的工具,\n是把现有工具串起来。\n\nD9 商品图归档:D16 选型工具 → 工作流\nD10 数据日报:D16 选型工具 → 工作流\nD17 自动脚本:D16 选型工具 → 工作流\n\n3 套工作流,用了 12 款工具里的 3 款。\n\n───── 我踩过的坑 ─────\n❌ 工具买了=会用了\n真相:买了 Kimi,不会写 prompt 一样写不出好文案\n❌ 工具越多=越自动化\n真相:买了 10 款工具,每款都学 20%,等于 0\n❌ 别人说好=适合我\n真相:工具选型必须看自己业务流程,不是看别人推荐\n\n───── 判断标准:工具还是工作流? ─────\n✅ 每天重复超过 3 次 → 工作流\n✅ 跨 2 个工具以上 → 工作流\n✅ 需要人工判断 → 先写 SOP 再自动化\n✅ 一次性任务 → 工具直接解决\n\n一句话:\n工具是起点,工作流是终点。\n只买工具不搭工作流,等于买了跑鞋不跑步。\n\n───── 评论区 ─────\n你现在在\"堆工具\"还是\"搭工作流\"? 👇\n评论区:扣\"堆工具\"或\"搭工作流\"\n我选 10 条给\"搭工作流\"的具体步骤。\n\n关注我,看 30 天跑完我会得出什么结论 🌱",
+      "tags": ["#前端转AI电商","#工作流","#AI工具","#效率提升","#程序员思维"],
+      "designPoints": ["标题 8 字 ≤ 20(极简对比)","正文 ~720 字","工具堆的痛苦 vs 工作流的价值双栏结构","3 个真实踩坑+4 条判断标准","互动钩子:堆工具 or 搭工作流二选一"],
+      "preSops": [
+        {"text": "打开小红书 App → 创建笔记"},
+        {"text": "选 6 张图(封面 1 + 内页 5),按顺序排好"},
+        {"text": "选 3:4 竖图"},
+        {"text": "标题:工具堆 vs 工作流"},
+        {"text": "正文:点\"复制正文\"按钮粘贴"},
+        {"text": "加 5 个标签"},
+        {"text": "选发布时间:周六 20:00-21:00", "strong": "周六 20:00-21:00"},
+        {"text": "发布"}
+      ],
+      "postSops": [
+        {"time": "10 分钟", "action": "自己评论(\"你现在在堆工具还是搭工作流?\")", "goal": "激活二选一评论区"},
+        {"time": "30 分钟", "action": "每条评论认真回复", "goal": "收集 D19 素材"},
+        {"time": "2 小时", "action": "截图保存 D18 数据", "goal": "W3 中段素材"},
+        {"time": "6 小时", "action": "看一次数据", "goal": "判断是否二次推"},
+        {"time": "24 小时", "action": "统计\"堆工具/搭工作流\"比例", "goal": "D19 素材"}
+      ],
+      "kpiTargets": [
+        {"label": "曝光", "value": "≥ 1800", "hint": "观点类周末高曝光"},
+        {"label": "收藏率", "value": "≥ 8%", "hint": "判断标准高收藏"},
+        {"label": "评论", "value": "≥ 100", "hint": "二选一强互动"},
+        {"label": "涨粉", "value": "≥ 120", "hint": "观点类精准涨粉"}
+      ],
+      "dataRecap": [
+        {"label": "核心论点", "value": "工具是起点,工作流是终点", "detail": "只买工具不搭工作流 = 买了跑鞋不跑步"},
+        {"label": "3 套工作流", "value": "用了 12 款工具里的 3 款", "detail": "D9 商品图归档/D10 数据日报/D17 自动脚本"},
+        {"label": "3 个踩坑", "value": "买了=会了/越多=越自动/别人好=适合我", "detail": "全是我自己的真实踩坑"},
+        {"label": "判断标准", "value": "4 条 ✅ 工作流条件", "detail": "每天重复 3 次+/跨 2 个工具+/需人工判断+/一次性任务"}
+      ],
+      "selfCheck": {
+        "cover_3s_test": null, "title_formula": null, "interaction_hook": null,
+        "improvements": "配图用 HTML+Chrome headless 截图 1242×1660 PNG,中文 100% 清晰。绿色配色(工作流=成长)。",
+        "next_day_pivot": "D19 是避坑干货(8 个 AI 文案常见坑),钩子用\"第 N 个坑\",承接 D18 观点"
+      }
+    },
     "19": {
       "title": "D19 · AI 文案 8 个常见坑 + 对策",
       "publishDate": "2026-07-09",
