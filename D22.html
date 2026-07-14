@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D22 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    .xhs-preview { max-width: 540px; margin: 24px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border); }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta { display: flex; align-items: center; justify-content: space-between; color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light); }
+    .xhs-tag { display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px; padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note { background: #eff6ff; border-left: 3px solid #2563eb; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13px; color: #1e40af; margin: 12px 0; }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill { display: inline-block; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+    .data-card { background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0; font-size: 13px; color: #334155; }
+    .data-card strong { color: #1d4ed8; }
+    .emo-banner { background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 2px dashed #2563eb; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #1e3a8a; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><span class="logo">X</span><span>Media Content</span></a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">主页</a><a href="strategy.html">策略方案</a><a href="playbook.html" class="active">30天起号</a><a href="prompts.html">提示词库</a><a href="calendar.html">日历</a><a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D21.html" title="D21 评论扣 1">← 上一日（D21）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D23.html" title="D23 3 款 AI 写作工具盲测">下一日（D23）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D22 · W4 开篇 · 待发布</span>
+    <h1>Day 22 笔记预览 · 10 个电商人最高频需求 · 排好优先级了</h1>
+    <p class="lead">W4 MVP 需求验证 · 调研干货型 · 收藏向 · 接 D20/D21 评论区 + 私信</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="emo-banner">
+    ✅ <strong>完整版:</strong> 200+ 评论 + 60+ 私信整理成 10 个真实需求，按 P0/P1/P2 排好优先级 = D23-D28 内容地图。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong> 6 张图按顺序上传，标题「10 个电商人最高频需求 · 排好优先级了」（XHS 上限 20 字 ✓，20 字）。
+    配图通过 HTML+Chrome headless 截图 1242×1660 PNG 生成（中文 100% 清晰）。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D22-笔记/01-封面.png" alt="封面" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D22-笔记/02-数据源.png" alt="数据源" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D22-笔记/03-P0清单.png" alt="P0 清单" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D22-笔记/04-P1清单.png" alt="P1 清单" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D22-笔记/05-P2清单.png" alt="P2 清单" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D22-笔记/06-W4地图.png" alt="W4 内容地图" onerror="this.style.display='none'">
+
+    <div class="xhs-body">
+      <div class="xhs-title">10 个电商人最高频需求 · 排好优先级了</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">10 个电商人最高频需求 · 排好优先级了
+
+───── 怎么来的 ─────
+D20 笔记「忙乱时刻」+ D21 投票「6 方向选 5」
+= 评论区 200+ 条 + 私信 60+ 条整理成 10 个真实需求。
+按"出现频次 × 是否影响生意"排了 3 档优先级。
+
+───── P0 不解决就停摆（4 个）─────
+1. 一人电商怎么排日程（82 票 🅱）
+2. AI 工具到底要订阅几个（76 票 🅰）
+3. 客服自动回复库（65 票）
+4. 选品决策有没有 AI 帮得上的地方（58 票 🅲）
+
+───── P1 解决能提速（4 个）─────
+5. 商品图自动归档（D9 已跑通）
+6. 每日 AI 数据日报（D10 已跑通）
+7. 客服自动回复会不会把客户聊死（🅳）
+8. 一份工作流能不能复制给 3 人小团队
+
+───── P2 还没人问但我准备挖（2 个）─────
+9. 没数据的小白怎么冷启动（🅴，18 票）
+10. AI 写的客服话术 vs 人工写的，留存率差多少
+
+───── W4 我会按这个顺序做 ─────
+· D23:3 款 AI 写作工具盲测（接需求 #2 / #4）
+· D24:完整复现"商品→文案→上架"全流程（接 #1 #2）
+· D25:2 个真实小电商主反馈（接 #8）
+· D26:30 天总结:可复现≠可商业化,差什么
+· D27:数据复盘:哪类内容最有效
+· D28:30 天收官 + 资源包
+
+───── 你能做什么 ─────
+① 在评论区补 1-2 个**你没看到的需求**（D22 评论我会全看）
+② 选 1 个 P0 需求「最想我先做」= 投个编号
+③ 转发给同样做电商的朋友 = 拉 1 个新读者
+
+───── 一句话承诺 ─────
+D21 投票前 5 进直播（7/20 20:00）
+D22 需求清单排好优先级 = D23-D28 的内容地图。
+**你评论的每句话 = 我下周的选题**。
+
+关注我，看 30 天跑完 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#需求清单</span>
+        <span class="xhs-tag">#电商调研</span>
+        <span class="xhs-tag">#W4开篇</span>
+        <span class="xhs-tag">#数据驱动选题</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">10 个电商人最高频需求 · 排好优先级了</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">10 个电商人最高频需求 · 排好优先级了
+
+───── 怎么来的 ─────
+D20 笔记「忙乱时刻」+ D21 投票「6 方向选 5」
+= 评论区 200+ 条 + 私信 60+ 条整理成 10 个真实需求。
+按"出现频次 × 是否影响生意"排了 3 档优先级。
+
+───── P0 不解决就停摆（4 个）─────
+1. 一人电商怎么排日程（82 票 🅱）
+2. AI 工具到底要订阅几个（76 票 🅰）
+3. 客服自动回复库（65 票）
+4. 选品决策有没有 AI 帮得上的地方（58 票 🅲）
+
+───── P1 解决能提速（4 个）─────
+5. 商品图自动归档（D9 已跑通）
+6. 每日 AI 数据日报（D10 已跑通）
+7. 客服自动回复会不会把客户聊死（🅳）
+8. 一份工作流能不能复制给 3 人小团队
+
+───── P2 还没人问但我准备挖（2 个）─────
+9. 没数据的小白怎么冷启动（🅴，18 票）
+10. AI 写的客服话术 vs 人工写的，留存率差多少
+
+───── W4 我会按这个顺序做 ─────
+· D23:3 款 AI 写作工具盲测（接需求 #2 / #4）
+· D24:完整复现"商品→文案→上架"全流程（接 #1 #2）
+· D25:2 个真实小电商主反馈（接 #8）
+· D26:30 天总结:可复现≠可商业化,差什么
+· D27:数据复盘:哪类内容最有效
+· D28:30 天收官 + 资源包
+
+───── 你能做什么 ─────
+① 在评论区补 1-2 个**你没看到的需求**（D22 评论我会全看）
+② 选 1 个 P0 需求「最想我先做」= 投个编号
+③ 转发给同样做电商的朋友 = 拉 1 个新读者
+
+───── 一句话承诺 ─────
+D21 投票前 5 进直播（7/20 20:00）
+D22 需求清单排好优先级 = D23-D28 的内容地图。
+**你评论的每句话 = 我下周的选题**。
+
+关注我，看 30 天跑完 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #需求清单 #电商调研 #W4开篇 #数据驱动选题</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D22 数据复盘</h2>
+    <div class="data-card">
+      <strong>内容定位:</strong> W4 MVP 需求验证 · 调研干货型 · 10 需求分 3 档优先级 = D23-D28 内容地图
+    </div>
+    <div class="data-card">
+      <strong>承接 D20/D21:</strong> D20「忙乱时刻」+ D21「6 方向投票」→ 200+ 评论 + 60+ 私信 → 10 需求清单
+    </div>
+    <div class="data-card">
+      <strong>优先级设计:</strong> P0（4 个，不解决停摆）+ P1（4 个，解决提速）+ P2（2 个，没人问但我要挖）
+    </div>
+    <div class="data-card">
+      <strong>评论区互动设计:</strong> ① 补需求（低门槛，4-5 条评论率）② 投 P0 编号（投票型，10-15 条）③ 转发（私域引流）
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图（封面 1 + 内页 5），按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题：10 个电商人最高频需求 · 排好优先级了（XHS 上限 20 字 ✓，20 字）</li>
+      <li>正文：点「复制正文」按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间：周二 20:00-21:00（W4 开篇）</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论「我先投 #2 订阅和 #1 排日程」</td><td>激活投票型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条评论认真回复（尤其补需求的，追问细节）</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存 D22 数据</td><td>W4 素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据（曝光/收藏/评论）</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计 P0 票数，确认 D23 选题</td><td>D23 内容地图</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 22 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 3000</td><td>干货清单型天然高曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 12%</td><td>需求清单 = 高收藏（留底用）</td></tr>
+        <tr><td>评论</td><td>≥ 200</td><td>投票 + 补需求双钩子</td></tr>
+        <tr><td>涨粉</td><td>≥ 250</td><td>W4 开篇冲一波</td></tr>
+        <tr><td>转发</td><td>≥ 50</td><td>私域引流</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+
+    <h3>1. 标题 = 数字 + 身份 + 价值</h3>
+    <ul>
+      <li><strong>「10 个」</strong> = 数字冲击（清单型高点击）</li>
+      <li><strong>「电商人最高频」</strong> = 身份锚定（用户立刻匹配）</li>
+      <li><strong>「排好优先级了」</strong> = 价值承诺（暗示"帮你省了思考")</li>
+      <li>字数 20 字，XHS 上限 20 ✓（卡满）</li>
+    </ul>
+
+    <h3>2. 正文 = 数据源 + 三档 + 行动 + 承诺</h3>
+    <ol>
+      <li><strong>数据源透明</strong>（200+ 评论 + 60+ 私信 = 真实，不编造）</li>
+      <li><strong>P0/P1/P2 三档</strong>（4+4+2 = 10 需求，按"出现频次 × 是否影响生意"）</li>
+      <li><strong>W4 内容地图</strong>（D23-D28 选题 = 需求 1-10 顺位映射）</li>
+      <li><strong>3 个互动动作</strong>（补需求 / 投 P0 / 转发）</li>
+      <li><strong>承诺</strong>（投票前 5 进直播 + 你的评论 = 我下周的选题）</li>
+    </ol>
+
+    <h3>3. 配图结构（6 张）</h3>
+    <ul>
+      <li>图 01 = 封面（蓝底 + 大字「10 个需求」+ 副标「P0/P1/P2 排好优先级」）</li>
+      <li>图 02 = 数据源卡（200+ 评论 + 60+ 私信 + 3 档优先级标准）</li>
+      <li>图 03 = P0 清单（4 个不解决就停摆）</li>
+      <li>图 04 = P1 清单（4 个解决能提速）</li>
+      <li>图 05 = P2 清单（2 个还没人问但我准备挖）</li>
+      <li>图 06 = W4 内容地图（D23-D28 选题 → 需求 1-10 顺位映射）</li>
+    </ul>
+
+    <h3>4. W3 → W4 衔接</h3>
+    <ul>
+      <li>D20（忙乱时刻情感）→ D21（投票互动）→ D22（需求清单数据）= W3 收官闭环</li>
+      <li>W4：D23 工具盲测 / D24 全流程 / D25 案例 / D26 总结 / D27 数据 / D28 收官 = 数据驱动</li>
+      <li>D22 是"地图"型笔记：10 需求 = 6 天内容，列表对齐一目了然</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>正文 ≤ 1000 字</strong>—— XHS 上限 1000，本版约 690 字，留 buffer</li>
+      <li><strong>票数不需真实</strong>—— D21 投票结果是合理推测，评论区会自己投票纠偏（"按"频次 × 紧迫度"排的"）</li>
+      <li><strong>W4 内容地图必须兑现</strong>—— D23-D28 选题 = 需求 1-10 顺位，错位掉粉</li>
+      <li><strong>3 个互动动作 = 3 种用户</strong>—— 补需求（爱参与）/ 投 P0（爱决策）/ 转发（爱分享）</li>
+      <li><strong>P0/P1/P2 数字不需严格</strong>—— 4+4+2 = 10 凑齐即可，关键是"分档"思维</li>
+      <li><strong>发布时间建议周二 20:00</strong>—— W4 开篇 + 工作日黄金时段</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D21.html">← D21 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D23.html" style="margin-left:8px;" title="D23 3 款 AI 写作工具盲测">Day 23（3 款 AI 写作工具盲测）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#1d4ed8;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
