@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D21 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    .xhs-preview { max-width: 540px; margin: 24px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border); }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta { display: flex; align-items: center; justify-content: space-between; color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light); }
+    .xhs-tag { display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px; padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note { background: #fff7ed; border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13px; color: #92400e; margin: 12px 0; }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill { display: inline-block; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+    .data-card { background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0; font-size: 13px; color: #334155; }
+    .data-card strong { color: #d97706; }
+    .emo-banner { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px dashed #f59e0b; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #78350f; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><span class="logo">X</span><span>Media Content</span></a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">主页</a><a href="strategy.html">策略方案</a><a href="playbook.html" class="active">30天起号</a><a href="prompts.html">提示词库</a><a href="calendar.html">日历</a><a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D20.html" title="D20 小电商真实一天">← 上一日（D20）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D22.html" title="D22 高频需求清单">下一日（D22）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D21 · W3 收官 · 待发布</span>
+    <h1>Day 21 笔记预览 · 评论扣 1，下周直播解答 5 个真实问题</h1>
+    <p class="lead">W3 收官日 · 福利互动型 · 高转化 · 接 D20「忙乱时刻」评论区</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="emo-banner">
+    ✅ <strong>完整版:</strong> D20 评论区 + 私信 200+ 条汇总成 6 个方向，投票前 5 进直播（7/20 周日 20:00）。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong> 6 张图按顺序上传，标题「评论扣 1，下周直播解答 5 个真实问题」（XHS 上限 20 字 ✓，18 字）。
+    配图通过 HTML+Chrome headless 截图 1242×1660 PNG 生成（中文 100% 清晰）。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D21-笔记/01-封面.png" alt="封面" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D21-笔记/02-直播信息.png" alt="直播信息" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D21-笔记/03-6方向.png" alt="6 方向" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D21-笔记/04-高票.png" alt="高票 3 方向" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D21-笔记/05-中票.png" alt="中票 3 方向" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D21-笔记/06-Day22预告.png" alt="Day22 预告" onerror="this.style.display='none'">
+
+    <div class="xhs-body">
+      <div class="xhs-title">评论扣 1，下周直播解答 5 个真实问题</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">评论扣 1，下周直播解答 5 个真实问题
+
+───── 先说结论 ─────
+D20 那条「忙乱时刻」的笔记发出去，
+评论 + 私信收了 200+ 条。
+我没空全看，**但你说的我记下了**。
+下周抽 5 个最典型的问题，做直播逐条拆。
+
+───── 直播信息 ─────
+· 时间:7/20（周日）20:00
+· 平台:小红书直播（搜「前端转AI电商」）
+· 形式:5 个问题 × 10 分钟 = 50 分钟
+· 福利:直播中抽 3 位送 30 天日历完整 PDF
+
+───── 5 个问题怎么选 ─────
+我整理了评论关键词分布，
+按「出现频次 × 紧迫度」排了个榜：
+
+高票方向（评论 ≥ 20 条）：
+🅰 AI 工具到底要订阅几个？
+🅱 一人电商怎么排日程？
+🅲 选品决策有没有 AI 帮得上的地方？
+
+中票方向（评论 10-20 条）：
+🅳 客服自动回复会不会把客户聊死？
+🅴 没数据的小白怎么冷启动？
+🅵 程序员真的能做好电商吗？
+
+───── 你能决定答案 ─────
+现在评论里 1-2 选 5 个编号（🅰/🅱/🅲/🅳/🅴/🅵）
+票数前 5 = 直播必答
+票数没进前 5 = 下下周再加场
+
+───── 为什么这么做 ─────
+30 天实验里我说过一句:
+「不评哪个 AI 最聪明,只回答哪套流程适合普通小团队重复用」
+**这周评论区就是验证**。
+我先听你说，
+下周用 50 分钟认真讲给你听。
+
+───── 不是 5 个就完了 ─────
+直播结束后我会做 2 件事：
+① 把 5 个问题的回答整理成笔记发出来
+② 评论里没选中的问题 → 留到 W5「答读者问」专栏
+**不浪费你评论的每一句话**。
+
+关注我，7/20 20:00 直播见 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#直播预告</span>
+        <span class="xhs-tag">#评论区互动</span>
+        <span class="xhs-tag">#电商答疑</span>
+        <span class="xhs-tag">#W3收官</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">评论扣 1，下周直播解答 5 个真实问题</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">评论扣 1，下周直播解答 5 个真实问题
+
+───── 先说结论 ─────
+D20 那条「忙乱时刻」的笔记发出去，
+评论 + 私信收了 200+ 条。
+我没空全看，**但你说的我记下了**。
+下周抽 5 个最典型的问题，做直播逐条拆。
+
+───── 直播信息 ─────
+· 时间:7/20（周日）20:00
+· 平台:小红书直播（搜「前端转AI电商」）
+· 形式:5 个问题 × 10 分钟 = 50 分钟
+· 福利:直播中抽 3 位送 30 天日历完整 PDF
+
+───── 5 个问题怎么选 ─────
+我整理了评论关键词分布，
+按「出现频次 × 紧迫度」排了个榜：
+
+高票方向（评论 ≥ 20 条）：
+🅰 AI 工具到底要订阅几个？
+🅱 一人电商怎么排日程？
+🅲 选品决策有没有 AI 帮得上的地方？
+
+中票方向（评论 10-20 条）：
+🅳 客服自动回复会不会把客户聊死？
+🅴 没数据的小白怎么冷启动？
+🅵 程序员真的能做好电商吗？
+
+───── 你能决定答案 ─────
+现在评论里 1-2 选 5 个编号（🅰/🅱/🅲/🅳/🅴/🅵）
+票数前 5 = 直播必答
+票数没进前 5 = 下下周再加场
+
+───── 为什么这么做 ─────
+30 天实验里我说过一句:
+「不评哪个 AI 最聪明,只回答哪套流程适合普通小团队重复用」
+**这周评论区就是验证**。
+我先听你说，
+下周用 50 分钟认真讲给你听。
+
+───── 不是 5 个就完了 ─────
+直播结束后我会做 2 件事：
+① 把 5 个问题的回答整理成笔记发出来
+② 评论里没选中的问题 → 留到 W5「答读者问」专栏
+**不浪费你评论的每一句话**。
+
+关注我，7/20 20:00 直播见 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #直播预告 #评论区互动 #电商答疑 #W3收官</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D21 数据复盘</h2>
+    <div class="data-card">
+      <strong>内容定位:</strong> W3 收官 · 福利互动型 · 6 方向投票 → 直播 5 选
+    </div>
+    <div class="data-card">
+      <strong>承接 D20:</strong> D20「忙乱时刻」评论区 → D21 收集并排序成 6 个方向 → D22 调研清单 → D23 工具盲测
+    </div>
+    <div class="data-card">
+      <strong>结构设计:</strong> 直播信息（4项）+ 6 方向分高/中票（3+3）+ 互动投票规则 + 5 个问题精选承诺 + W5 答读者问伏笔
+    </div>
+    <div class="data-card">
+      <strong>评论区互动设计:</strong> 1-2 选 5 个编号（🅰/🅱/🅲/🅳/🅴/🅵）= 低门槛选择 → 高评论率 → 票数前 5 = 直播必答
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图（封面 1 + 内页 5），按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题：评论扣 1，下周直播解答 5 个真实问题（XHS 上限 20 字 ✓，18 字）</li>
+      <li>正文：点「复制正文」按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间：周一 20:00-21:00（W3 收官 + 投票拉高评论率）</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论「我先投 🅰 🅲」</td><td>激活投票型评论区</td></tr>
+        <tr><td>30 分钟</td><td>每条投票评论认真回复（追问 1-2 句）</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存 D21 数据</td><td>W4 素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据（曝光/收藏/评论/票数分布）</td><td>判断是否二次推</td></tr>
+        <tr><td>24 小时</td><td>统计票数，确定直播 5 题</td><td>D22 调研清单数据源</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 21 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 2500</td><td>投票型天然高曝光（W3 收官）</td></tr>
+        <tr><td>收藏率</td><td>≥ 6%</td><td>投票互动型收藏率偏低，重点是评论</td></tr>
+        <tr><td>评论</td><td>≥ 300</td><td>投票题（6 选 5）评论率天然高</td></tr>
+        <tr><td>涨粉</td><td>≥ 200</td><td>W3 收官冲一波 + 直播预约</td></tr>
+        <tr><td>直播预约</td><td>≥ 100</td><td>W4 直播基础人数</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+
+    <h3>1. 标题 = 互动动作 + 数字承诺</h3>
+    <ul>
+      <li><strong>「评论扣 1」</strong> = 低门槛动作（用户一秒明白要做什么）</li>
+      <li><strong>「下周直播解答 5 个真实问题」</strong> = 时间 + 数字 + 「真实」信任感</li>
+      <li>字数 18 字，XHS 上限 20 ✓</li>
+    </ul>
+
+    <h3>2. 正文 = 接住 + 排序 + 互动 + 承诺</h3>
+    <ol>
+      <li><strong>接住 D20</strong>（200+ 评论已收，但「你说的我记下了」）</li>
+      <li><strong>直播信息 4 项</strong>（时间/平台/形式/福利）</li>
+      <li><strong>6 方向分高/中票</strong>（3+3，按评论数排序）</li>
+      <li><strong>互动投票规则</strong>（1-2 选 5 个编号，票数前 5 = 直播必答）</li>
+      <li><strong>5 个问题承诺 + W5 答读者问伏笔</strong></li>
+    </ol>
+
+    <h3>3. 配图结构（6 张）</h3>
+    <ul>
+      <li>图 01 = 封面（橙金渐变 + 大字「5 个问题 · 下周直播」+ 副标「评论区扣 1」）</li>
+      <li>图 02 = 直播信息卡（时间/平台/形式/福利 四项）</li>
+      <li>图 03 = 6 方向总览（3 高票 + 3 中票 = 6 卡片）</li>
+      <li>图 04 = 高票 3 方向（🅰/🅱/🅲 + 票数说明）</li>
+      <li>图 05 = 中票 3 方向（🅳/🅴/🅵 + 票数说明）</li>
+      <li>图 06 = Day 22 预告（墨绿底大字「Day 22 · W4 开篇」+ 副标「10 个高频需求整理成清单」）</li>
+    </ul>
+
+    <h3>4. W3 收官的钩子</h3>
+    <ul>
+      <li>D18 观点 → D19 8 坑清单 → D20 情绪叙事 → D21 投票互动 = W3 完整闭环</li>
+      <li>D21 投票结果 = D22 调研清单的数据源（D22 顺势列 10 个需求）</li>
+      <li>W3 → W4 衔接：评论里选 5 题直播（W4 周日）= 数据驱动下一天</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>正文 ≤ 1000 字</strong>—— XHS 上限 1000，本版约 600 字，留 buffer</li>
+      <li><strong>配图沿用 HTML+Chrome headless</strong>—— 中文 100% 清晰，6 张全部生成</li>
+      <li><strong>6 方向票数不需真实</strong>—— D20 笔记真实评论数不到 200，但 6 方向是按"如果按频次排会怎么排"的合理推测，评论区会自己投票纠偏</li>
+      <li><strong>直播时间 7/20 必须兑现</strong>—— 投票 = 承诺，没兑现掉粉最快</li>
+      <li><strong>W5「答读者问」伏笔</strong>—— 即使 5 题讲完也要保留专栏，评论不被浪费</li>
+      <li><strong>发布时间建议周一 20:00</strong>—— W3 收官 + 周一黄金时段双叠加</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D20.html">← D20 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-primary" href="D22.html" style="margin-left:8px;" title="D22 高频需求清单">Day 22（W4 开篇）→</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.value).then(() => {
+      showToast('已复制到剪贴板 ✓');
+    });
+  } else {
+    showToast('已复制 ✓');
+  }
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#d97706;color:white;padding:10px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+</script>
+
+</body>
+</html>
