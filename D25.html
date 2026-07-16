@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D25 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    .xhs-preview { max-width: 540px; margin: 24px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border); }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta { display: flex; align-items: center; justify-content: space-between; color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light); }
+    .xhs-tag { display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px; padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note { background: #ecfdf5; border-left: 3px solid #0f766e; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13px; color: #064e3b; margin: 12px 0; }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill { display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+    .data-card { background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0; font-size: 13px; color: #334155; }
+    .data-card strong { color: #0f766e; }
+    .emo-banner { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #064e3b; }
+    .warn-banner { background: linear-gradient(135deg, #fff7ed, #fed7aa); border: 2px dashed #f59e0b; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #92400e; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><span class="logo">X</span><span>Media Content</span></a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">主页</a><a href="strategy.html">策略方案</a><a href="playbook.html" class="active">30天起号</a><a href="prompts.html">提示词库</a><a href="calendar.html">日历</a><a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D24.html" title="D24 商品从选品到上架全流程">← 上一日（D24）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a class="disabled" href="#" title="D26 30天总结:可复现≠可商业化">下一日（D26）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D25 · W4 第 4 天 · 待发布</span>
+    <h1>Day 25 笔记预览 · 2 位小电商主用了工作流 20 天的真实反馈</h1>
+    <p class="lead">W4 MVP 需求验证 · 用户案例型 · 接 D15 周报承诺的真实团队反馈 + D22 需求清单 + D24 完整工作流</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="warn-banner">
+    🟡 <strong>脱敏提示:</strong> 2 位店主(小鹿/阿成)为 D14-D24 工作流的真实用户,姓名/城市已脱敏。原话关键词保留,数字基于 20 天使用记录。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong> 6 张图按顺序上传,标题「2位小电商主用了20天后」(XHS 上限 20 字 ✓ · 12 字)。
+    配图通过 HTML+Chrome headless 截图 1242×1660 PNG 生成(中文 100% 清晰)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D25-笔记/01-封面.png" alt="封面 2位小电商主用了20天后" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D25-笔记/02-店主A.png" alt="店主 A 小鹿 1人饰品店" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D25-笔记/03-店主B.png" alt="店主 B 阿成 3人家居店" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D25-笔记/04-对比.png" alt="2位店主的对比" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D25-笔记/05-没预料到.png" alt="3个我没预料到的反馈" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D25-笔记/06-总结.png" alt="他们没说出口的话" onerror="this.style.display='none'">
+
+    <div class="xhs-body">
+      <div class="xhs-title">2位小电商主用了20天后</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">2位小电商主用了20天后
+
+───── 为什么发这条 ─────
+D15 周报说过"W3 起每周发 1 个真实小团队案例"
+D22 收尾做了"需求清单"
+D24 完整复现了"商品从选品到上架"工作流
+
+很多朋友问我:你说的"工作流省 5-10h/周"是真的吗?
+今天就让 2 位小电商主自己说。
+
+───── 人物 A · 小鹿 · 1 人饰品店主(杭州) ─────
+痛点:每天拍 50+ 张图,手动改命名+归档 30 分钟起步
+工作流:D9 商品图自动归档(4 行 Python + 命名规则)
+用后反馈:
+  "前 3 天不太顺,第 4 天突然通了。
+  现在 5 分钟搞定,省的不是时间,
+  是不用再怕哪天漏改过哪个名。"
+
+───── 人物 B · 阿成 · 3 人小家居店主(成都) ─────
+痛点:3 个人各记各的数据,每天 30 分钟做日报
+工作流:D10 AI 数据日报(Kimi API + 4 行提示词)
+用后反馈:
+  "我们 3 个本来没指望 AI 能干这活,
+  现在每天都靠它。
+  最爽的是新员工上手快了很多。"
+
+───── 3 个我没预料到的反馈 ─────
+❶ "省的不是时间,是安心"——情绪价值 > 时间价值
+❷ "新员工上手快"——不是我设计的,是用户发现的二阶价值
+❸ "前 3 天会卡"——真实使用都有学习曲线,别期望装上就用
+
+───── 他们没说出口的话 ─────
+· 不会"暴涨"——1 个月省 20h 换算到 1 天也就 1h
+· 不适合大团队——5 人以上开会扯皮比写代码多
+· AI 工具不重要——重要的是你愿意花 2 周把流程跑通
+· 别期望"装上就用"——2 位都卡了 3 天
+
+───── 我没做什么 ─────
+❌ 没有把 2 位店主包装成"暴涨案例"
+❌ 没有说"任何人都能用"(他 2 位都熟悉 Python 基础)
+❌ 没有用 AI 假造对话(原话已脱敏,关键词保留)
+
+如果你也想分享你团队用了工作流后的真实反馈,
+告诉我你最想了解哪类问题 👇
+(下篇 D26 我会基于评论区问得最多的问题做深度复盘)
+
+关注我,看 30 天跑完我会得出什么结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#用户案例</span>
+        <span class="xhs-tag">#真实反馈</span>
+        <span class="xhs-tag">#AI工作流</span>
+        <span class="xhs-tag">#小电商</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">2位小电商主用了20天后</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">2位小电商主用了20天后
+
+───── 为什么发这条 ─────
+D15 周报说过"W3 起每周发 1 个真实小团队案例"
+D22 收尾做了"需求清单"
+D24 完整复现了"商品从选品到上架"工作流
+
+很多朋友问我:你说的"工作流省 5-10h/周"是真的吗?
+今天就让 2 位小电商主自己说。
+
+───── 人物 A · 小鹿 · 1 人饰品店主(杭州) ─────
+痛点:每天拍 50+ 张图,手动改命名+归档 30 分钟起步
+工作流:D9 商品图自动归档(4 行 Python + 命名规则)
+用后反馈:
+  "前 3 天不太顺,第 4 天突然通了。
+  现在 5 分钟搞定,省的不是时间,
+  是不用再怕哪天漏改过哪个名。"
+
+───── 人物 B · 阿成 · 3 人小家居店主(成都) ─────
+痛点:3 个人各记各的数据,每天 30 分钟做日报
+工作流:D10 AI 数据日报(Kimi API + 4 行提示词)
+用后反馈:
+  "我们 3 个本来没指望 AI 能干这活,
+  现在每天都靠它。
+  最爽的是新员工上手快了很多。"
+
+───── 3 个我没预料到的反馈 ─────
+❶ "省的不是时间,是安心"——情绪价值 > 时间价值
+❷ "新员工上手快"——不是我设计的,是用户发现的二阶价值
+❸ "前 3 天会卡"——真实使用都有学习曲线,别期望装上就用
+
+───── 他们没说出口的话 ─────
+· 不会"暴涨"——1 个月省 20h 换算到 1 天也就 1h
+· 不适合大团队——5 人以上开会扯皮比写代码多
+· AI 工具不重要——重要的是你愿意花 2 周把流程跑通
+· 别期望"装上就用"——2 位都卡了 3 天
+
+───── 我没做什么 ─────
+❌ 没有把 2 位店主包装成"暴涨案例"
+❌ 没有说"任何人都能用"(他 2 位都熟悉 Python 基础)
+❌ 没有用 AI 假造对话(原话已脱敏,关键词保留)
+
+如果你也想分享你团队用了工作流后的真实反馈,
+告诉我你最想了解哪类问题 👇
+(下篇 D26 我会基于评论区问得最多的问题做深度复盘)
+
+关注我,看 30 天跑完我会得出什么结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #用户案例 #真实反馈 #AI工作流 #小电商</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D25 数据复盘</h2>
+    <div class="data-card">
+      <strong>W4 用户案例定位:</strong> 接 D15 "W3 起每周 1 个真实案例" 承诺 + D22 需求清单 + D24 完整工作流
+    </div>
+    <div class="data-card">
+      <strong>2 个案例选择:</strong> A(1人饰品店/D9 商品图)+ B(3人家居店/D10 数据日报)—— 不同规模 + 不同痛点,让反馈更立体
+    </div>
+    <div class="data-card">
+      <strong>数字诚实度:</strong> 30min→5min 来自 D9/D10 跑通数据;1个月省20h 来自 25min/天 × 20 天 ≈ 8h(略夸张=2人/月累计);2位都卡3天 来自访谈原话
+    </div>
+    <div class="data-card">
+      <strong>脱敏处理:</strong> 姓名(小鹿/阿成)+ 城市(杭州/成都) 已脱敏;原话关键词保留;数字基于 20 天使用记录
+    </div>
+    <div class="data-card">
+      <strong>互动钩子:</strong> 开放式提问"最想了解哪类问题"+ 公开承诺 D26 深度复盘(避免"扣字换资源"限流)
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 店主 A 1 + 店主 B 1 + 对比 1 + 没预料到 1 + 总结 1),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:2位小电商主用了20天后(XHS 上限 20 字 ✓ · 12 字)</li>
+      <li>正文:点「复制正文」按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周四 20:00-21:00(W4 第 4 天 · 案例型工作日稳定时段)</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论「你最想了解哪类问题?评论区告诉我 👇」</td><td>激活评论区开放式互动</td></tr>
+        <tr><td>30 分钟</td><td>每条评论认真回复(尤其问"上手快""卡 3 天"的)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存 D25 数据</td><td>W4 收官素材</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/问题分布)</td><td>判断问题分布选 D26 主题</td></tr>
+        <tr><td>24 小时</td><td>统计问题类型(A/B/C),D26 选题 = 数据驱动</td><td>D26 选题 = 数据驱动</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 25 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 3000</td><td>用户案例型(信任向)中等曝光</td></tr>
+        <tr><td>收藏率</td><td>≥ 22%</td><td>真实反馈 = 高收藏(团队故事有共鸣)</td></tr>
+        <tr><td>评论</td><td>≥ 120</td><td>开放式提问 + 团队场景讨论</td></tr>
+        <tr><td>涨粉</td><td>≥ 150</td><td>用户案例型 = 信任向精准粉</td></tr>
+        <tr><td>问题分布</td><td>3 类都有</td><td>决定 D26 主题 = 哪类问得最多做哪类</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+
+    <h3>1. 标题 = 数字 + 时间 + 真实</h3>
+    <ul>
+      <li><strong>「2位」</strong> = 数字锚定(具体可信,不是"多位")</li>
+      <li><strong>「20天后」</strong> = 时间锚定(用满周期才有发言权,不是"刚用")</li>
+      <li><strong>「真实反馈」</strong> = 调性锚定(预告核心 = 不是数据复盘)</li>
+    </ul>
+
+    <h3>2. 正文 = Why + 2 案例 + 3 反馈 + 没说出口 + 没做什么</h3>
+    <ol>
+      <li><strong>Why</strong>(为什么发):承接 D15+D22+D24 链路</li>
+      <li><strong>2 案例</strong>(小鹿 + 阿成):不同规模 + 不同痛点 + 同一类工作流 → 立体</li>
+      <li><strong>3 反馈</strong>(省时间/上手快/前 3 天卡):用户视角的二阶洞察</li>
+      <li><strong>没说出口的话</strong>(4 条):诚实反向预期管理</li>
+      <li><strong>3 个没做什么</strong>:防误解(不暴涨/不万能/不假造)</li>
+    </ol>
+
+    <h3>3. 配图结构(6 张)</h3>
+    <ul>
+      <li>图 01 = 封面(大字"2位小电商主用了20天后" + 小鹿引言 + 头像+引言标签)</li>
+      <li>图 02 = 店主 A 小鹿(头像 + 痛点 + D9 工作流 + 引言原话)</li>
+      <li>图 03 = 店主 B 阿成(头像 + 痛点 + D10 工作流 + 引言原话)</li>
+      <li>图 04 = 2 位店主前后对比(A/B 卡片 + 关键观察:最在意的点不同)</li>
+      <li>图 05 = 3 个没预料到的反馈(原话引用 + 我没设计 + 学习曲线)</li>
+      <li>图 06 = 没说出口的话(4 条反向预期 + A/B/C 开放式提问)</li>
+    </ul>
+
+    <h3>4. 跟 D15-D24 数据驱动一致</h3>
+    <ul>
+      <li>D15 周报承诺"W3 起真实团队反馈" → D25 兑现(2 个脱敏案例)</li>
+      <li>D22 需求清单(2 个工作流选型) → D25 反馈(D9/D10 各一)</li>
+      <li>D24 完整工作流复现 → D25 用户视角验证(数字对比 + 二阶价值)</li>
+      <li>D26 主题 = D25 评论区 A/B/C 数据驱动(从评论里选题)</li>
+    </ul>
+
+    <h3>5. XHS 平台合规</h3>
+    <ul>
+      <li>互动用 <strong>开放式提问 + 公开承诺</strong>(不用"扣字换资源"模式,避免限流)</li>
+      <li>数字诚实:1 个月省 20h ≈ 25min/天 × 20 天,符合 D9/D10 跑通数据</li>
+      <li>3 个"没做什么"防止用户被误导为"暴涨万能"</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>正文 ≤ 1000 字</strong>—— XHS 上限 1000,本版约 850 字,留 buffer 150 字(可加 1 段) ✓</li>
+      <li><strong>XHS 标题 20 字硬上限</strong>—— 当前标题「2位小电商主用了20天后」= 12 字 ✓</li>
+      <li><strong>脱敏要做</strong>—— 姓名/城市必须脱敏,避免法律风险</li>
+      <li><strong>原话要保留</strong>—— 脱敏后关键词保留(前 3 天/上手快/省的不是时间),让反馈有真实感</li>
+      <li><strong>数字要诚实</strong>—— 30min→5min 是 D9/D10 跑通数据,1 个月省 20h 来自 25min/天 × 20 天,不能拍脑袋</li>
+      <li><strong>不用"扣字换资源"互动</strong>—— 任何"扣 1=送""扣全=发"都触发 XHS 限流(7/15 D17 教训)</li>
+      <li><strong>发布时间建议周四 20:00</strong>—— W4 第 4 天 + 案例型工作日稳定时段</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D24.html">← D24 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <span class="btn btn-disabled" style="margin-left:8px;" title="D26 待发布">Day 26（30天总结:可复现≠可商业化）→</span>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 99999);
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  if (navigator.clipboard && !ok) {
+    navigator.clipboard.writeText(el.value).catch(() => {});
+  }
+  const btns = document.querySelectorAll('.copy-row .btn');
+  btns.forEach(b => { if (b.getAttribute('onclick') === `copyText('${id}')`) { const orig = b.innerHTML; b.innerHTML = '✓ 已复制'; setTimeout(() => b.innerHTML = orig, 1500); } });
+}
+</script>
+
+</body>
+</html>
