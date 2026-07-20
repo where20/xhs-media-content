@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D29 完整笔记 · 前端转AI电商</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/avatar.png">
+  <style>
+    .xhs-preview { max-width: 540px; margin: 24px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); border: 1px solid var(--border); }
+    .xhs-img { width: 100%; display: block; }
+    .xhs-body { padding: 20px 22px 16px; }
+    .xhs-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; color: #1a1a1a; }
+    .xhs-meta { display: flex; align-items: center; justify-content: space-between; color: var(--text-light); font-size: 13px; padding: 12px 0; border-top: 1px solid var(--border-light); }
+    .xhs-tag { display: inline-block; background: #f5f5f5; color: #4a5568; font-size: 13px; padding: 4px 10px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; }
+    .xhs-actions { display: flex; gap: 20px; padding: 0 22px 18px; color: var(--text-light); font-size: 13px; }
+    .xhs-actions span { display: flex; align-items: center; gap: 4px; }
+    .note { background: #ecfdf5; border-left: 3px solid #0f766e; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13px; color: #064e3b; margin: 12px 0; }
+    .copy-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    .time-pill { display: inline-block; background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+    .data-card { background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 12px 0; font-size: 13px; color: #334155; }
+    .data-card strong { color: #0f766e; }
+    .emo-banner { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 2px dashed #0f766e; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #064e3b; }
+    .warn-banner { background: linear-gradient(135deg, #fff7ed, #fed7aa); border: 2px dashed #f59e0b; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #92400e; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><span class="logo">X</span><span>Media Content</span></a>
+    <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">主页</a><a href="strategy.html">策略方案</a><a href="playbook.html" class="active">30天起号</a><a href="prompts.html">提示词库</a><a href="calendar.html">日历</a><a href="xhs.html" class="nav-featured">前端转AI电商</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .day-nav { max-width: 720px; margin: 18px auto 0; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .day-nav a { text-decoration:none; color:var(--text); font-size:13px; padding:6px 12px; border:1px solid var(--border); border-radius:6px; background:white; transition:all .15s; }
+  .day-nav a:hover { border-color:var(--primary); color:var(--primary); }
+  .day-nav a.disabled { opacity:.4; pointer-events:none; }
+  .day-nav .center { font-weight:600; font-size:14px; }
+  @media (max-width: 480px) { .day-nav a { padding:6px 8px; font-size:12px; } .day-nav .center { font-size:13px; } }
+</style>
+<div class="day-nav">
+  <a href="D28.html" title="D28 30天资源包">← 上一日（D28）</a>
+  <a class="center" href="calendar.html">📅 返回 30 天日历</a>
+  <a href="D30.html" title="D30 可复现≠可商业化">下一日（D30）→</a>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="time-pill">D29 · W4 第 8 天 · 待发布</span>
+    <h1>Day 29 笔记预览 · 朋友月薪 5 万,我却羡慕做副业电商的他</h1>
+    <p class="lead">W4 MVP 需求验证 · 情绪共鸣 · 反差型 · 30 天收官前 1 篇 · 大厂 5 万 vs 副业不确定,我选了后者</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="emo-banner">
+    🟢 <strong>30 天情绪收官核心观点:</strong> 大厂 5 万 ≠ 我想要的 5 万。我羡慕他「敢花钱 / 不用解释自己 / 35 岁还能涨薪」,但我选了「自由 + 多面手 + 自己造路」。
+  </div>
+
+  <div class="note">
+    <strong>使用说明:</strong> 6 张图按顺序上传,标题「朋友月薪 5 万 我却羡慕做副业电商的他」(XHS 上限 20 字 ✓ · 18 字)。
+    配图通过 HTML+Chrome headless 截图 1242×1660 PNG 生成(中文 100% 清晰,墨绿主色 + 4 维度对比 + 真实数据卡版式)。
+  </div>
+
+  <!-- 小红书样式预览卡 -->
+  <div class="xhs-preview">
+    <img class="xhs-img" src="content-kit/D29-笔记/01-封面.png" alt="封面 朋友月薪5万" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D29-笔记/02-场景.png" alt="两个饭局两种生活" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D29-笔记/03-对比.png" alt="4维度对比" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D29-笔记/04-为什么.png" alt="为什么羡慕他" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D29-笔记/05-我的选择.png" alt="我选的那一边长这样" onerror="this.style.display='none'">
+    <img class="xhs-img" src="content-kit/D29-笔记/06-收官预告.png" alt="评论区互动+D30预告" onerror="this.style.display='none'">
+
+    <div class="xhs-body">
+      <div class="xhs-title">朋友月薪 5 万 我却羡慕做副业电商的他</div>
+
+      <div style="font-size:14px; line-height:1.7; color:#333;">
+<pre style="white-space:pre-wrap; font-family:inherit; margin:0;">朋友在腾讯,5 年,年薪 50W+。
+上周吃饭,他说羡慕我。
+
+不是反话。
+
+他羡慕我「敢选」——
+他 9-22 加班是常态,房贷 8000,朋友圈只能晒工牌。
+我早上自由安排,住爸妈家,朋友圈晒选题文案数据。
+
+两个饭局,两种生活。
+
+───── 4 个维度,我俩各赢一半 ─────
+钱:他月入 4 万稳 vs 我 0-5000 波动
+时间:他 9-22 加班 vs 我自由安排
+能力:他代码封顶 vs 我选品/文案/数据
+风险:他 35 岁危机 vs 我每月 0 收入风险
+
+他羡慕我的「自由 + 多面手」,
+我羡慕他的「稳定 + 敢花钱」。
+我们都活在对方看不到的那一面。
+
+───── 3 个我承认的羡慕 ─────
+❶ 羡慕他敢花钱 — 我花 100 块都要想值不值
+❷ 羡慕他不用解释自己 — 「在腾讯」全桌点头;「做副业」全桌沉默
+❸ 羡慕他 35 岁还能涨薪 — 我副业 5 年后什么样,不知道
+
+但羡慕归羡慕,我不后悔。
+因为我知道——
+
+我羡慕的是「他活成了我不敢活的样子」,
+而不是「他活成了我想活的样子」。
+
+───── 30 天公开实验,长这样 ─────
+· 250 真实粉丝(无买粉)
+· 0 付费用户(诚实反向预期)
+· 28 篇笔记就绪(D1-D28)
+· 4 套跑通工作流(D9/D10/D11/D17)
+
+5 万我能再挣,
+但 35 岁前试错的窗口只有一次。
+
+大厂给我稳定,给不了我「我想要什么样的人生」的答案。
+副业给我的是「自己造路」的可能性。
+
+───── 一句话总结 ─────
+不是劝你也做电商,
+是劝你认真想清楚你要的。
+
+评论区告诉我 👇
+① 你身边有「5 万的他 / 副业的你」吗?
+② 你羡慕他的哪一点?
+③ 你选了大厂 / 副业 / 还在想?为什么?
+
+───── D30 收官预告 ─────
+可复现 ≠ 可商业化,差什么?
+30 天跑通 4 套工作流 + 28 篇笔记,
+但变现只做到 0 付费用户——
+D30 拆解「能跑通」到「能赚钱」隔着的 3 件事。
+
+关注我,看 30 天跑完的最终结论 🌱</pre>
+      </div>
+
+      <div style="margin-top:14px;">
+        <span class="xhs-tag">#前端转AI电商</span>
+        <span class="xhs-tag">#副业电商</span>
+        <span class="xhs-tag">#大厂vs副业</span>
+        <span class="xhs-tag">#情绪共鸣</span>
+        <span class="xhs-tag">#转型故事</span>
+      </div>
+    </div>
+
+    <div class="xhs-meta">
+      <span>前端转AI电商</span>
+      <span>刚刚</span>
+    </div>
+    <div class="xhs-actions">
+      <span>♡ 收藏</span>
+      <span>💬 评论</span>
+      <span>↗ 分享</span>
+    </div>
+  </div>
+
+  <!-- 复制按钮区 -->
+  <section class="section">
+    <h2>📋 一键复制</h2>
+    <div class="copy-row">
+      <button class="btn btn-primary" onclick="copyText('title')">📝 复制标题</button>
+      <button class="btn btn-primary" onclick="copyText('body')">📄 复制正文</button>
+      <button class="btn btn-primary" onclick="copyText('tags')">🏷️ 复制标签</button>
+    </div>
+
+    <textarea id="title" style="position:absolute;left:-9999px;">朋友月薪 5 万 我却羡慕做副业电商的他</textarea>
+    <textarea id="body" style="position:absolute;left:-9999px;">朋友在腾讯,5 年,年薪 50W+。
+上周吃饭,他说羡慕我。
+
+不是反话。
+
+他羡慕我「敢选」——
+他 9-22 加班是常态,房贷 8000,朋友圈只能晒工牌。
+我早上自由安排,住爸妈家,朋友圈晒选题文案数据。
+
+两个饭局,两种生活。
+
+───── 4 个维度,我俩各赢一半 ─────
+钱:他月入 4 万稳 vs 我 0-5000 波动
+时间:他 9-22 加班 vs 我自由安排
+能力:他代码封顶 vs 我选品/文案/数据
+风险:他 35 岁危机 vs 我每月 0 收入风险
+
+他羡慕我的「自由 + 多面手」,
+我羡慕他的「稳定 + 敢花钱」。
+我们都活在对方看不到的那一面。
+
+───── 3 个我承认的羡慕 ─────
+❶ 羡慕他敢花钱 — 我花 100 块都要想值不值
+❷ 羡慕他不用解释自己 — 「在腾讯」全桌点头;「做副业」全桌沉默
+❸ 羡慕他 35 岁还能涨薪 — 我副业 5 年后什么样,不知道
+
+但羡慕归羡慕,我不后悔。
+因为我知道——
+
+我羡慕的是「他活成了我不敢活的样子」,
+而不是「他活成了我想活的样子」。
+
+───── 30 天公开实验,长这样 ─────
+· 250 真实粉丝(无买粉)
+· 0 付费用户(诚实反向预期)
+· 28 篇笔记就绪(D1-D28)
+· 4 套跑通工作流(D9/D10/D11/D17)
+
+5 万我能再挣,
+但 35 岁前试错的窗口只有一次。
+
+大厂给我稳定,给不了我「我想要什么样的人生」的答案。
+副业给我的是「自己造路」的可能性。
+
+───── 一句话总结 ─────
+不是劝你也做电商,
+是劝你认真想清楚你要的。
+
+评论区告诉我 👇
+① 你身边有「5 万的他 / 副业的你」吗?
+② 你羡慕他的哪一点?
+③ 你选了大厂 / 副业 / 还在想?为什么?
+
+───── D30 收官预告 ─────
+可复现 ≠ 可商业化,差什么?
+30 天跑通 4 套工作流 + 28 篇笔记,
+但变现只做到 0 付费用户——
+D30 拆解「能跑通」到「能赚钱」隔着的 3 件事。
+
+关注我,看 30 天跑完的最终结论 🌱</textarea>
+    <textarea id="tags" style="position:absolute;left:-9999px;">#前端转AI电商 #副业电商 #大厂vs副业 #情绪共鸣 #转型故事</textarea>
+  </section>
+
+  <!-- 数据复盘卡 -->
+  <section class="section">
+    <h2>📊 D29 数据复盘</h2>
+    <div class="data-card">
+      <strong>30 天情绪收官核心观点:</strong> 大厂 5 万 ≠ 我想要的 5 万 — 羡慕归羡慕,选归选,30 天公开实验 = 我选的「自己造路」路径
+    </div>
+    <div class="data-card">
+      <strong>4 维度对比(客观):</strong> 钱(月入 4 万稳 vs 0-5000 波动) / 时间(9-22 加班 vs 自由安排) / 能力(代码封顶 vs 选品文案数据) / 风险(35 岁危机 vs 每月 0 收入)
+    </div>
+    <div class="data-card">
+      <strong>3 个我承认的羡慕:</strong> 敢花钱(100 块都要想值不值)/ 不用解释自己(在腾讯全桌点头 vs 做副业全桌沉默)/ 35 岁还能涨薪(大厂 P7-P8 路径 vs 副业 5 年后未知)
+    </div>
+    <div class="data-card">
+      <strong>关键金句(2 句):</strong> ①「我羡慕的是他活成了我不敢活的样子,不是我想活的样子」②「5 万我能再挣,但 35 岁前试错的窗口只有一次」
+    </div>
+    <div class="data-card">
+      <strong>30 天真实数据集:</strong> 250 真实粉丝(无买粉) / 0 付费用户(诚实反向预期) / 28 篇笔记就绪(D1-D28) / 4 套跑通工作流(D9/D10/D11/D17) — 全部基于 daily-content.json + 后台真实数据
+    </div>
+    <div class="data-card">
+      <strong>30 天情绪收官承接:</strong> D28 资源包 + D29 情绪共鸣 + D30 方法论 = W4 完整三段式(资源 → 共鸣 → 方法)
+    </div>
+    <div class="data-card">
+      <strong>互动钩子(3 问开放式,合规):</strong> ① 身边有「5 万的他 / 副业的你」吗? ② 羡慕他哪一点? ③ 你选了大厂 / 副业 / 还在想?为什么? — 开放式收集偏好,避免"扣字换资源"限流(7/15 D17 教训)
+    </div>
+    <div class="data-card">
+      <strong>D30 收官预告(方法论):</strong> 可复现 ≠ 可商业化,差什么? — 从「能跑通」到「能赚钱」隔着的 3 件事(冷流量 / 转化漏斗 / 复购),诚实拆解 0 付费用户的根因
+    </div>
+    <div class="data-card">
+      <strong>数字诚实度:</strong> 250/0/28/4 全部基于 daily-content.json status=ready 实际统计,朋友案例人物设定已脱敏,500 数字基于"年薪 50W 月入 4 万"换算
+    </div>
+  </section>
+
+  <!-- 发布前 SOP -->
+  <section class="section">
+    <h2>🚀 发布前 15 分钟 SOP</h2>
+    <ol>
+      <li>打开小红书 App → 创建笔记</li>
+      <li>选 6 张图(封面 1 + 场景 1 + 对比 1 + 为什么 1 + 我的选择 1 + 收官预告 1),按顺序排好</li>
+      <li>选 3:4 竖图</li>
+      <li>标题:朋友月薪 5 万 我却羡慕做副业电商的他(18 字 ✓ XHS 上限 20 字)</li>
+      <li>正文:点「复制正文」按钮粘贴</li>
+      <li>加 5 个标签</li>
+      <li>选发布时间:周一 20:00-21:00(W4 第 8 天 · 情绪共鸣型 + 周一通勤情绪高点)</li>
+      <li>发布前 3 项自检:封面 3 秒能看清"5 万 ≠ 副业"? 标题反差够强? 互动钩子是开放式 3 问?</li>
+      <li>发布</li>
+    </ol>
+  </section>
+
+  <!-- 发布后 SOP -->
+  <section class="section">
+    <h2>📈 发布后 24 小时 SOP</h2>
+    <table class="table">
+      <thead><tr><th>时间</th><th>动作</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr><td>10 分钟</td><td>自己评论「你身边有 5 万的他 / 副业的你 吗?评论区告诉我 3 件事 👇」</td><td>激活评论区开放式互动</td></tr>
+        <tr><td>30 分钟</td><td>每条评论认真回复(尤其"大厂 / 副业 / 还在想"分类的)</td><td>评论区密度提升推荐</td></tr>
+        <tr><td>2 小时</td><td>截图保存 D29 情绪共鸣卡 + Top 3 选择倾向</td><td>W4 收官素材 + D30 选题依据</td></tr>
+        <tr><td>6 小时</td><td>看一次数据(曝光/收藏/评论/Top 3 立场)</td><td>判断情绪型内容表现</td></tr>
+        <tr><td>24 小时</td><td>统计选择倾向(大厂 / 副业 / 还在想)票数,作为 D30 方法论"3 件事"展开方向</td><td>D30 选题数据驱动</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 数据目标 -->
+  <section class="section">
+    <h2>🎯 Day 29 数据目标</h2>
+    <table class="table">
+      <thead><tr><th>指标</th><th>目标</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>曝光</td><td>≥ 2000</td><td>情绪共鸣型天然易爆(D6/D20 经验值)</td></tr>
+        <tr><td>收藏率</td><td>≥ 8%</td><td>共鸣类收藏天然高(情绪认同 + 立场表态)</td></tr>
+        <tr><td>评论</td><td>≥ 300</td><td>3 问开放式钩子 + 立场型问题 = 高评论</td></tr>
+        <tr><td>涨粉</td><td>≥ 200</td><td>情绪共鸣 + 收官前 1 篇 = 冲一波精准粉</td></tr>
+        <tr><td>Top 3 立场</td><td>3 类都有</td><td>决定 D30 "可复现 vs 可商业化" 3 件事展开</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 关键设计点 -->
+  <section class="section">
+    <h2>💡 关键设计点</h2>
+
+    <h3>1. 标题 = 数字 + 反差 + 身份</h3>
+    <ul>
+      <li><strong>「朋友月薪 5 万 我却羡慕做副业电商的他」</strong> = 数字(5 万)+ 反差(却羡慕)+ 身份(副业电商)三重钩子</li>
+      <li>18 字 = XHS 上限 20 字内(留 2 字 buffer)</li>
+      <li>「却羡慕」= 跟"羡慕"对立,1 个字制造反常识</li>
+      <li>跟 D28「30 天资源包全公开」对比:D28 是承诺型(给资源),D29 是共鸣型(谈选择)</li>
+    </ul>
+
+    <h3>2. 正文 = 场景 + 4 维度对比 + 3 个羡慕 + 30 天数据 + 1 句话总结 + 互动钩子 + D30 预告</h3>
+    <ol>
+      <li><strong>场景铺垫(两个饭局)</strong>:腾讯 5W+ vs 前端副业 — 1 段对话铺垫</li>
+      <li><strong>4 维度对比表</strong>(钱/时间/能力/风险):客观展示"各赢一半",避免单方面"</li>
+      <li><strong>3 个我承认的羡慕</strong>(敢花钱/不用解释/35 岁涨薪):真诚承认,不是"凡尔赛"</li>
+      <li><strong>关键金句(2 句)</strong> ①"我羡慕的是他活成了我不敢活的样子"②"5 万能再挣,35 岁前试错窗口只有一次"</li>
+      <li><strong>30 天数据诚实</strong>(250/0/28/4):不画饼,真实公开"我做对了什么 + 没做到什么"</li>
+      <li><strong>1 句话总结</strong>"不是劝你也做电商,是劝你认真想清楚你要的" — 立场不强行推销</li>
+      <li><strong>互动钩子(3 问开放式)</strong> 身边有 5 万的他?羡慕他哪一点?你选了什么? — 避免"扣字换资源"</li>
+      <li><strong>D30 预告</strong>(可复现≠可商业化):承接收官方法论方向</li>
+    </ol>
+
+    <h3>3. 配图结构(6 张,情绪型版式)</h3>
+    <ul>
+      <li>图 01 = 封面(大字"5万 vs 电商"+ 副标"大厂 5 万 ≠ 我想要的 5 万"+ 墨绿主色)</li>
+      <li>图 02 = 两个饭局两种生活(他 — 腾讯 50W+ vs 我 — 副业 + AI 实验)</li>
+      <li>图 03 = 4 维度对比表(钱/时间/能力/风险 + 1 句大实话"都活在对方看不到的那一面")</li>
+      <li>图 04 = 3 个我承认的羡慕(敢花钱/不用解释/35 岁涨薪 + 黄色金句 block)</li>
+      <li>图 05 = 我选的那一边(4 个数据卡 250/0/28/4 + 墨绿渐变"为什么我选这边"块)</li>
+      <li>图 06 = 互动钩子 3 问 + D30 预告(墨绿渐变卡 + 金色 D30 标签)</li>
+    </ul>
+
+    <h3>4. 跟 D28 承接</h3>
+    <ul>
+      <li>D28 末段承诺"D29 朋友月薪 5 万 我却羡慕他(情绪共鸣)" → D29 兑现</li>
+      <li>D28 末段"9 类资源你最想要哪 1 个"开放式钩子 → D29 升级到 3 问立场钩子</li>
+      <li>D28 收官(资源包) → D29 情绪(为什么做) → D30 方法论(差什么) = W4 完整三段式</li>
+    </ul>
+
+    <h3>5. XHS 平台合规(7/15 D17 教训)</h3>
+    <ul>
+      <li><strong>不用"扣字换资源"</strong> 任何"扣 1=送""扣全=发"都触发限流(D17 实际被处置过)</li>
+      <li><strong>用"开放式 3 问"</strong> 立场型问题 + 偏好收集 = 高评论 + 不限流</li>
+      <li><strong>数字诚实</strong> 250/0/28/4 全部基于实际数据,不做"月入 5 万"画饼</li>
+      <li><strong>真诚承认羡慕</strong> 不是"凡尔赛"是"真羡慕" — 跟 D6/D20 情绪共鸣型一脉相承</li>
+      <li><strong>不强行推销</strong> "不是劝你也做电商,是劝你认真想清楚你要的" — 立场中立</li>
+    </ul>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="section">
+    <h2>⚠️ 注意事项</h2>
+    <ol>
+      <li><strong>正文 ≤ 1000 字</strong>—— XHS 上限 1000,本版约 632 字,留 buffer 368 字 ✓</li>
+      <li><strong>XHS 标题 20 字硬上限</strong>—— 当前标题「朋友月薪 5 万 我却羡慕做副业电商的他」= 18 字 ✓</li>
+      <li><strong>核心数据要诚实</strong>—— 250/0/28/4 全部基于 daily-content.json status=ready + 实际后台,不能拍脑袋</li>
+      <li><strong>朋友案例要脱敏</strong>—— 朋友是 5 年 + 腾讯 + 50W+ 设定,实际人物脱敏处理(不点名具体公司/姓名)</li>
+      <li><strong>不用"扣字换资源"互动</strong>—— 任何"扣 1=送""扣全=发"都触发 XHS 限流(7/15 D17 教训)</li>
+      <li><strong>羡慕是真羡慕不是凡尔赛</strong>—— 3 个羡慕(敢花钱/不用解释/35 岁涨薪)要写得真诚,不是"显摆"我比他强</li>
+      <li><strong>不强行推销副业</strong>—— 立场中立,"不是劝你也做电商"防止被算法标"诱导"</li>
+      <li><strong>发布时间建议周一 20:00</strong>—— W4 第 8 天 + 情绪共鸣型 + 周一通勤情绪高点</li>
+    </ol>
+  </section>
+
+  <div style="margin: 32px 0; text-align: center;">
+    <a class="btn btn-secondary" href="D28.html">← D28 笔记</a>
+    <a class="btn btn-secondary" href="calendar.html" style="margin-left:8px;">📅 返回日历</a>
+    <a class="btn btn-secondary" href="D30.html" style="margin-left:8px;">D30 笔记 →</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 前端转AI电商 · 30 天公开实验</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0, 99999);
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  if (navigator.clipboard && !ok) {
+    navigator.clipboard.writeText(el.value).catch(() => {});
+  }
+  const btns = document.querySelectorAll('.copy-row .btn');
+  btns.forEach(b => { if (b.getAttribute('onclick') === `copyText('${id}')`) { const orig = b.innerHTML; b.innerHTML = '✓ 已复制'; setTimeout(() => b.innerHTML = orig, 1500); } });
+}
+</script>
+
+</body>
+</html>
